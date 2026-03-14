@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>온마음 프로젝트 | 재단법인 선한뜻</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #b08d57; 
+            --gold: #d4a373;
+            --dark: #1a1a1a;
+            --soft-bg: #fcfaf7;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            line-height: 1.8; 
+            color: #444; 
+            background-color: var(--white); 
+            overflow-x: hidden;
+            word-break: keep-all;
+        }
+        h1, h2, h3 { font-family: 'Nanum Myeongjo', serif; }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: var(--white); padding: 20px;
+        }
+        .hero-title { font-size: clamp(2rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.2; margin-bottom: 30px; }
+        .hero-title span { color: var(--gold); }
+
+        /* 임팩트 문구 섹션 */
+        .impact-statement {
+            background-color: var(--soft-bg);
+            padding: 150px 20px;
+            text-align: center;
+        }
+        .impact-text {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+            line-height: 1.8;
+            color: var(--dark);
+            max-width: 1000px;
+            margin: 0 auto;
+            font-weight: 700;
+        }
+        .impact-text span { color: var(--primary); }
+
+        section { padding: 120px 20px; max-width: 1400px; margin: 0 auto; }
+        .tag { color: var(--primary); font-weight: 700; display: block; margin-bottom: 15px; letter-spacing: 3px; text-align: center; font-size: 1rem; }
+        .title-main { font-size: clamp(1.8rem, 4vw, 3rem); text-align: center; margin-bottom: 60px; line-height: 1.4; color: var(--dark); }
+
+        /* 30만원의 기적 그리드 */
+        .miracle-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 60px 0;
+        }
+        .miracle-card {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 15px;
+            transition: 0.4s ease;
+        }
+        .miracle-label { font-size: 0.9rem; color: var(--gold); display: block; margin-bottom: 15px; }
+        .miracle-val { font-size: clamp(1.3rem, 2.5vw, 2.2rem); font-weight: 700; font-family: 'Nanum Myeongjo'; }
+
+        /* Two Promises */
+        .promise-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .p-card { padding: 60px 40px; border-radius: 20px; background: var(--soft-bg); border-top: 5px solid var(--primary); }
+        .p-card h3 { font-size: 1.8rem; margin-bottom: 20px; color: var(--dark); }
+
+        /* Trust Section */
+        .trust-container {
+            background: var(--dark); color: var(--white); padding: 80px 60px; border-radius: 30px;
+            display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 50px; margin: 60px 0;
+        }
+        .badge {
+            width: 200px; height: 200px; border: 2px solid var(--gold); border-radius: 50%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+        }
+        .badge b { font-size: 3rem; color: var(--gold); }
+
+        /* Final Area & Sign-off */
+        .final-area { text-align: center; padding: 120px 20px; background: var(--soft-bg); border-radius: 100px 100px 0 0; }
+        .quote { font-family: 'Nanum Myeongjo'; font-size: clamp(1.5rem, 3vw, 2.2rem); font-style: italic; margin: 50px 0; color: var(--dark); }
+        .btn {
+            display: inline-block; padding: 22px 80px; background: var(--primary); color: #fff;
+            text-decoration: none; border-radius: 100px; font-weight: 700; font-size: 1.2rem;
+            transition: 0.4s; box-shadow: 0 15px 30px rgba(176, 141, 87, 0.4);
+            margin-bottom: 40px; cursor: pointer; border: none;
+        }
+        .btn:hover { background: var(--dark); transform: scale(1.05); }
+
+        .sign-off {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 1.2rem;
+            color: #888;
+            letter-spacing: 2px;
+            margin-top: 20px;
+        }
+        .sign-off b { color: var(--primary); font-weight: 800; }
+
+        /* [추가] 모달(팝업) 스타일 */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 9999; 
+            left: 0; top: 0; 
+            width: 100%; height: 100%; 
+            background-color: rgba(0,0,0,0.85);
+            justify-content: center; align-items: center;
+        }
+        .modal-content {
+            position: relative;
+            max-width: 500px;
+            width: 90%;
+            animation: modalFade 0.4s;
+        }
+        @keyframes modalFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .close-modal {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .close-modal:hover { color: var(--gold); }
+
+        /* Responsive Optimization */
+        @media (max-width: 1024px) {
+            section { padding: 80px 20px; }
+            .impact-statement { padding: 100px 20px; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.2rem; }
+            .miracle-grid, .promise-grid { grid-template-columns: 1fr; }
+            .trust-container { padding: 40px 20px; text-align: center; }
+            .badge { width: 160px; height: 160px; margin-bottom: 20px; }
+            .final-area { border-radius: 50px 50px 0 0; }
+            .btn { width: 100%; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <p class="hero-sub" data-aos="fade-down" data-aos-duration="1200">재단법인 선한뜻 | 온마음 프로젝트</p>
+        <h1 class="hero-title" data-aos="zoom-in" data-aos-duration="1000">
+            아이들의 오늘을 지키고<br><span>내일의 문</span>을 여는 온마음
+        </h1>
+        <p data-aos="fade-up" data-aos-delay="400" style="font-size: 1.1rem; opacity: 0.8; letter-spacing: 1px;">“한 아이를 살리는 것이 한 세계를 구하는 일입니다”</p>
+    </header>
+
+    <article class="impact-statement">
+        <div class="impact-text" data-aos="fade-up" data-aos-duration="1500">
+            세상에는 태어남과 동시에<br>
+            <span>생존이라는 가혹한 시험대</span>에 오르는<br>
+            아이들이 있습니다.
+        </div>
+    </article>
+
+    <section>
+        <span class="tag" data-aos="fade-up">MIRACLE OF 300,000 KRW</span>
+        <h2 class="title-main" data-aos="fade-up">한 달 30만 원으로 만드는<br>250명 아이들의 기적</h2>
+        
+        <div class="miracle-grid">
+            <div class="miracle-card" data-aos="flip-left" data-aos-delay="100">
+                <span class="miracle-label">한 달 후원금</span>
+                <span class="miracle-val">300,000원</span>
+            </div>
+            <div class="miracle-card" data-aos="flip-left" data-aos-delay="300">
+                <span class="miracle-label">지원 대상</span>
+                <span class="miracle-val">200~250명</span>
+            </div>
+            <div class="miracle-card" data-aos="flip-left" data-aos-delay="500">
+                <span class="miracle-label">지원 내용</span>
+                <span class="miracle-val">주 5일, 한 달간<br>하루 한끼 식사 + 교육</span>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 1.2rem; color: #666; max-width: 900px; margin: 0 auto; line-height: 2;" data-aos="fade-up">
+             아프리카 최빈국 아이들에게 가장 절실한 것은 거창한 미래가 아니라<br>
+             <b>‘오늘을 버텨낼 최소한의 에너지’</b>와 <b>‘세상과 소통할 최소한의 도구’</b>입니다.
+        </p>
+    </section>
+
+    <section style="background-color: #fff;">
+        <h2 class="section-title" style="text-align: center; font-size: 2.2rem; margin-bottom: 60px; font-family: 'Nanum Myeongjo';" data-aos="fade-up">가장 낮은 곳에서 피어나는 자립</h2>
+        <div class="promise-grid">
+            <div class="p-card" data-aos="fade-right">
+                <h3>01. 생명 보존의 한 끼</h3>
+                <p style="font-size: 1.1rem;">굶주림으로 인해 성장이 멈추지 않도록, <b>주 5일 하루 한 끼</b>의 따뜻한 식사를 제공하여 아이들의 생존권을 수호하겠습니다.</p>
+            </div>
+            <div class="p-card" data-aos="fade-left">
+                <h3>02. 문맹 탈출의 기회</h3>
+                <p style="font-size: 1.1rem;">글을 모르면 가난에서 벗어날 수 없습니다. <b>기초 교육</b>을 통해 아이들이 사회의 당당한 일원이 되도록 돕겠습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="trust-container" data-aos="zoom-in">
+            <div class="badge">
+                <b>100%</b>
+                <span style="font-size: 0.9rem; margin-top: 5px; color: var(--gold);">+ &alpha; (재단지원)</span>
+            </div>
+            <div class="trust-content">
+                <span class="tag" style="text-align: left; color: var(--gold);">PURE TRANSPARENCY</span>
+                <h2>오직 아이들만을 위한 정직한 고집</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    운영비나 홍보비로 후원금을 낭비하지 않습니다. <b>모금액 100% 전액</b>을 현장에 사용하며, 재단법인 선한뜻의 지원을 더해 후원의 가치를 높입니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-area">
+        <div data-aos="fade-up">
+            <h2 class="title-main">우리의 목표는 ‘시혜’가 아닌 ‘자립’입니다</h2>
+            <p style="font-size: 1.1rem; color: #555; max-width: 800px; margin: 0 auto; margin-bottom: 40px;">
+                단독 사업으로 진행되는 만큼, 아이들의 변화를 <b>정기적인 피드백</b>으로 투명하게 전달합니다. 
+                당신이 품은 귀한 가치, 아이들의 눈망울에서 반짝이며 피어납니다.
+            </p>
+            <div class="quote" data-aos="fade-in">
+                "질병과 가난으로부터 아이들을 지켜내는 일. 당신과 나,<b> '온마음'</b>이 함께 합니다."
+            </div>
+            
+            <button class="btn" id="openAccount">마음 더하기</button>
+            
+            <div class="sign-off" data-aos="fade-up" data-aos-delay="600">
+                Onmaum Heart 1 <b>김현주 올림</b>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 60px 20px; text-align: center; color: #bbb; border-top: 1px solid #eee; font-size: 0.9rem;">
+        &copy; 재단법인 선한뜻 - 온마음 프로젝트 | 정직한 자립 지원 사업
+    </footer>
+
+    <div id="accountModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <img src="account.jpg" alt="후원계좌 안내">
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true,
+            offset: 50
+        });
+
+        // [추가] 모달 제어 스크립트
+        const modal = document.getElementById("accountModal");
+        const btn = document.getElementById("openAccount");
+        const span = document.getElementsByClassName("close-modal")[0];
+
+        // 버튼 클릭 시 열기
+        btn.onclick = function() {
+            modal.style.display = "flex";
+            document.body.style.overflow = "hidden"; // 배경 스크롤 방지
+        }
+
+        // X 버튼 클릭 시 닫기
+        span.onclick = function() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        // 배경 클릭 시 닫기
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+    </script>
+</body>
+</html>
