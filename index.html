@@ -1,0 +1,3180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>온마음 프로젝트 | 재단법인 선한뜻 — 세상을 더 아름답게, 사람을 더 행복하게</title>
+  <meta name="description" content="아이들의 오늘을 지키고 내일의 문을 여는 온마음 프로젝트 with 재단법인 선한뜻. 케냐 마사이 학교 급식·교육 지원과 말라위 생명수 우물 개발(Water is Life) 현장의 이야기를 전합니다." />
+  <meta property="og:title" content="온마음 프로젝트 | 재단법인 선한뜻" />
+  <meta property="og:description" content="맑은 물 한 모금처럼, 따뜻한 한 끼처럼. 후원금 100%가 현장에 전달되는 온마음 프로젝트의 월간 소식지와 현장 이야기를 만나보세요." />
+  <meta property="og:image" content="Onmaum.png" />
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-color: #FFFDF9;
+      --bg-soft: #FFF5ED;
+      --bg-blue-soft: #F0F7FF;
+      --bg-card: #FFFFFF;
+      --text-main: #1D1D1F;
+      --text-muted: #5A5A60;
+      --text-light: #86868B;
+      --brand-orange: #FF5A36;
+      --brand-orange-dark: #E04320;
+      --brand-orange-light: #FFE6DF;
+      --brand-blue: #0066CC;
+      --brand-blue-dark: #004C99;
+      --brand-blue-light: #E5F1FF;
+      --brand-green: #1E8E5A;
+      --brand-green-light: #E6F6EE;
+      --brand-gold: #D9822B;
+      --border-color: rgba(29, 29, 31, 0.08);
+      --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 24px 56px rgba(255, 90, 54, 0.14);
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --radius-xl: 36px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.65;
+      word-break: keep-all;
+      overflow-x: hidden;
+    }
+
+    .serif-title {
+      font-family: 'Nanum Myeongjo', serif;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ==================== STICKY HEADER & AUDIO BAR ==================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      background: rgba(255, 253, 249, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      flex-shrink: 0;
+    }
+
+    .brand-link img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-text-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .brand-sub {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      font-weight: 600;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 8px 13px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--brand-orange);
+      background: var(--brand-orange-light);
+    }
+
+    .nav-link-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--brand-orange);
+      display: inline-block;
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.5; }
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-bgm-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-soft);
+      border: 1px solid rgba(255, 90, 54, 0.25);
+      color: var(--brand-orange-dark);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .btn-bgm-pill:hover {
+      background: var(--brand-orange-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-bgm-pill.playing {
+      background: var(--brand-orange);
+      color: #fff;
+      border-color: var(--brand-orange);
+      box-shadow: 0 6px 18px rgba(255, 90, 54, 0.3);
+    }
+
+    /* Equalizer icon */
+    .eq-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 13px;
+    }
+
+    .eq-bar {
+      width: 2.5px;
+      background: currentColor;
+      border-radius: 2px;
+      height: 4px;
+      transition: height 0.2s ease;
+    }
+
+    .playing .eq-bar:nth-child(1) { animation: eqAnim 0.7s infinite ease-in-out 0.1s; }
+    .playing .eq-bar:nth-child(2) { animation: eqAnim 0.7s infinite ease-in-out 0.3s; }
+    .playing .eq-bar:nth-child(3) { animation: eqAnim 0.7s infinite ease-in-out 0.2s; }
+    .playing .eq-bar:nth-child(4) { animation: eqAnim 0.7s infinite ease-in-out 0.4s; }
+
+    @keyframes eqAnim {
+      0%, 100% { height: 4px; }
+      50% { height: 13px; }
+    }
+
+    .btn-donate-sm {
+      background: var(--brand-orange);
+      color: #fff;
+      border: none;
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 14px rgba(255, 90, 54, 0.25);
+    }
+
+    .btn-donate-sm:hover {
+      background: var(--brand-orange-dark);
+      transform: translateY(-1px);
+    }
+
+    /* ==================== FLOATING MUSIC PLAYER BAR ==================== */
+    .music-bar {
+      background: linear-gradient(90deg, #FFF5ED 0%, #FFFDF9 50%, #F0F7FF 100%);
+      border-bottom: 1px solid rgba(255, 90, 54, 0.12);
+      padding: 8px 24px;
+      font-size: 0.85rem;
+    }
+
+    .music-bar-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .music-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 220px;
+    }
+
+    .music-badge {
+      background: var(--brand-orange);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 999px;
+      letter-spacing: 0.03em;
+    }
+
+    .music-title-text {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .music-lyric-ticker {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-style: italic;
+    }
+
+    .music-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      max-width: 520px;
+    }
+
+    .music-play-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: var(--brand-orange);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      font-size: 0.8rem;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .music-play-btn:hover {
+      transform: scale(1.08);
+      background: var(--brand-orange-dark);
+    }
+
+    .music-progress-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .music-time {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      font-variant-numeric: tabular-nums;
+      min-width: 34px;
+    }
+
+    .music-seek {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(29, 29, 31, 0.12);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .music-seek::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--brand-orange);
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(255, 90, 54, 0.4);
+    }
+
+    .music-extra-btns {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-text-chip {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-text-chip:hover {
+      border-color: var(--brand-orange);
+      color: var(--brand-orange);
+      background: #fff;
+    }
+
+    /* ==================== HERO SECTION ==================== */
+    .hero-section {
+      position: relative;
+      padding: 64px 0 84px;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(255, 90, 54, 0.08), transparent 42%),
+        radial-gradient(circle at 88% 25%, rgba(0, 102, 204, 0.08), transparent 45%),
+        linear-gradient(180deg, #FFFDF9 0%, #FFF7F0 100%);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid rgba(255, 90, 54, 0.22);
+      color: var(--brand-orange);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4.2vw, 3.45rem);
+      font-weight: 800;
+      line-height: 1.24;
+      letter-spacing: -0.03em;
+      margin-bottom: 22px;
+      color: var(--text-main);
+    }
+
+    .hero-title .accent-orange {
+      color: var(--brand-orange);
+    }
+
+    .hero-title .accent-blue {
+      color: var(--brand-blue);
+    }
+
+    .hero-lead {
+      font-size: 1.14rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .hero-lyric-quote {
+      background: rgba(255, 255, 255, 0.82);
+      border-left: 4px solid var(--brand-orange);
+      padding: 16px 20px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-lyric-quote p {
+      font-size: 0.98rem;
+      color: var(--text-main);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .hero-lyric-quote span {
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+
+    .btn-primary-lg {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--brand-orange);
+      color: #fff;
+      border: none;
+      padding: 16px 30px;
+      border-radius: 999px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 10px 26px rgba(255, 90, 54, 0.32);
+      transition: all 0.25s ease;
+    }
+
+    .btn-primary-lg:hover {
+      background: var(--brand-orange-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 32px rgba(255, 90, 54, 0.42);
+    }
+
+    .btn-secondary-lg {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      color: var(--text-main);
+      border: 1.5px solid rgba(29, 29, 31, 0.14);
+      padding: 15px 24px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .btn-secondary-lg:hover {
+      border-color: var(--brand-orange);
+      color: var(--brand-orange);
+      transform: translateY(-2px);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .metric-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border-color);
+      padding: 18px 16px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .metric-num {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--brand-orange);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .metric-card:nth-child(2) .metric-num {
+      color: var(--brand-blue);
+    }
+
+    .metric-card:nth-child(3) .metric-num {
+      color: var(--brand-green);
+    }
+
+    .metric-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .metric-sub {
+      font-size: 0.76rem;
+      color: var(--text-light);
+      margin-top: 2px;
+    }
+
+    /* Poster Showcase Column */
+    .hero-poster-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .poster-frame {
+      position: relative;
+      background: #fff;
+      padding: 14px;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 28px 64px rgba(29, 29, 31, 0.14);
+      border: 1px solid rgba(255, 90, 54, 0.16);
+      max-width: 430px;
+      width: 100%;
+      cursor: zoom-in;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .poster-frame:hover {
+      transform: translateY(-6px) rotate(-0.5deg);
+      box-shadow: 0 34px 72px rgba(255, 90, 54, 0.22);
+    }
+
+    .poster-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: calc(var(--radius-lg) - 8px);
+    }
+
+    .poster-caption-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 6px 4px;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .poster-floating-badge {
+      position: absolute;
+      bottom: 26px;
+      left: -18px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+      padding: 12px 18px;
+      border-radius: var(--radius-md);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(0, 102, 204, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .poster-floating-badge .badge-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--brand-blue-light);
+      color: var(--brand-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    /* ==================== SECTION COMMONS ==================== */
+    section {
+      padding: 96px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 56px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    .tag-orange {
+      background: var(--brand-orange-light);
+      color: var(--brand-orange);
+    }
+
+    .tag-blue {
+      background: var(--brand-blue-light);
+      color: var(--brand-blue);
+    }
+
+    .tag-green {
+      background: var(--brand-green-light);
+      color: var(--brand-green);
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.3;
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ==================== MONTHLY NEWSLETTER HUB ==================== */
+    .newsletter-section {
+      background: linear-gradient(180deg, #FFF7F0 0%, #FFFDF9 100%);
+      border-top: 1px solid rgba(255, 90, 54, 0.1);
+      border-bottom: 1px solid rgba(255, 90, 54, 0.1);
+    }
+
+    .newsletter-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      background: #fff;
+      padding: 14px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .issue-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .issue-tab-btn {
+      border: 1px solid var(--border-color);
+      background: var(--bg-color);
+      color: var(--text-muted);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .issue-tab-btn:hover {
+      border-color: var(--brand-orange);
+      color: var(--brand-orange);
+    }
+
+    .issue-tab-btn.active {
+      background: var(--brand-orange);
+      color: #fff;
+      border-color: var(--brand-orange);
+      box-shadow: 0 6px 16px rgba(255, 90, 54, 0.28);
+    }
+
+    .new-pill {
+      background: #FFE600;
+      color: #1D1D1F;
+      font-size: 0.68rem;
+      font-weight: 900;
+      padding: 2px 7px;
+      border-radius: 999px;
+    }
+
+    .newsletter-admin-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-edition-toggle {
+      background: var(--bg-soft);
+      color: var(--brand-orange-dark);
+      border: 1px solid rgba(255, 90, 54, 0.2);
+      padding: 9px 15px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-edition-toggle:hover {
+      background: var(--brand-orange-light);
+    }
+
+    .btn-add-issue {
+      background: var(--text-main);
+      color: #fff;
+      border: none;
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-add-issue:hover {
+      background: var(--brand-blue);
+      transform: translateY(-1px);
+    }
+
+    /* Interactive Magazine Reader Layout */
+    .newsletter-reader-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 36px;
+      align-items: start;
+      margin-bottom: 48px;
+    }
+
+    .reader-stage-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .reader-main-viewport {
+      position: relative;
+      background: #F7F4EF;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .reader-main-viewport img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      cursor: zoom-in;
+      transition: opacity 0.25s ease;
+    }
+
+    .reader-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(29, 29, 31, 0.72);
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      z-index: 5;
+    }
+
+    .reader-nav-btn:hover {
+      background: var(--brand-orange);
+      transform: translateY(-50%) scale(1.08);
+    }
+
+    .reader-nav-btn.prev { left: 14px; }
+    .reader-nav-btn.next { right: 14px; }
+
+    .reader-page-badge {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      background: rgba(29, 29, 31, 0.75);
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      backdrop-filter: blur(6px);
+    }
+
+    .reader-thumbs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .reader-thumb-item {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2.5px solid transparent;
+      cursor: pointer;
+      aspect-ratio: 3 / 4;
+      background: #f3f3f3;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .reader-thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .reader-thumb-item.active {
+      border-color: var(--brand-orange);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(255, 90, 54, 0.25);
+    }
+
+    .reader-thumb-num {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      background: rgba(0, 0, 0, 0.65);
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 6px;
+    }
+
+    /* Issue Details Column */
+    .issue-detail-panel {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 34px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .issue-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .issue-vol-badge {
+      background: var(--brand-orange-light);
+      color: var(--brand-orange);
+      font-weight: 800;
+      font-size: 0.85rem;
+      padding: 5px 13px;
+      border-radius: 999px;
+    }
+
+    .issue-date-text {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .issue-main-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      line-height: 1.32;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .issue-subtitle {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.65;
+    }
+
+    .issue-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .issue-kpi-box {
+      background: var(--bg-soft);
+      padding: 14px 12px;
+      border-radius: var(--radius-sm);
+      text-align: center;
+    }
+
+    .issue-kpi-val {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--brand-orange);
+      margin-bottom: 2px;
+    }
+
+    .issue-kpi-lbl {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .issue-page-notes {
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+      margin-bottom: 24px;
+    }
+
+    .issue-page-notes h4 {
+      font-size: 0.92rem;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+
+    .page-note-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .page-note-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      font-size: 0.93rem;
+    }
+
+    .page-note-item:hover,
+    .page-note-item.active {
+      background: var(--bg-soft);
+    }
+
+    .page-note-num {
+      background: var(--brand-orange);
+      color: #fff;
+      font-size: 0.74rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* All Issues Archive Shelf */
+    .archive-shelf-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .archive-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .archive-issue-card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .archive-issue-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--brand-orange);
+    }
+
+    .archive-issue-card.active {
+      border: 2px solid var(--brand-orange);
+    }
+
+    .archive-cover-wrap {
+      aspect-ratio: 4 / 3;
+      background: #f4f1ea;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .archive-cover-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.35s ease;
+    }
+
+    .archive-issue-card:hover .archive-cover-wrap img {
+      transform: scale(1.04);
+    }
+
+    .archive-card-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .archive-card-title {
+      font-size: 1.12rem;
+      font-weight: 800;
+      margin: 6px 0 8px;
+      color: var(--text-main);
+    }
+
+    .archive-card-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ==================== KENYA FEEDING & EDUCATION SECTION ==================== */
+    .kenya-story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+
+    .story-feature-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .story-feature-card.highlight-orange {
+      background: linear-gradient(145deg, #FFF8F3 0%, #FFFFFF 100%);
+      border-color: rgba(255, 90, 54, 0.2);
+    }
+
+    .story-feature-card h3 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      line-height: 1.35;
+    }
+
+    .story-feature-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+
+    .schools-breakdown-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 40px;
+    }
+
+    .schools-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .school-pill-card {
+      background: var(--bg-soft);
+      border: 1px solid rgba(255, 90, 54, 0.14);
+      border-radius: var(--radius-md);
+      padding: 20px 16px;
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .school-pill-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .school-name-ko {
+      font-weight: 800;
+      font-size: 1.02rem;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .school-name-en {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      margin-bottom: 10px;
+    }
+
+    .school-count {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--brand-orange);
+    }
+
+    .school-count span {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Handwritten Letters Showcase */
+    .letters-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .letter-card {
+      background: #FFFDF9;
+      border: 1px solid rgba(217, 130, 43, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .letter-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed rgba(29, 29, 31, 0.12);
+    }
+
+    .letter-school-tag {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--brand-gold);
+      background: #FFF4E5;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    .letter-quote-ko {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    .letter-quote-en {
+      font-size: 0.86rem;
+      color: var(--text-light);
+      font-style: italic;
+      background: rgba(29, 29, 31, 0.03);
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 18px;
+      line-height: 1.55;
+    }
+
+    .letter-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .letter-author {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .letter-pdf-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--brand-orange);
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--brand-orange-light);
+      transition: all 0.2s ease;
+    }
+
+    .letter-pdf-link:hover {
+      background: var(--brand-orange);
+      color: #fff;
+    }
+
+    /* ==================== MALAWI WATER IS LIFE SECTION ==================== */
+    .malawi-section {
+      background: linear-gradient(180deg, #F0F7FF 0%, #FFFDF9 100%);
+      border-top: 1px solid rgba(0, 102, 204, 0.1);
+    }
+
+    .malawi-context-banner {
+      background: linear-gradient(135deg, #004C99 0%, #0066CC 100%);
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: 36px 40px;
+      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 32px;
+      align-items: center;
+      box-shadow: 0 20px 48px rgba(0, 102, 204, 0.18);
+    }
+
+    .malawi-context-banner h3 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+
+    .malawi-context-banner p {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .malawi-pdf-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-white-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-white-outline:hover {
+      background: #fff;
+      color: var(--brand-blue);
+    }
+
+    .malawi-stat-pills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .malawi-stat-box {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .malawi-stat-box strong {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #7CE7FF;
+    }
+
+    .malawi-stat-box span {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .wells-comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+
+    .well-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 34px;
+      border: 1px solid rgba(0, 102, 204, 0.14);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .well-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .well-num-tag {
+      background: var(--brand-blue-light);
+      color: var(--brand-blue);
+      font-weight: 800;
+      font-size: 0.84rem;
+      padding: 5px 14px;
+      border-radius: 999px;
+    }
+
+    .well-status-tag {
+      background: var(--brand-green-light);
+      color: var(--brand-green);
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+
+    .well-card h3 {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .well-location {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .well-specs-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .well-specs-list li {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.92rem;
+    }
+
+    .well-specs-list li span:first-child {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .well-specs-list li span:last-child {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .well-card-cover {
+      aspect-ratio: 16 / 10;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 18px;
+      position: relative;
+      background: #e9f2fc;
+      cursor: zoom-in;
+      border: 1px solid rgba(0, 102, 204, 0.12);
+    }
+
+    .well-card-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .well-card-cover:hover img {
+      transform: scale(1.04);
+    }
+
+    .well-card-cover-caption {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      background: rgba(29, 29, 31, 0.72);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 999px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .well-jump-btn {
+      margin-top: 18px;
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--brand-blue-light);
+      color: var(--brand-blue);
+      border: 1px solid rgba(0, 102, 204, 0.22);
+      padding: 11px 18px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .well-jump-btn:hover {
+      background: var(--brand-blue);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .well-gallery-block {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(0, 102, 204, 0.14);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 36px;
+    }
+
+    .well-gallery-block:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Malawi Field Gallery */
+    .gallery-filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .filter-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-pill-btn {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-pill-btn.active,
+    .filter-pill-btn:hover {
+      background: var(--brand-blue);
+      color: #fff;
+      border-color: var(--brand-blue);
+    }
+
+    .malawi-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .gallery-item-card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .gallery-item-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .gallery-media-box {
+      aspect-ratio: 4 / 3;
+      background: #000;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-media-box img,
+    .gallery-media-box video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .gallery-item-card:hover .gallery-media-box img {
+      transform: scale(1.05);
+    }
+
+    .gallery-caption {
+      padding: 12px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* ==================== 100% PROMISE & DONATION SECTION ==================== */
+    .promise-banner {
+      background: linear-gradient(135deg, #1D1D1F 0%, #2C2C30 100%);
+      color: #fff;
+      border-radius: var(--radius-xl);
+      padding: 64px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 28px 64px rgba(0, 0, 0, 0.16);
+    }
+
+    .promise-badge {
+      display: inline-block;
+      background: rgba(255, 90, 54, 0.22);
+      color: #FF8566;
+      border: 1px solid rgba(255, 90, 54, 0.4);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .promise-banner h2 {
+      font-size: clamp(2rem, 3.6vw, 3rem);
+      font-weight: 800;
+      margin-bottom: 18px;
+      line-height: 1.3;
+    }
+
+    .promise-banner p {
+      max-width: 680px;
+      margin: 0 auto 36px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1.1rem;
+      line-height: 1.75;
+    }
+
+    .account-quick-box {
+      max-width: 580px;
+      margin: 0 auto 32px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-md);
+      padding: 22px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      text-align: left;
+    }
+
+    .account-quick-info span {
+      display: block;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.68);
+      margin-bottom: 4px;
+    }
+
+    .account-quick-info strong {
+      font-size: 1.28rem;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-copy-account {
+      background: #fff;
+      color: var(--text-main);
+      border: none;
+      padding: 11px 20px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-copy-account:hover {
+      background: var(--brand-orange);
+      color: #fff;
+    }
+
+    /* ==================== FOOTER ==================== */
+    footer {
+      padding: 56px 0;
+      border-top: 1px solid var(--border-color);
+      background: #FAF7F2;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    /* ==================== MODALS (DONATION, LYRICS, VIDEO, LIGHTBOX, ADMIN) ==================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.68);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      max-width: 560px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 28px 68px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-card.wide {
+      max-width: 820px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: #F2F2F7;
+      color: var(--text-main);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close:hover {
+      background: var(--brand-orange);
+      color: #fff;
+    }
+
+    /* Admin Studio Form */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(29, 29, 31, 0.16);
+      font-size: 0.94rem;
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* Toast Notification */
+    .toast-msg {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1D1D1F;
+      color: #fff;
+      padding: 13px 24px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+      z-index: 3000;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+    }
+
+    .toast-msg.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-grid,
+      .newsletter-reader-grid,
+      .kenya-story-grid,
+      .letters-grid,
+      .malawi-context-banner,
+      .wells-comparison-grid {
+        grid-template-columns: 1fr;
+      }
+      .schools-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .archive-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .malawi-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .main-nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-metrics,
+      .issue-kpi-grid,
+      .malawi-gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      .promise-banner {
+        padding: 40px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== STICKY HEADER ==================== -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#top" class="brand-link">
+        <img src="logo.png" alt="온마음 프로젝트 로고" />
+        <div class="brand-text-group">
+          <span class="brand-name">온마음 프로젝트</span>
+          <span class="brand-sub">with 재단법인 선한뜻 · Acta Non Verba</span>
+        </div>
+      </a>
+
+      <nav class="main-nav">
+        <a href="#top" class="nav-link">소개</a>
+        <a href="#newsletter" class="nav-link nav-link-badge">
+          <span class="badge-dot"></span>월간 소식지
+        </a>
+        <a href="#kenya" class="nav-link">케냐 급식·교육</a>
+        <a href="#letters" class="nav-link">현장 손편지</a>
+        <a href="#malawi" class="nav-link">말라위 우물(Water is Life)</a>
+        <a href="#donate" class="nav-link">100% 투명 후원</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="btn-bgm-pill" id="headerBgmBtn" onclick="toggleBgm()">
+          <span class="eq-bars">
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+            <span class="eq-bar"></span>
+          </span>
+          <span id="headerBgmText">테마곡 듣기</span>
+        </button>
+        <button type="button" class="btn-donate-sm" onclick="openDonateModal()">온 마음 더하기</button>
+      </div>
+    </div>
+
+    <!-- INTEGRATED THEME SONG PLAYER BAR -->
+    <div class="music-bar">
+      <div class="music-bar-inner">
+        <div class="music-info">
+          <span class="music-badge">THEME SONG</span>
+          <span class="music-title-text">온 마음으로 (Onmaum Theme)</span>
+          <span class="music-lyric-ticker" id="lyricTicker">"맑은 물 한 모금처럼, 따뜻한 한 끼처럼..."</span>
+        </div>
+
+        <div class="music-controls">
+          <button type="button" class="music-play-btn" id="barPlayBtn" onclick="toggleBgm()" aria-label="음악 재생/일시정지">▶</button>
+          <div class="music-progress-wrap">
+            <span class="music-time" id="bgmCurrentTime">0:00</span>
+            <input type="range" class="music-seek" id="bgmSeek" min="0" max="100" value="0" step="0.1" />
+            <span class="music-time" id="bgmDuration">2:49</span>
+          </div>
+        </div>
+
+        <div class="music-extra-btns">
+          <button type="button" class="btn-text-chip" onclick="openLyricsModal()">📜 가사 전문</button>
+          <button type="button" class="btn-text-chip" onclick="openVideoModal()">🎬 원본 영상(MP4)</button>
+        </div>
+      </div>
+      <audio id="onmaumAudio" src="onmaum-bgm.mp3" preload="metadata"></audio>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero-section" id="top">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-eyebrow">
+            <span>🌱 세상을 더 아름답게, 사람을 더 행복하게 · Good People, Better Days</span>
+          </div>
+          <h1 class="hero-title serif-title">
+            아이들의 오늘을 지키고<br />
+            <span class="accent-orange">내일의 문</span>을 여는<br />
+            <span class="accent-blue">온마음 프로젝트</span>
+          </h1>
+          <p class="hero-lead">
+            케냐 마사이 마을 학교의 따뜻한 점심 한 끼와 배움터, 그리고 말라위 마을의 생명수 우물까지.
+            멀리 있는 누군가의 오늘을 생각하는 우리의 작은 마음들이 모여 아이들의 내일에 환한 빛이 됩니다.
+          </p>
+
+          <div class="hero-lyric-quote">
+            <p>“온 마음으로 당신의 오늘을 응원해요. 맑은 물 한 모금처럼, 따뜻한 한 끼처럼.”</p>
+            <span>— 온마음 프로젝트 공식 테마곡 〈온 마음으로〉 중에서</span>
+          </div>
+
+          <div class="hero-cta-group">
+            <button type="button" class="btn-primary-lg" onclick="openDonateModal()">
+              🧡 온 마음 더하기 (후원 안내)
+            </button>
+            <button type="button" class="btn-secondary-lg" onclick="toggleBgm(true)">
+              🎵 테마곡 재생하며 둘러보기
+            </button>
+            <a href="#newsletter" class="btn-secondary-lg">
+              📖 월간 소식지 (1~3호) 보기
+            </a>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-card">
+              <div class="metric-num">1,187명</div>
+              <div class="metric-label">케냐 마사이 5개 학교 급식</div>
+              <div class="metric-sub">인카티·올레키마키·킬루아니 등</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-num">740+명</div>
+              <div class="metric-label">말라위 1·2호 생명수 우물</div>
+              <div class="metric-sub">캄텡고 마을 & 음카나와오 마을</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-num">100%</div>
+              <div class="metric-label">후원금 전액 현장 전달</div>
+              <div class="metric-sub">운영비 0원 · 재단법인 선한뜻 매칭</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Watercolor Poster Showcase -->
+        <div class="hero-poster-wrap">
+          <div class="poster-frame" onclick="openImageLightbox('Onmaum.png', '온마음 프로젝트 공식 포스터 — Water is Life & Good People, Better Days')">
+            <img src="Onmaum.png" alt="온마음 프로젝트 공식 수채화 포스터 (Water is Life)" />
+            <div class="poster-caption-bar">
+              <span>🎨 온마음 프로젝트 공식 포스터 (Water is Life)</span>
+              <span>🔍 클릭하여 크게 보기</span>
+            </div>
+          </div>
+          <div class="poster-floating-badge">
+            <div class="badge-icon">💧</div>
+            <div>
+              <div style="font-size:0.78rem; color:var(--text-light); font-weight:700;">MALAWI & KENYA</div>
+              <div style="font-size:0.9rem; font-weight:800; color:var(--text-main);">생명수 우물 & 학교 급식 프로젝트</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MONTHLY NEWSLETTER HUB (월간 소식지 아카이브) ==================== -->
+  <section class="newsletter-section" id="newsletter">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag tag-orange">MONTHLY ONMAUM NEWSLETTER</span>
+        <h2 class="section-title serif-title">매달 현장에서 전해오는<br />온마음 월간 소식지</h2>
+        <p class="section-desc">
+          후원자분들의 소중한 마음이 현장에서 어떻게 따뜻한 밥 한 끼와 배움, 맑은 물이 되었는지 매달 투명하게 기록하고 나눕니다.
+        </p>
+      </div>
+
+      <!-- Issue Selector & Monthly Update Studio Toolbar -->
+      <div class="newsletter-toolbar">
+        <div class="issue-tabs" id="issueTabsContainer">
+          <!-- Dynamically populated by JS -->
+        </div>
+        <div class="newsletter-admin-actions">
+          <button type="button" class="btn-edition-toggle" id="editionToggleBtn" onclick="toggleNewsletterEdition()">
+            🖼️ 디자인 버전 전환 (통합 카드형 보기 중)
+          </button>
+          <button type="button" class="btn-add-issue" onclick="openNewsletterAdminModal()">
+            ➕ 매월 새 소식지 추가·관리
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Interactive Magazine Reader -->
+      <div class="newsletter-reader-grid">
+        <!-- Left: Slide Viewer -->
+        <div class="reader-stage-card">
+          <div class="reader-main-viewport">
+            <button type="button" class="reader-nav-btn prev" onclick="stepNewsletterPage(-1)" aria-label="이전 페이지">❮</button>
+            <img id="readerMainImg" src="" alt="소식지 페이지 이미지" onclick="openCurrentNewsletterLightbox()" />
+            <button type="button" class="reader-nav-btn next" onclick="stepNewsletterPage(1)" aria-label="다음 페이지">❯</button>
+            <div class="reader-page-badge" id="readerPageCounter">1 / 4</div>
+          </div>
+          <div class="reader-thumbs" id="readerThumbsContainer">
+            <!-- Dynamically populated thumbnails -->
+          </div>
+        </div>
+
+        <!-- Right: Selected Issue Details & Page Breakdown -->
+        <div class="issue-detail-panel">
+          <div class="issue-meta-row">
+            <span class="issue-vol-badge" id="detailVolBadge">제3호 · ONMAEUM FIELD LETTER</span>
+            <span class="issue-date-text" id="detailDateText">2026년 10월 발행</span>
+          </div>
+          <h3 class="issue-main-title serif-title" id="detailTitle">따뜻한 한 끼, 더 밝아지는 하루</h3>
+          <p class="issue-subtitle" id="detailSubtitle">
+            케냐 마사이 학교에서 전해온 10월의 이야기 — 식탁에서 시작되는 변화와 학생·선생님이 직접 보내온 감사 손편지
+          </p>
+
+          <div class="issue-kpi-grid" id="detailKpiGrid">
+            <!-- Populated by JS -->
+          </div>
+
+          <div class="issue-page-notes">
+            <h4>📄 페이지별 주요 내용 (클릭하여 이동)</h4>
+            <ul class="page-note-list" id="detailPageNotes">
+              <!-- Populated by JS -->
+            </ul>
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button type="button" class="btn-primary-lg" style="padding:12px 22px; font-size:0.94rem;" onclick="openCurrentNewsletterLightbox()">
+              🔍 현재 페이지 크게 보기
+            </button>
+            <button type="button" class="btn-secondary-lg" style="padding:12px 20px; font-size:0.94rem;" onclick="openAllPagesGridModal()">
+              📑 4페이지 한눈에 펼쳐보기
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Archive Shelf (All Issues Overview) -->
+      <div class="archive-shelf-title">
+        <span>📚 호별 소식지 전체 아카이브</span>
+        <span style="font-size:0.86rem; color:var(--text-light); font-weight:600;">카드를 클릭하면 해당 호수 리더기로 이동합니다</span>
+      </div>
+      <div class="archive-cards-grid" id="archiveCardsGrid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CORE PROJECT 01: KENYA MAASAI SCHOOL FEEDING & EDUCATION ==================== -->
+  <section id="kenya">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag tag-orange">PROJECT 01 · KENYA MAASAI</span>
+        <h2 class="section-title serif-title">한 끼가 오늘을 지키고,<br />교육이 내일을 바꿉니다</h2>
+        <p class="section-desc">
+          단 한 사람의 월 30만 원 후원과 재단법인 선한뜻의 매월 20만 원 매칭으로 시작된 작은 기적이
+          지금은 케냐 마사이 지역 5개 학교 1,187명 아이들의 매주 점심 급식과 배움터를 지키는 든든한 울타리가 되었습니다.
+        </p>
+      </div>
+
+      <div class="kenya-story-grid">
+        <div class="story-feature-card highlight-orange">
+          <span class="section-tag tag-orange" style="margin-bottom:12px;">STEP 01 · 따뜻한 급식</span>
+          <h3 class="serif-title">배고픔 때문에 교실을 떠나지 않도록</h3>
+          <p>
+            척박한 환경 속 마사이 마을 아이들에게 학교에서 제공되는 따뜻한 점심 한 끼는 단순한 식사가 아닙니다.
+            아이들이 결석하지 않고 학교에 남게 하는 가장 확실한 힘이자, 수업에 집중할 수 있게 하는 원동력입니다.
+          </p>
+          <p style="margin-bottom:0; font-weight:700; color:var(--brand-orange);">
+            ✔ 2026년 4월 나망가 올레키마키 초등학교(250명) 및 마을 주민(200명) 첫 나눔을 시작으로, 현재 5개 학교 매주 정기 급식으로 확대되었습니다.
+          </p>
+        </div>
+
+        <div class="story-feature-card">
+          <span class="section-tag tag-blue" style="margin-bottom:12px;">STEP 02 · 기초 교육과 평등</span>
+          <h3 class="serif-title">공책 한 권, 연필 한 자루가 여는 미래</h3>
+          <p>
+            급식 지원과 함께 공책, 연필, 유니폼 등 기초 학용품을 지원하여 가정 형편과 상관없이 모든 아이들이 평등하게 배우고 꿈꿀 수 있는 교실을 만들어 갑니다.
+          </p>
+          <p style="margin-bottom:0; font-weight:700; color:var(--brand-blue);">
+            ✔ 결석률과 중도 탈락 감소, 학생 수 증가, 그리고 학업 성취도 향상이라는 놀라운 변화가 현장에서 직접 보고되고 있습니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- 5 Partner Schools Breakdown -->
+      <div class="schools-breakdown-card">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:12px;">
+          <div>
+            <h3 class="serif-title" style="font-size:1.45rem; font-weight:800;">🏫 함께하는 케냐 마사이 5개 파트너 학교 (총 1,187명)</h3>
+            <p style="color:var(--text-muted); font-size:0.95rem; margin-top:4px;">
+              온마음 소식지 제2호·제3호 기준 매주 따뜻한 점심 급식이 전해지는 학교 현황입니다.
+            </p>
+          </div>
+          <span style="font-size:0.85rem; font-weight:700; color:var(--brand-orange); background:var(--brand-orange-light); padding:6px 14px; border-radius:999px;">
+            매주 정기 점심 급식 지원 중
+          </span>
+        </div>
+
+        <div class="schools-grid">
+          <div class="school-pill-card">
+            <div class="school-name-ko">인카티 학교</div>
+            <div class="school-name-en">Inkati School</div>
+            <div class="school-count">353<span>명</span></div>
+          </div>
+          <div class="school-pill-card">
+            <div class="school-name-ko">올레키마키 학교</div>
+            <div class="school-name-en">Olekimaki School</div>
+            <div class="school-count">235<span>명</span></div>
+          </div>
+          <div class="school-pill-card">
+            <div class="school-name-ko">킬루아니 학교</div>
+            <div class="school-name-en">Kiluani School</div>
+            <div class="school-count">222<span>명</span></div>
+          </div>
+          <div class="school-pill-card">
+            <div class="school-name-ko">일키니에 학교</div>
+            <div class="school-name-en">Ilkinye School</div>
+            <div class="school-count">189<span>명</span></div>
+          </div>
+          <div class="school-pill-card">
+            <div class="school-name-ko">엘루아나타 학교</div>
+            <div class="school-name-en">Eluanata School</div>
+            <div class="school-count">188<span>명</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Handwritten Letters from Kenya (#letters) -->
+      <div id="letters" style="padding-top:24px;">
+        <div style="text-align:center; margin-bottom:32px;">
+          <span class="section-tag tag-orange">VOICES FROM KENYA · 현장 감사 손편지</span>
+          <h3 class="serif-title" style="font-size:1.85rem; font-weight:800; margin-top:8px;">
+            케냐 교실에서 날아온 진심 어린 손편지
+          </h3>
+          <p style="color:var(--text-muted); font-size:0.98rem; margin-top:6px;">
+            엘루아나타 종합학교와 올레키마키 초등학교의 학생·선생님이 직접 자필로 적어 보내온 감사 편지 원본입니다.
+          </p>
+        </div>
+
+        <div class="letters-grid">
+          <!-- Letter 1: Eluanata Student & Teacher -->
+          <div class="letter-card">
+            <div>
+              <div class="letter-header">
+                <span class="letter-school-tag">📍 엘루아나타 종합학교 (Eluanata Comprehensive School)</span>
+                <span style="font-size:0.8rem; color:var(--text-light);">2026. 10. 09 · Namanga</span>
+              </div>
+              <p class="letter-quote-ko">
+                “온마음 후원자님들의 따뜻한 급식 지원 덕분에 이제 우리 학생들은 배고픔 없이 수업에 깊이 집중하고 적극적으로 발표하며 배우고 있습니다. 무엇보다 모든 아이들이 같은 식탁에서 함께 밥을 먹으며 학생들 사이의 평등과 우정이 더욱 깊어졌습니다.”
+              </p>
+              <div class="letter-quote-en">
+                "The food program has highly helped the school as the students can now concentrate well in class and being active... It has also enhanced equality among students."
+              </div>
+            </div>
+            <div class="letter-footer">
+              <div class="letter-author">
+                ✍️ 학생 대표 조이스 오슈키 (Joyce Oshoki) & 교사 제이콥 레리온카 (Mr. Jacob Lerionka)
+              </div>
+              <a href="eluanata 10.9..pdf" target="_blank" rel="noopener" class="letter-pdf-link">
+                📄 자필 손편지 원본(PDF) 보기
+              </a>
+            </div>
+          </div>
+
+          <!-- Letter 2: Olekimaki Student & Deputy Head -->
+          <div class="letter-card">
+            <div>
+              <div class="letter-header">
+                <span class="letter-school-tag">📍 올레키마키 초등학교 (Olekimaki Primary School)</span>
+                <span style="font-size:0.8rem; color:var(--text-light);">2026. 10. 08 · Namanga</span>
+              </div>
+              <p class="letter-quote-ko">
+                “급식 프로그램이 시작된 이후 학생들의 결석과 무단이탈이 눈에 띄게 줄어들었습니다. 아이들이 학교를 떠나지 않고 계속 학업을 이어갈 수 있게 되었고, 전체 학생 수도 늘어났으며 학업 성적도 정말 많이 향상되었습니다. 진심으로 감사합니다.”
+              </p>
+              <div class="letter-quote-en">
+                "The feeding programme has reduced absenteeism and truancy. It has helped in retaining learners in school. The population has also increased. Performance has really improved."
+              </div>
+            </div>
+            <div class="letter-footer">
+              <div class="letter-author">
+                ✍️ 학생 대표 베아트리스 툼페이네 (Beatrice Tumpeine) & 교감 로비 모케녜 (Robi Mokenye)
+              </div>
+              <a href="olekimaki 편지.pdf" target="_blank" rel="noopener" class="letter-pdf-link">
+                📄 자필 손편지 원본(PDF) 보기
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CORE PROJECT 02: MALAWI WATER IS LIFE ==================== -->
+  <section class="malawi-section" id="malawi">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag tag-blue">PROJECT 02 · WATER IS LIFE (MALAWI)</span>
+        <h2 class="section-title serif-title">맑은 물 한 모금이<br />마을의 생명을 살립니다</h2>
+        <p class="section-desc">
+          말라위 인구의 54%는 안전한 식수를 얻지 못해 매일 수 킬로미터 떨어진 오염된 웅덩이 물을 길어 마십니다.
+          온마음 프로젝트는 깊은 지하 대수층을 연결하는 심정(Borehole) 우물을 시추하여 아이들에게 깨끗한 물과 학교 갈 시간을 선물합니다.
+        </p>
+      </div>
+
+      <!-- Malawi Context Banner -->
+      <div class="malawi-context-banner">
+        <div>
+          <h3>💧 왜 말라위 우물 개발(Goodwater Project)인가요?</h3>
+          <p>
+            전체 인구의 43%가 14세 이하 어린이인 젊은 나라 말라위. 하지만 식수원 부족과 수인성 질병으로 인해 5세 미만 영유아 사망률이 약 4%에 달하며,
+            아이들은 매일 물통을 이고 왕복 수 시간을 걷느라 학교 수업에 늦거나 결석하곤 합니다. 마을 한가운데 세워진 우물 하나는 질병을 막고 아이들을 교실로 돌려보내는 생명의 원천입니다.
+          </p>
+          <div class="malawi-pdf-links">
+            <a href="말라위_1.pdf" target="_blank" rel="noopener" class="btn-white-outline">📘 말라위 우물 사업 소개서 1 (PDF)</a>
+            <a href="말라위_2.pdf" target="_blank" rel="noopener" class="btn-white-outline">📘 말라위 우물 사업 소개서 2 (PDF)</a>
+          </div>
+        </div>
+        <div class="malawi-stat-pills">
+          <div class="malawi-stat-box">
+            <strong>54%</strong>
+            <span>안전한 식수원이 없는 말라위 인구 비율</span>
+          </div>
+          <div class="malawi-stat-box">
+            <strong>43%</strong>
+            <span>말라위 전체 인구 중 0~14세 어린이 비중</span>
+          </div>
+          <div class="malawi-stat-box">
+            <strong>40m+</strong>
+            <span>오염되지 않은 암반 대수층 심정 시추 깊이</span>
+          </div>
+          <div class="malawi-stat-box">
+            <strong>740+명</strong>
+            <span>온마음 1·2호 우물로 깨끗한 물을 마시는 주민</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Well #1 and Well #2 Comparison Cards -->
+      <div class="wells-comparison-grid">
+        <!-- Well 1: Kamtengo -->
+        <div class="well-card">
+          <div class="well-badge-row">
+            <span class="well-num-tag">온마음 1호 우물 · GOODWATER #1</span>
+            <span class="well-status-tag">✔ 완공 및 급수 중</span>
+          </div>
+          <div class="well-card-cover" onclick="openImageLightbox('우물1호%20캄텡고/KakaoTalk_20261030_170729567_07.jpg', '온마음 1호 우물(캄텡고 마을) 완공 기념 현판과 환호하는 마을 주민들')">
+            <img src="우물1호%20캄텡고/KakaoTalk_20261030_170729567_07.jpg" alt="온마음 1호 우물 캄텡고 마을 완공식" loading="lazy" />
+            <div class="well-card-cover-caption">
+              <span>💧 온마음 1호 우물 · 캄텡고 마을 완공 기념비</span>
+              <span>🔍 확대</span>
+            </div>
+          </div>
+          <h3 class="serif-title">말라위 캄텡고 마을 (Kamtengo Village)</h3>
+          <div class="well-location">📍 릴롱궤 카부둘라 툼바1 (G.V.H. Thumba 1, T/A Kabudula, Lilongwe · 수도에서 42.4km)</div>
+          <p style="color:var(--text-muted); font-size:0.95rem;">
+            건기마다 말라버리고 우기에는 빗물과 오염물질이 유입되던 얕은 구덩이 우물에 의존하던 체와(Chewa)족 농촌 공동체 5개 인접 마을 주민들이, 이제 40m 이상 심정 시추로 끌어올린 안전하고 깨끗한 생명수를 마시며 구제식량(옥수수) 나눔과 위생 교육까지 함께 지원받았습니다.
+          </p>
+          <ul class="well-specs-list">
+            <li><span>사업 기간</span><span>2025년 6월 착공 ~ 완공 및 급수 중</span></li>
+            <li><span>수혜 주민</span><span>캄텡고·냠보·자타 등 5개 마을 115가구 (396명+)</span></li>
+            <li><span>설비 및 지원</span><span>40m+ 심정 시추 · 수질 적합 판정 · 구제식량 나눔</span></li>
+            <li><span>후원 기념</span><span>Sponsored by Hyun Ju Kim (온마음 프로젝트)</span></li>
+          </ul>
+          <a href="#kamtengoGallerySection" class="well-jump-btn">
+            📸 1호 우물(캄텡고) 사진 13장 · 영상 3편 보기 ↓
+          </a>
+        </div>
+
+        <!-- Well 2: Mkanawawo -->
+        <div class="well-card">
+          <div class="well-badge-row">
+            <span class="well-num-tag">온마음 2호 우물 · GOODWATER #2</span>
+            <span class="well-status-tag">✔ 2026 완공 및 급수 중</span>
+          </div>
+          <div class="well-card-cover" onclick="openImageLightbox('우물2호%20음카나와오/KakaoTalk_20260909_103927961_10.jpg', '온마음 2호 우물(음카나와오 마을) 완공 기념 현판과 마을 주민들')">
+            <img src="우물2호%20음카나와오/KakaoTalk_20260909_103927961_10.jpg" alt="온마음 2호 우물 음카나와오 마을 완공식" loading="lazy" />
+            <div class="well-card-cover-caption">
+              <span>💧 온마음 2호 우물 · 음카나와오 마을 완공 기념비</span>
+              <span>🔍 확대</span>
+            </div>
+          </div>
+          <h3 class="serif-title">말라위 음카나와오 마을 (Mkanawawo Village)</h3>
+          <div class="well-location">📍 릴롱궤 카부둘라 (T/A Kabudula, Lilongwe · 수도에서 약 30.5km)</div>
+          <p style="color:var(--text-muted); font-size:0.95rem;">
+            심정 시추와 수질 검사 통과는 물론, 주민 자치 우물관리위원회(10명) 조직과 전 주민 참여 위생·보건 교육 연극까지 완벽히 수행했습니다.
+          </p>
+          <ul class="well-specs-list">
+            <li><span>사업 기간</span><span>2026년 3월 ~ 9월 완공</span></li>
+            <li><span>수혜 주민</span><span>69가구 243명 + 인근 6개 마을 주민 공동 이용</span></li>
+            <li><span>사후 관리</span><span>우물관리위원회 10인 구성 · 수질 적합 판정 완료</span></li>
+            <li><span>후원 기념</span><span>Sponsored by Chul Ju Kim (온마음 프로젝트)</span></li>
+          </ul>
+          <a href="#mkanawawoGallerySection" class="well-jump-btn">
+            📸 2호 우물(음카나와오) 사진 9장 · 영상 3편 보기 ↓
+          </a>
+        </div>
+      </div>
+
+      <!-- Malawi Field Photo & Video Galleries (Well #1 Kamtengo + Well #2 Mkanawawo) -->
+      <div class="well-gallery-block" id="kamtengoGallerySection">
+        <div class="gallery-filter-bar">
+          <div>
+            <span class="section-tag tag-blue" style="margin-bottom:8px;">GOODWATER #1 · KAMTENGO VILLAGE</span>
+            <h3 class="serif-title" style="font-size:1.5rem; font-weight:800;">📸 말라위 1호 우물(캄텡고 마을) 생생 현장 갤러리</h3>
+            <p style="color:var(--text-muted); font-size:0.92rem;">심정 시추 공사와 정밀 수질 검사, 맑은 첫 물이 쏟아지는 감동, 옥수수 식량 나눔과 추장님·어머니들의 감사 영상까지 확인해 보세요.</p>
+          </div>
+          <div class="filter-pills" id="kamtengoFilterPills">
+            <button type="button" class="filter-pill-btn active" onclick="filterKamtengoGallery('all', this)">전체 보기 (16)</button>
+            <button type="button" class="filter-pill-btn" onclick="filterKamtengoGallery('water', this)">맑은 물과 주민들</button>
+            <button type="button" class="filter-pill-btn" onclick="filterKamtengoGallery('drilling', this)">시추·수질검사·식량나눔</button>
+            <button type="button" class="filter-pill-btn" onclick="filterKamtengoGallery('ceremony', this)">완공식·위생교육</button>
+            <button type="button" class="filter-pill-btn" onclick="filterKamtengoGallery('video', this)">🎬 현장 영상 (3편)</button>
+          </div>
+        </div>
+
+        <div class="malawi-gallery-grid" id="kamtengoGalleryGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <div class="well-gallery-block" id="mkanawawoGallerySection">
+        <div class="gallery-filter-bar">
+          <div>
+            <span class="section-tag tag-blue" style="margin-bottom:8px;">GOODWATER #2 · MKANAWAWO VILLAGE</span>
+            <h3 class="serif-title" style="font-size:1.5rem; font-weight:800;">📸 말라위 2호 우물(음카나와오 마을) 생생 현장 갤러리</h3>
+            <p style="color:var(--text-muted); font-size:0.92rem;">시추 순간부터 첫 물이 솟구치는 감동, 아이들의 미소와 현장 영상을 확인해 보세요.</p>
+          </div>
+          <div class="filter-pills" id="mkanawawoFilterPills">
+            <button type="button" class="filter-pill-btn active" onclick="filterMalawiGallery('all', this)">전체 보기 (12)</button>
+            <button type="button" class="filter-pill-btn" onclick="filterMalawiGallery('water', this)">맑은 물과 아이들</button>
+            <button type="button" class="filter-pill-btn" onclick="filterMalawiGallery('ceremony', this)">완공식·위생교육</button>
+            <button type="button" class="filter-pill-btn" onclick="filterMalawiGallery('video', this)">🎬 현장 영상 (3편)</button>
+          </div>
+        </div>
+
+        <div class="malawi-gallery-grid" id="malawiGalleryGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 100% PROMISE & DONATION CTA ==================== -->
+  <section id="donate">
+    <div class="container">
+      <div class="promise-banner">
+        <span class="promise-badge">100% TRANSPARENCY PROMISE</span>
+        <h2 class="serif-title">후원금 100%가 현장에 전달됩니다</h2>
+        <p>
+          온마음 프로젝트에 보내주시는 모든 후원금은 운영비나 수수료 공제 없이 <strong>100% 전액 케냐 학교 급식·교육과 말라위 우물 현장</strong>에 사용됩니다.
+          제반 행정 비용은 재단법인 선한뜻이 전액 부담하며, 매월 20만 원의 추가 매칭 지원금을 더해 나눔의 크기를 키웁니다.
+        </p>
+
+        <div class="account-quick-box">
+          <div class="account-quick-info">
+            <span>하나은행 · 예금주: 재단법인 선한뜻 (송금 시 '홍길동(온마음)' 표기)</span>
+            <strong id="accountNumberText">244-910009-63304</strong>
+          </div>
+          <button type="button" class="btn-copy-account" onclick="copyAccountNumber()">
+            📋 계좌번호 복사하기
+          </button>
+        </div>
+
+        <div style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap;">
+          <button type="button" class="btn-primary-lg" onclick="openDonateModal()">
+            🧡 후원 계좌 안내 카드 크게 보기
+          </button>
+          <a href="#newsletter" class="btn-secondary-lg" style="background:rgba(255,255,255,0.1); color:#fff; border-color:rgba(255,255,255,0.25);">
+            📊 소식지 내 후원금 결산 내역 보기
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:8px;">
+            <img src="logo.png" alt="온마음 로고" style="height:32px;" />
+            <strong style="color:var(--text-main); font-size:1rem;">온마음 프로젝트 | 재단법인 선한뜻</strong>
+          </div>
+          <p>Acta Non Verba — 말이 아닌 행동으로 · 세상을 더 아름답게, 사람을 더 행복하게</p>
+          <p style="font-size:0.8rem; color:var(--text-light); margin-top:4px;">
+            후원 계좌: 하나은행 244-910009-63304 (예금주: 재단법인 선한뜻)
+          </p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button type="button" class="btn-text-chip" onclick="openNewsletterAdminModal()">⚙️ 월간 소식지 관리 도우미</button>
+          <button type="button" class="btn-text-chip" onclick="openDonateModal()">🧡 후원 안내</button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL 1: DONATION ACCOUNT CARD ==================== -->
+  <div class="modal-backdrop" id="donateModal" onclick="closeModalOnBg(event, 'donateModal')">
+    <div class="modal-card" style="text-align:center;">
+      <button type="button" class="modal-close" onclick="closeModal('donateModal')">✕</button>
+      <span class="section-tag tag-orange">ONMAUM DONATION</span>
+      <h3 class="serif-title" style="font-size:1.6rem; font-weight:800; margin-bottom:8px;">온 마음 더하기</h3>
+      <p style="color:var(--text-muted); font-size:0.94rem; margin-bottom:18px;">
+        보내주시는 후원금은 100% 현장 아이들의 급식·교육과 깨끗한 우물을 위해 사용됩니다.<br />
+        송금 시 <strong>‘성함(온마음)’</strong> 형식으로 보내주시면 소식지 결산에 투명하게 반영됩니다.
+      </p>
+      <img src="account.jpg" alt="재단법인 선한뜻 후원 계좌 안내" style="width:100%; border-radius:16px; border:1px solid var(--border-color); margin-bottom:18px;" />
+      <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+        <button type="button" class="btn-primary-lg" style="width:100%; justify-content:center;" onclick="copyAccountNumber()">
+          📋 계좌번호 복사하기 (244-910009-63304)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 2: THEME SONG LYRICS ==================== -->
+  <div class="modal-backdrop" id="lyricsModal" onclick="closeModalOnBg(event, 'lyricsModal')">
+    <div class="modal-card">
+      <button type="button" class="modal-close" onclick="closeModal('lyricsModal')">✕</button>
+      <span class="section-tag tag-orange">ONMAUM THEME SONG</span>
+      <h3 class="serif-title" style="font-size:1.55rem; font-weight:800; margin-bottom:16px;">🎵 온 마음으로 (가사 전문)</h3>
+      <div style="background:var(--bg-soft); padding:24px; border-radius:16px; line-height:1.95; font-size:0.98rem; color:var(--text-main);">
+        <p style="margin-bottom:14px;">
+          아주 작은 마음 하나 두 손에 가만히 담아<br />
+          멀리 있는 누군가의 오늘을 생각해 봅니다<br />
+          목마른 하루 끝에서 건네는 맑은 물 한 잔<br />
+          배고픈 시간 속에서 마주한 따뜻한 밥 한 끼
+        </p>
+        <p style="margin-bottom:14px; font-weight:700; color:var(--brand-orange-dark);">
+          온 마음으로 당신의 오늘을 응원해요<br />
+          맑은 물 한 모금처럼 따뜻한 한 끼처럼<br />
+          온 마음으로 작은 기쁨을 건네요<br />
+          우리의 작은 마음들이 당신의 내일에 빛이 되기를
+        </p>
+        <p style="margin-bottom:14px;">
+          메마른 땅 위에서도 웃음은 꽃처럼 피고<br />
+          작은 교실 창가에도 희망의 노래가 번져가네<br />
+          말보다 먼저 다가간 따뜻한 손길 하나로<br />
+          세상은 조금 더 아름답고 사람은 더 행복해져요
+        </p>
+        <p style="font-weight:700; color:var(--brand-blue);">
+          온 마음으로 당신의 내일을 함께해요<br />
+          세상을 더 아름답게, 사람을 더 행복하게 — 온마음 프로젝트
+        </p>
+      </div>
+      <div style="margin-top:18px; display:flex; justify-content:space-between; align-items:center;">
+        <button type="button" class="btn-primary-lg" style="padding:11px 22px; font-size:0.92rem;" onclick="toggleBgm(true)">
+          🎵 음악 재생하기
+        </button>
+        <button type="button" class="btn-secondary-lg" style="padding:10px 18px; font-size:0.88rem;" onclick="closeModal('lyricsModal'); openVideoModal();">
+          🎬 원본 영상(MP4) 보기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 3: ORIGINAL VIDEO (Onmaum.mp4) ==================== -->
+  <div class="modal-backdrop" id="videoModal" onclick="closeModalOnBg(event, 'videoModal')">
+    <div class="modal-card wide">
+      <button type="button" class="modal-close" onclick="closeVideoModal()">✕</button>
+      <span class="section-tag tag-blue">ONMAUM THEME VIDEO</span>
+      <h3 class="serif-title" style="font-size:1.45rem; font-weight:800; margin-bottom:14px;">🎬 온마음 프로젝트 테마 영상</h3>
+      <video id="modalVideoPlayer" src="Onmaum.mp4" controls style="width:100%; border-radius:16px; background:#000; max-height:70vh;"></video>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 4: IMAGE LIGHTBOX ==================== -->
+  <div class="modal-backdrop" id="lightboxModal" onclick="closeModalOnBg(event, 'lightboxModal')">
+    <div class="modal-card wide" style="background:transparent; box-shadow:none; text-align:center; padding:10px;">
+      <button type="button" class="modal-close" style="top:10px; right:10px; background:#fff;" onclick="closeModal('lightboxModal')">✕</button>
+      <img id="lightboxImg" src="" alt="확대 이미지" style="max-width:100%; max-height:82vh; border-radius:14px; box-shadow:0 20px 60px rgba(0,0,0,0.5);" />
+      <div id="lightboxCaption" style="color:#fff; margin-top:12px; font-weight:700; font-size:0.98rem;"></div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 5: 4-PAGE GRID OVERVIEW ==================== -->
+  <div class="modal-backdrop" id="allPagesModal" onclick="closeModalOnBg(event, 'allPagesModal')">
+    <div class="modal-card wide" style="max-width:1040px;">
+      <button type="button" class="modal-close" onclick="closeModal('allPagesModal')">✕</button>
+      <h3 class="serif-title" id="allPagesModalTitle" style="font-size:1.45rem; font-weight:800; margin-bottom:18px;">소식지 4페이지 전체 보기</h3>
+      <div id="allPagesGridContainer" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:14px;"></div>
+    </div>
+  </div>
+
+  <!-- ==================== MODAL 6: MONTHLY NEWSLETTER UPDATE STUDIO ==================== -->
+  <div class="modal-backdrop" id="newsletterAdminModal" onclick="closeModalOnBg(event, 'newsletterAdminModal')">
+    <div class="modal-card wide">
+      <button type="button" class="modal-close" onclick="closeModal('newsletterAdminModal')">✕</button>
+      <span class="section-tag tag-orange">MONTHLY UPDATE STUDIO</span>
+      <h3 class="serif-title" style="font-size:1.5rem; font-weight:800; margin-bottom:6px;">매월 새 소식지 추가 · 업데이트 도우미</h3>
+      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">
+        새로운 달의 소식지 이미지를 <code>소식지/4호/</code> 폴더에 넣은 뒤 아래 정보를 입력하면,
+        <strong>즉시 화면에 반영하여 미리보기</strong>하거나 <strong>업데이트된 <code>index.html</code> 파일을 원클릭 다운로드</strong>할 수 있습니다.
+      </p>
+
+      <form id="addNewsletterForm" onsubmit="handleAddNewsletter(event)">
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>호수 (예: 제4호)</label>
+            <input type="text" class="form-control" id="adminVol" placeholder="제4호" required />
+          </div>
+          <div class="form-group">
+            <label>발행 연월 (예: 2026년 11월)</label>
+            <input type="text" class="form-control" id="adminDate" placeholder="2026년 11월" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>소식지 제목</label>
+          <input type="text" class="form-control" id="adminTitle" placeholder="예: 아이들의 미소가 자라나는 11월의 교실" required />
+        </div>
+
+        <div class="form-group">
+          <label>한 줄 요약 설명</label>
+          <input type="text" class="form-control" id="adminSubtitle" placeholder="예: 케냐 5개 학교 정기 급식 소식과 말라위 우물 사후관리 이야기" required />
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label>핵심 지표 1 (값 | 설명)</label>
+            <input type="text" class="form-control" id="adminKpi1" value="5개 학교 | 정기 급식 지원" />
+          </div>
+          <div class="form-group">
+            <label>핵심 지표 2 (값 | 설명)</label>
+            <input type="text" class="form-control" id="adminKpi2" value="1,187명 | 매주 따뜻한 한 끼" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>페이지별 이미지 경로 (줄바꿈으로 1~4페이지 입력 또는 로컬 이미지 파일 선택)</label>
+          <textarea class="form-control" id="adminPages" rows="4" placeholder="소식지/4호/page1.jpg&#10;소식지/4호/page2.jpg&#10;소식지/4호/page3.jpg&#10;소식지/4호/page4.jpg" required></textarea>
+          <div style="margin-top:8px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <label style="margin:0; font-size:0.82rem; color:var(--brand-blue); cursor:pointer; font-weight:700;">
+              📂 폴더/이미지 파일 선택하여 경로 자동 채우기
+              <input type="file" id="adminFilePicker" multiple accept="image/*" style="display:none;" onchange="handleAdminFilesSelected(event)" />
+            </label>
+            <span style="font-size:0.78rem; color:var(--text-light);">* 선택한 파일명으로 `소식지/N호/파일명` 경로를 자동 생성합니다.</span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; margin-top:20px;">
+          <button type="submit" class="btn-primary-lg" style="padding:12px 24px; font-size:0.94rem;">
+            ✨ 현재 페이지에 즉시 반영 (미리보기)
+          </button>
+          <button type="button" class="btn-secondary-lg" style="padding:12px 20px; font-size:0.94rem;" onclick="downloadUpdatedHtml()">
+            💾 업데이트된 index.html 다운로드
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-msg" id="toastMsg">계좌번호가 복사되었습니다.</div>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // =========================================================================
+    // 1. MONTHLY NEWSLETTERS DATA (매월 소식지 데이터 — 새 호 추가 시 맨 위에 추가)
+    // =========================================================================
+    /*NEWSLETTERS_DATA_START*/
+    const NEWSLETTERS_DATA = [
+      {
+        id: "vol3",
+        vol: "제3호",
+        badge: "제3호 · ONMAEUM FIELD LETTER",
+        isNew: true,
+        date: "2026년 10월",
+        title: "따뜻한 한 끼, 더 밝아지는 하루",
+        subtitle: "케냐 마사이 학교에서 전해온 10월의 이야기 — 식탁에서 시작되는 변화와 엘루아나타·올레키마키 학교의 감사 손편지",
+        kpis: [
+          { val: "4개 학교+", label: "10월 현장 소식 집중 조명" },
+          { val: "1,006명+", label: "현장 급식 참여 아동" },
+          { val: "자필 편지", label: "학생·교사 감사 손편지 도착" }
+        ],
+        pagesCard: [
+          "소식지/3호/KakaoTalk_20261019_152742088_07.jpg",
+          "소식지/3호/KakaoTalk_20261019_152742088_06.jpg",
+          "소식지/3호/KakaoTalk_20261019_152742088_05.jpg",
+          "소식지/3호/KakaoTalk_20261019_152742088_04.jpg"
+        ],
+        pagesOriginal: [
+          "소식지/2호/KakaoTalk_20261019_144736925.jpg",
+          "소식지/2호/KakaoTalk_20261019_144736925_01.jpg",
+          "소식지/2호/KakaoTalk_20261019_144736925_02.jpg",
+          "소식지/2호/KakaoTalk_20261019_144736925_03.jpg"
+        ],
+        notes: [
+          "표지: 케냐 마사이 학교에서 전해온 10월의 이야기 (따뜻한 한 끼, 더 밝아지는 하루)",
+          "01 식탁에서 시작되는 변화: 잘 먹는 하루가 잘 배우는 하루로 이어지는 교실 풍경",
+          "02 현장에서 보내온 진심: 엘루아나타 종합학교 학생 조이스 오슈키 & 교사 제이콥 레리온카 손편지",
+          "03 마음이 만나 만드는 내일: 우리의 작은 정성이 아이들의 내일을 여는 다리가 됩니다"
+        ]
+      },
+      {
+        id: "vol2",
+        vol: "제2호",
+        badge: "제2호 · ONMAEUM NEWSLETTER 02",
+        isNew: false,
+        date: "2026년 9월",
+        title: "한 끼의 따뜻함이 아이들의 하루를 지킵니다",
+        subtitle: "케냐 마사이 지역 5개 학교 1,187명 아이들에게 매주 전해진 따뜻한 점심 급식과 투명한 후원금 사용 결산 보고",
+        kpis: [
+          { val: "5개 학교", label: "인카티·올레키마키·킬루아니 등" },
+          { val: "1,187명", label: "매주 점심 급식 지원 아동" },
+          { val: "100% 공개", label: "수입·지출 내역 투명 결산" }
+        ],
+        pagesCard: [
+          "소식지/3호/KakaoTalk_20261019_152742088_11.jpg",
+          "소식지/3호/KakaoTalk_20261019_152742088_10.jpg",
+          "소식지/3호/KakaoTalk_20261019_152742088_09.jpg",
+          "소식지/3호/KakaoTalk_20261019_152742088_08.jpg"
+        ],
+        pagesOriginal: [
+          "소식지/3호/KakaoTalk_20261019_152742088_11.jpg",
+          "소식지/3호/KakaoTalk_20261019_152742088_10.jpg",
+          "소식지/3호/KakaoTalk_20261019_152742088_09.jpg",
+          "소식지/3호/KakaoTalk_20261019_152742088_08.jpg"
+        ],
+        notes: [
+          "표지: 한 끼의 따뜻함이 아이들의 하루를 지킵니다 (5개 학교 · 1,187명 매주 급식)",
+          "학교별 급식 현황: 인카티(353명), 올레키마키(235명), 킬루아니(222명), 일키니에(189명), 엘루아나타(188명)",
+          "투명 재정 보고: 후원금 총 수입 286,004원 / 총 지출 281,654원 / 잔액 4,350원 상세 내역",
+          "메시지 & 후원 안내: 한 끼가 오늘을 지키고, 교육이 내일을 바꿉니다"
+        ]
+      },
+      {
+        id: "vol1",
+        vol: "제1호",
+        badge: "제1호 · ONMAUM FIRST JOURNEY",
+        isNew: false,
+        date: "2026년 4월",
+        title: "온마음의 첫걸음: 케냐 마사이 지역 첫 나눔",
+        subtitle: "5개월간 모은 소중한 마음(약 150만 원)으로 나망가 올레키마키 초등학교 250명과 마사이 마을 주민 200명에게 전한 첫 특식과 학용품",
+        kpis: [
+          { val: "450명+", label: "올레키마키 학교 & 마을 주민" },
+          { val: "약 150만 원", label: "5개월간 모인 첫 온마음" },
+          { val: "급식+학용품", label: "특식·유니폼·구제식량 전달" }
+        ],
+        pagesCard: [
+          "소식지/3호/KakaoTalk_20261019_152742088_03.jpg",
+          "소식지/3호/KakaoTalk_20261019_152742088_02.jpg",
+          "소식지/3호/KakaoTalk_20261019_152742088_01.jpg",
+          "소식지/3호/KakaoTalk_20261019_152742088.jpg"
+        ],
+        pagesOriginal: [
+          "소식지/1호/KakaoTalk_20261019_144051701.jpg",
+          "소식지/1호/KakaoTalk_20261019_144051701_02.jpg",
+          "소식지/1호/KakaoTalk_20261019_144051701_02 (1).jpg",
+          "소식지/1호/KakaoTalk_20261019_144051701_03.jpg"
+        ],
+        notes: [
+          "표지: ONMAUM MAASAI FIRST JOURNEY — 2026년 4월 온마음의 설레는 첫걸음",
+          "A WARM MEAL, A FIRST STEP: 나망가 올레키마키 초등학교 약 250명 특식·학용품·유니폼 지원 (56,300 Ksh)",
+          "SHARING A MEAL WITH THE VILLAGE: 인근 마사이 마을 주민 약 200명 특식 및 구제식량 나눔 (69,300 Ksh)",
+          "ONE MEAL AT A TIME: 5개월간 모인 약 150만 원의 기적, 아이들의 내일을 여는 약속"
+        ]
+      }
+    ];
+    /*NEWSLETTERS_DATA_END*/
+
+    let currentIssueIdx = 0;
+    let currentPageIdx = 0;
+    let useCardEdition = true;
+
+    function getActivePages(issue) {
+      if (!useCardEdition && issue.pagesOriginal && issue.pagesOriginal.length > 0) {
+        return issue.pagesOriginal;
+      }
+      return issue.pagesCard;
+    }
+
+    function renderNewsletterHub() {
+      const tabsContainer = document.getElementById('issueTabsContainer');
+      const archiveGrid = document.getElementById('archiveCardsGrid');
+
+      // 1. Render Issue Tabs
+      tabsContainer.innerHTML = NEWSLETTERS_DATA.map((issue, idx) => `
+        <button type="button" class="issue-tab-btn ${idx === currentIssueIdx ? 'active' : ''}" onclick="selectIssue(${idx})">
+          <span>${issue.vol} (${issue.date})</span>
+          ${issue.isNew ? '<span class="new-pill">NEW</span>' : ''}
+        </button>
+      `).join('');
+
+      // 2. Render Active Issue Reader
+      const issue = NEWSLETTERS_DATA[currentIssueIdx];
+      const pages = getActivePages(issue);
+      if (currentPageIdx >= pages.length) currentPageIdx = 0;
+
+      const mainImg = document.getElementById('readerMainImg');
+      mainImg.src = encodeURI(pages[currentPageIdx]);
+      mainImg.alt = `${issue.vol} - ${currentPageIdx + 1}페이지`;
+
+      document.getElementById('readerPageCounter').textContent = `${currentPageIdx + 1} / ${pages.length}`;
+
+      // Thumbnails
+      const thumbsContainer = document.getElementById('readerThumbsContainer');
+      thumbsContainer.innerHTML = pages.map((p, pIdx) => `
+        <div class="reader-thumb-item ${pIdx === currentPageIdx ? 'active' : ''}" onclick="selectNewsletterPage(${pIdx})">
+          <img src="${encodeURI(p)}" alt="${pIdx + 1}페이지 썸네일" loading="lazy" />
+          <span class="reader-thumb-num">${pIdx + 1}p</span>
+        </div>
+      `).join('');
+
+      // Details Panel
+      document.getElementById('detailVolBadge').textContent = issue.badge || issue.vol;
+      document.getElementById('detailDateText').textContent = `${issue.date} 발행`;
+      document.getElementById('detailTitle').textContent = issue.title;
+      document.getElementById('detailSubtitle').textContent = issue.subtitle;
+
+      document.getElementById('detailKpiGrid').innerHTML = (issue.kpis || []).map(k => `
+        <div class="issue-kpi-box">
+          <div class="issue-kpi-val">${k.val}</div>
+          <div class="issue-kpi-lbl">${k.label}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('detailPageNotes').innerHTML = (issue.notes || []).map((note, nIdx) => `
+        <li class="page-note-item ${nIdx === currentPageIdx ? 'active' : ''}" onclick="selectNewsletterPage(${nIdx})">
+          <span class="page-note-num">${nIdx + 1}P</span>
+          <span>${note}</span>
+        </li>
+      `).join('');
+
+      // 3. Render Archive Shelf Cards
+      archiveGrid.innerHTML = NEWSLETTERS_DATA.map((item, idx) => {
+        const itemPages = getActivePages(item);
+        return `
+          <div class="archive-issue-card ${idx === currentIssueIdx ? 'active' : ''}" onclick="selectIssue(${idx}); document.getElementById('newsletter').scrollIntoView({behavior:'smooth'});">
+            <div class="archive-cover-wrap">
+              <img src="${encodeURI(itemPages[0])}" alt="${item.vol} 표지" loading="lazy" />
+            </div>
+            <div class="archive-card-body">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-size:0.78rem; font-weight:800; color:var(--brand-orange);">${item.vol}</span>
+                  <span style="font-size:0.78rem; color:var(--text-light);">${item.date}</span>
+                </div>
+                <div class="archive-card-title serif-title">${item.title}</div>
+                <p class="archive-card-desc">${item.subtitle}</p>
+              </div>
+              <div style="margin-top:14px; font-size:0.84rem; font-weight:700; color:var(--brand-blue);">
+                📖 총 ${itemPages.length}페이지 열람하기 →
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function selectIssue(idx) {
+      currentIssueIdx = idx;
+      currentPageIdx = 0;
+      renderNewsletterHub();
+    }
+
+    function selectNewsletterPage(pIdx) {
+      currentPageIdx = pIdx;
+      renderNewsletterHub();
+    }
+
+    function stepNewsletterPage(delta) {
+      const issue = NEWSLETTERS_DATA[currentIssueIdx];
+      const pages = getActivePages(issue);
+      currentPageIdx = (currentPageIdx + delta + pages.length) % pages.length;
+      renderNewsletterHub();
+    }
+
+    function toggleNewsletterEdition() {
+      useCardEdition = !useCardEdition;
+      const btn = document.getElementById('editionToggleBtn');
+      btn.textContent = useCardEdition
+        ? "🖼️ 디자인 버전 전환 (통합 카드형 보기 중)"
+        : "🖼️ 디자인 버전 전환 (원본 내지형 보기 중)";
+      renderNewsletterHub();
+      showToast(useCardEdition ? "통합 카드 프레임 에디션으로 전환되었습니다." : "원본 풀페이지 에디션으로 전환되었습니다.");
+    }
+
+    function openCurrentNewsletterLightbox() {
+      const issue = NEWSLETTERS_DATA[currentIssueIdx];
+      const pages = getActivePages(issue);
+      openImageLightbox(encodeURI(pages[currentPageIdx]), `${issue.vol} (${issue.date}) — ${currentPageIdx + 1}/${pages.length} 페이지`);
+    }
+
+    function openAllPagesGridModal() {
+      const issue = NEWSLETTERS_DATA[currentIssueIdx];
+      const pages = getActivePages(issue);
+      document.getElementById('allPagesModalTitle').textContent = `${issue.vol} (${issue.date}) — ${issue.title}`;
+      const grid = document.getElementById('allPagesGridContainer');
+      grid.innerHTML = pages.map((p, idx) => `
+        <div style="cursor:zoom-in; background:#f7f4ef; padding:8px; border-radius:12px;" onclick="openImageLightbox('${encodeURI(p)}', '${issue.vol} - ${idx + 1}페이지')">
+          <img src="${encodeURI(p)}" alt="${idx + 1}페이지" style="width:100%; border-radius:8px; display:block;" />
+          <div style="text-align:center; font-size:0.82rem; font-weight:700; margin-top:6px;">${idx + 1} 페이지 (클릭하여 확대)</div>
+        </div>
+      `).join('');
+      openModal('allPagesModal');
+    }
+
+    // Keyboard navigation for newsletter reader
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-backdrop.active').forEach(m => m.classList.remove('active'));
+        const vid = document.getElementById('modalVideoPlayer');
+        if (vid) vid.pause();
+      }
+    });
+
+    // =========================================================================
+    // 2. MALAWI GALLERY DATA & FILTER (1호 캄텡고 마을 & 2호 음카나와오 마을)
+    // =========================================================================
+    const KAMTENGO_GALLERY_ITEMS = [
+      { type: 'image', category: 'ceremony', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_07.jpg', caption: '온마음 1호 우물(Water is Life) 완공 기념 현판 앞에서 두 팔 벌려 환호하는 캄텡고 마을 주민들' },
+      { type: 'image', category: 'water', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567.jpg', caption: '새로 완공된 핸드펌프에서 솟아나는 깨끗한 첫 생명수를 받아 마시는 마을 아이들' },
+      { type: 'image', category: 'water', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_09.jpg', caption: '아기를 품에 안은 어머니와 주민들이 맑고 안전한 지하수를 기쁘게 길어 올리는 순간' },
+      { type: 'image', category: 'ceremony', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_10.jpg', caption: '온마음 프로젝트(Sponsored by Hyun Ju Kim) 기념비와 함께한 캄텡고 마을 완공식 단체 기념촬영' },
+      { type: 'image', category: 'drilling', src: '우물1호 캄텡고/KakaoTalk_20261030_170752480_04.jpg', caption: '지하 40m 이상 암반 대수층을 연결하기 위해 대형 시추 장비(Drilling Rig)로 굴착하는 공사 현장' },
+      { type: 'image', category: 'drilling', src: '우물1호 캄텡고/KakaoTalk_20261030_170752480_06.jpg', caption: '지표면 오염물 유입을 완벽히 차단하는 케이싱 파이프와 심정 시추 설비 작업' },
+      { type: 'image', category: 'drilling', src: '우물1호 캄텡고/KakaoTalk_20261030_170752480_02.jpg', caption: '수질 검사 전문가들이 캄텡고 우물물을 채수하여 식수 적합성을 정밀 검사하는 모습' },
+      { type: 'image', category: 'water', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_13.jpg', caption: '튼튼하게 완공된 아프라데브(Afridev) 핸드펌프 우물과 마을 주민들을 위해 준비한 구제 식량' },
+      { type: 'image', category: 'drilling', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_12.jpg', caption: '우물 완공식과 함께 캄텡고 마을 가구들을 위해 정성껏 마련한 옥수수 식량 포대 나눔' },
+      { type: 'image', category: 'ceremony', src: '우물1호 캄텡고/KakaoTalk_20261030_170752480_10.jpg', caption: '마을 큰 나무 그늘 아래 모여 우물 자치 관리와 수인성 질병 예방 위생 교육을 받는 주민들' },
+      { type: 'image', category: 'ceremony', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_03.jpg', caption: '온 마을 주민들이 한자리에 모여 생명의 우물 탄생을 축하하는 완공식 현장' },
+      { type: 'image', category: 'ceremony', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_11.jpg', caption: '캄텡고 마을을 직접 찾아 주민들과 기쁨을 나누는 현장 방문단과 마을 리더들' },
+      { type: 'image', category: 'ceremony', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_14.jpg', caption: '마을 자치 우물관리위원회 이양 협약 및 나눔 전달 서명을 진행하는 마을 대표들' },
+      { type: 'video', category: 'video', src: '우물1호 캄텡고/캄텡고1.mp4', caption: '🎬 [현장 영상 1] 캄텡고 마을 1호 우물 완공식과 맑은 물이 쏟아지는 기쁨의 현장' },
+      { type: 'video', category: 'video', src: '우물1호 캄텡고/캄텡고 악낙네.mp4', caption: '🎬 [현장 영상 2] 깨끗한 생명수를 얻은 캄텡고 마을 어머니들의 환한 미소와 기쁨의 노래' },
+      { type: 'video', category: 'video', src: '우물1호 캄텡고/캄텡고 추장.mp4', caption: '🎬 [현장 영상 3] 캄텡고 마을 추장님의 진심 어린 감사 인사 인터뷰' }
+    ];
+
+    const MALAWI_GALLERY_ITEMS = [
+      { type: 'image', category: 'ceremony', src: '우물2호 음카나와오/KakaoTalk_20260909_103927961_10.jpg', caption: '온마음 2호 우물 완공 기념 현판과 음카나와오 마을 주민들' },
+      { type: 'image', category: 'water', src: '우물2호 음카나와오/KakaoTalk_20260909_103927961_15.jpg', caption: '새로 완공된 핸드펌프에서 솟아나는 깨끗한 물을 마시는 아이' },
+      { type: 'image', category: 'water', src: '우물2호 음카나와오/KakaoTalk_20260909_103927961_20.jpg', caption: '두 손 가득 맑은 생명수를 받아 마시는 어린이의 환한 순간' },
+      { type: 'image', category: 'water', src: '우물2호 음카나와오/KakaoTalk_20260909_103927961_13.jpg', caption: '힘차게 콸콸 쏟아져 나오는 암반 지하수와 기뻐하는 주민들' },
+      { type: 'image', category: 'ceremony', src: '우물2호 음카나와오/KakaoTalk_20260909_103927961_01.jpg', caption: '마을 주민들과 함께하는 수인성 질병 예방·위생 교육 역할극' },
+      { type: 'image', category: 'ceremony', src: '우물2호 음카나와오/KakaoTalk_20260909_103927961_05.jpg', caption: '온 마을이 함께 모여 춤추며 축하하는 우물 완공 축제' },
+      { type: 'image', category: 'water', src: '우물2호 음카나와오/KakaoTalk_20260909_103927961_18.jpg', caption: '맑은 물을 양동이에 가득 채우는 마을 여성들과 아이들' },
+      { type: 'image', category: 'ceremony', src: '우물2호 음카나와오/KakaoTalk_20260909_103927961_25.jpg', caption: '우물 완공 테이프 커팅식 및 마을 자치 우물관리위원회 이양식' },
+      { type: 'video', category: 'video', src: '우물2호 음카나와오/KakaoTalk_20260909_104022735.mp4', caption: '🎬 [현장 영상 1] 음카나와오 마을 우물 펌프 시연과 주민들의 환호' },
+      { type: 'video', category: 'video', src: '우물2호 음카나와오/KakaoTalk_20260909_104028670.mp4', caption: '🎬 [현장 영상 2] 깨끗한 물이 솟아오르는 기쁨의 축제 현장' },
+      { type: 'video', category: 'video', src: '우물2호 음카나와오/KakaoTalk_20260909_104033563.mp4', caption: '🎬 [현장 영상 3] 마을 어린이들과 주민들의 감사 인사' },
+      { type: 'image', category: 'water', src: '우물2호 음카나와오/KakaoTalk_20260909_103927961_22.jpg', caption: '깨끗한 식수원 앞에서 환하게 웃는 음카나와오 마을 주민' }
+    ];
+
+    function renderGalleryGridItems(items, gridId) {
+      const grid = document.getElementById(gridId);
+      if (!grid) return;
+      grid.innerHTML = items.map(item => {
+        if (item.type === 'video') {
+          return `
+            <div class="gallery-item-card">
+              <div class="gallery-media-box">
+                <video src="${encodeURI(item.src)}" controls preload="metadata"></video>
+              </div>
+              <div class="gallery-caption">${item.caption}</div>
+            </div>
+          `;
+        }
+        return `
+          <div class="gallery-item-card" onclick="openImageLightbox('${encodeURI(item.src)}', '${item.caption}')">
+            <div class="gallery-media-box">
+              <img src="${encodeURI(item.src)}" alt="${item.caption}" loading="lazy" />
+            </div>
+            <div class="gallery-caption">${item.caption}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderKamtengoGallery(filter = 'all') {
+      const filtered = filter === 'all'
+        ? KAMTENGO_GALLERY_ITEMS
+        : KAMTENGO_GALLERY_ITEMS.filter(item => item.category === filter);
+      renderGalleryGridItems(filtered, 'kamtengoGalleryGrid');
+    }
+
+    function filterKamtengoGallery(cat, btnEl) {
+      document.querySelectorAll('#kamtengoFilterPills .filter-pill-btn').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      renderKamtengoGallery(cat);
+    }
+
+    function renderMalawiGallery(filter = 'all') {
+      const filtered = filter === 'all'
+        ? MALAWI_GALLERY_ITEMS
+        : MALAWI_GALLERY_ITEMS.filter(item => item.category === filter);
+      renderGalleryGridItems(filtered, 'malawiGalleryGrid');
+    }
+
+    function filterMalawiGallery(cat, btnEl) {
+      document.querySelectorAll('#mkanawawoFilterPills .filter-pill-btn').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      renderMalawiGallery(cat);
+    }
+
+    // =========================================================================
+    // 3. THEME SONG AUDIO PLAYER & SYNCED LYRIC TICKER
+    // =========================================================================
+    const audioEl = document.getElementById('onmaumAudio');
+    const seekEl = document.getElementById('bgmSeek');
+    const curTimeEl = document.getElementById('bgmCurrentTime');
+    const durTimeEl = document.getElementById('bgmDuration');
+    const headerBgmBtn = document.getElementById('headerBgmBtn');
+    const headerBgmText = document.getElementById('headerBgmText');
+    const barPlayBtn = document.getElementById('barPlayBtn');
+    const lyricTicker = document.getElementById('lyricTicker');
+
+    const LYRIC_TIMELINE = [
+      { t: 0, text: "🎵 온마음 프로젝트 테마곡 — 〈온 마음으로〉" },
+      { t: 10, text: "“아주 작은 마음 하나 두 손에 가만히 담아...”" },
+      { t: 22, text: "“멀리 있는 누군가의 오늘을 생각해 봅니다”" },
+      { t: 36, text: "“목마른 하루 끝에서 건네는 맑은 물 한 잔”" },
+      { t: 48, text: "“배고픈 시간 속에서 마주한 따뜻한 밥 한 끼”" },
+      { t: 62, text: "“온 마음으로 당신의 오늘을 응원해요”" },
+      { t: 75, text: "“맑은 물 한 모금처럼, 따뜻한 한 끼처럼”" },
+      { t: 90, text: "“우리의 작은 마음들이 당신의 내일에 빛이 되기를”" },
+      { t: 120, text: "“세상을 더 아름답게, 사람을 더 행복하게 — 온마음”" }
+    ];
+
+    function formatTime(sec) {
+      if (!sec || isNaN(sec)) return "0:00";
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    function toggleBgm(forcePlay = false) {
+      if (forcePlay || audioEl.paused) {
+        audioEl.play().then(() => {
+          updatePlayerUI(true);
+        }).catch(() => {
+          showToast("브라우저 소리 권한을 허용해 주세요.");
+        });
+      } else {
+        audioEl.pause();
+        updatePlayerUI(false);
+      }
+    }
+
+    function updatePlayerUI(isPlaying) {
+      if (isPlaying) {
+        headerBgmBtn.classList.add('playing');
+        headerBgmText.textContent = "테마곡 재생 중";
+        barPlayBtn.textContent = "❚❚";
+      } else {
+        headerBgmBtn.classList.remove('playing');
+        headerBgmText.textContent = "테마곡 듣기";
+        barPlayBtn.textContent = "▶";
+      }
+    }
+
+    audioEl.addEventListener('loadedmetadata', () => {
+      durTimeEl.textContent = formatTime(audioEl.duration);
+    });
+
+    audioEl.addEventListener('timeupdate', () => {
+      if (audioEl.duration) {
+        seekEl.value = (audioEl.currentTime / audioEl.duration) * 100;
+        curTimeEl.textContent = formatTime(audioEl.currentTime);
+      }
+      // Update lyric ticker
+      for (let i = LYRIC_TIMELINE.length - 1; i >= 0; i--) {
+        if (audioEl.currentTime >= LYRIC_TIMELINE[i].t) {
+          lyricTicker.textContent = LYRIC_TIMELINE[i].text;
+          break;
+        }
+      }
+    });
+
+    audioEl.addEventListener('ended', () => {
+      updatePlayerUI(false);
+    });
+
+    seekEl.addEventListener('input', () => {
+      if (audioEl.duration) {
+        audioEl.currentTime = (seekEl.value / 100) * audioEl.duration;
+      }
+    });
+
+    // =========================================================================
+    // 4. MODALS & UTILITIES
+    // =========================================================================
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    function closeModalOnBg(e, id) {
+      if (e.target.id === id) {
+        closeModal(id);
+        if (id === 'videoModal') {
+          document.getElementById('modalVideoPlayer').pause();
+        }
+      }
+    }
+
+    function openDonateModal() {
+      openModal('donateModal');
+    }
+
+    function openLyricsModal() {
+      openModal('lyricsModal');
+    }
+
+    function openVideoModal() {
+      if (!audioEl.paused) {
+        audioEl.pause();
+        updatePlayerUI(false);
+      }
+      openModal('videoModal');
+      const vid = document.getElementById('modalVideoPlayer');
+      vid.play().catch(() => {});
+    }
+
+    function closeVideoModal() {
+      const vid = document.getElementById('modalVideoPlayer');
+      vid.pause();
+      closeModal('videoModal');
+    }
+
+    function openImageLightbox(src, caption) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxCaption').textContent = caption || '';
+      openModal('lightboxModal');
+    }
+
+    function copyAccountNumber() {
+      const acc = "244-910009-63304";
+      navigator.clipboard.writeText(acc).then(() => {
+        showToast("하나은행 244-910009-63304 계좌번호가 복사되었습니다!");
+      }).catch(() => {
+        showToast("계좌번호: 244-910009-63304 (재단법인 선한뜻)");
+      });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastMsg');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    // =========================================================================
+    // 5. MONTHLY NEWSLETTER ADMIN STUDIO (새 호 추가 및 HTML 다운로드)
+    // =========================================================================
+    function openNewsletterAdminModal() {
+      const nextNum = NEWSLETTERS_DATA.length + 1;
+      document.getElementById('adminVol').value = `제${nextNum}호`;
+      openModal('newsletterAdminModal');
+    }
+
+    function handleAdminFilesSelected(e) {
+      const files = Array.from(e.target.files || []);
+      if (!files.length) return;
+      const volRaw = document.getElementById('adminVol').value.replace(/[^0-9]/g, '') || (NEWSLETTERS_DATA.length + 1);
+      const paths = files.map(f => `소식지/${volRaw}호/${f.name}`);
+      document.getElementById('adminPages').value = paths.join('\n');
+    }
+
+    function buildIssueFromForm() {
+      const vol = document.getElementById('adminVol').value.trim();
+      const date = document.getElementById('adminDate').value.trim();
+      const title = document.getElementById('adminTitle').value.trim();
+      const subtitle = document.getElementById('adminSubtitle').value.trim();
+      const kpi1 = document.getElementById('adminKpi1').value.split('|').map(s => s.trim());
+      const kpi2 = document.getElementById('adminKpi2').value.split('|').map(s => s.trim());
+      const pages = document.getElementById('adminPages').value
+        .split('\n')
+        .map(s => s.trim())
+        .filter(Boolean);
+
+      return {
+        id: "vol" + Date.now(),
+        vol,
+        badge: `${vol} · ONMAUM NEWSLETTER`,
+        isNew: true,
+        date,
+        title,
+        subtitle,
+        kpis: [
+          { val: kpi1[0] || "온마음 나눔", label: kpi1[1] || "현장 정기 소식" },
+          { val: kpi2[0] || "100% 전달", label: kpi2[1] || "투명한 후원 결산" },
+          { val: `${pages.length}페이지`, label: "월간 카드뉴스 소식지" }
+        ],
+        pagesCard: pages,
+        pagesOriginal: pages,
+        notes: pages.map((_, idx) => `${idx + 1}페이지: ${vol} (${date}) 현장 소식`)
+      };
+    }
+
+    function handleAddNewsletter(e) {
+      e.preventDefault();
+      const newIssue = buildIssueFromForm();
+      NEWSLETTERS_DATA.forEach(item => item.isNew = false);
+      NEWSLETTERS_DATA.unshift(newIssue);
+      currentIssueIdx = 0;
+      currentPageIdx = 0;
+      renderNewsletterHub();
+      closeModal('newsletterAdminModal');
+      showToast(`${newIssue.vol} 소식지가 페이지에 추가되었습니다!`);
+    }
+
+    function downloadUpdatedHtml() {
+      const form = document.getElementById('addNewsletterForm');
+      if (form.checkValidity()) {
+        const exists = NEWSLETTERS_DATA.some(i => i.vol === document.getElementById('adminVol').value.trim());
+        if (!exists) {
+          const newIssue = buildIssueFromForm();
+          NEWSLETTERS_DATA.forEach(item => item.isNew = false);
+          NEWSLETTERS_DATA.unshift(newIssue);
+          currentIssueIdx = 0;
+          currentPageIdx = 0;
+          renderNewsletterHub();
+        }
+      }
+
+      fetch(window.location.href)
+        .then(r => r.text())
+        .then(rawHtml => {
+          const replacement = `/*NEWSLETTERS_DATA_START*/\n    const NEWSLETTERS_DATA = ${JSON.stringify(NEWSLETTERS_DATA, null, 6)};\n    /*NEWSLETTERS_DATA_END*/`;
+          const updatedHtml = rawHtml.replace(
+            /\/\*NEWSLETTERS_DATA_START\*\/[\s\S]*?\/\*NEWSLETTERS_DATA_END\*\//,
+            replacement
+          );
+          const blob = new Blob([updatedHtml], { type: 'text/html;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'index.html';
+          a.click();
+          URL.revokeObjectURL(url);
+          showToast("새 소식지가 반영된 index.html 파일이 다운로드되었습니다!");
+        })
+        .catch(() => {
+          showToast("다운로드 중 오류가 발생했습니다.");
+        });
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderNewsletterHub();
+      renderKamtengoGallery('all');
+      renderMalawiGallery('all');
+    });
+  </script>
+</body>
+</html>
