@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onmaum Project | with GoodMind Foundation</title>
+  <meta name="description" content="Onmaum Project: warm meals and education for children in Kenya, and clean-water wells in Malawi, in partnership with GoodMind Foundation (재단법인 선한뜻)." />
+  <meta property="og:title" content="Onmaum Project | with GoodMind Foundation" />
+  <meta property="og:description" content="Like a sip of clean water, like a warm meal. Meals and education for children in Kenya, with GoodMind Foundation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Onmaum Project" />
+  <meta property="og:url" content="https://onmaum-project.vercel.app/en.html" />
+  <meta property="og:image" content="https://onmaum-project.vercel.app/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Onmaum Project | with GoodMind Foundation" />
+  <meta name="twitter:image" content="https://onmaum-project.vercel.app/og-image.jpg" />
+  <link rel="alternate" hreflang="ko" href="https://onmaum-project.vercel.app/" />
+  <link rel="alternate" hreflang="en" href="https://onmaum-project.vercel.app/en.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { --text-main:#1D1D1F; --text-muted:#5A5A60; --orange:#FF5A36; --orange-light:#FFE6DF; --blue:#0066CC; --blue-light:#E5F1FF; --green:#1E8E5A; --green-light:#E6F6EE; --border:rgba(29,29,31,0.08); }
+    * { box-sizing:border-box; }
+    html, body { overflow-x:hidden; }
+    body { margin:0; font-family:-apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Segoe UI', sans-serif; color:var(--text-main); background:#FFFDF9; line-height:1.7; }
+    a { color:var(--blue); }
+    .serif { font-family:'Nanum Myeongjo', Georgia, serif; }
+    header { position:sticky; top:0; z-index:10; background:rgba(255,253,249,0.92); backdrop-filter:blur(14px); border-bottom:1px solid var(--border); }
+    .hdr { max-width:1080px; margin:0 auto; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .hdr img { height:34px; display:block; }
+    .hdr nav { display:flex; gap:8px; align-items:center; }
+    .pill { font-size:0.85rem; font-weight:800; padding:8px 14px; border-radius:999px; text-decoration:none; white-space:nowrap; }
+    .pill.ghost { border:1px solid rgba(0,0,0,0.12); color:var(--text-main); background:#fff; }
+    .pill.solid { background:var(--orange); color:#fff; }
+    main { max-width:880px; margin:0 auto; padding:0 18px 60px; }
+    .hero { text-align:center; padding:56px 0 24px; }
+    .tag { display:inline-block; font-size:0.78rem; font-weight:800; letter-spacing:0.06em; padding:6px 14px; border-radius:999px; background:var(--orange-light); color:var(--orange); }
+    h1 { font-size:clamp(1.9rem, 5vw, 2.8rem); line-height:1.25; margin:16px 0 12px; }
+    h2 { font-size:1.45rem; margin:0 0 10px; }
+    .lead { font-size:1.08rem; color:var(--text-muted); max-width:680px; margin:0 auto; }
+    .card { background:#fff; border:1px solid var(--border); border-radius:20px; padding:26px 24px; margin-top:22px; box-shadow:0 6px 20px rgba(0,0,0,0.04); }
+    .card p { margin:0 0 10px; color:var(--text-muted); }
+    .card p:last-child { margin-bottom:0; }
+    .split { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; }
+    .split > div { border-radius:16px; padding:18px; }
+    .split .w { background:var(--blue-light); } .split .k { background:var(--orange-light); }
+    .split strong { display:block; margin-bottom:4px; }
+    .wells { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:14px; }
+    .wells figure { margin:0; border-radius:16px; overflow:hidden; background:var(--blue-light); }
+    .wells img { width:100%; height:200px; object-fit:cover; display:block; }
+    .wells figcaption { padding:12px 14px; font-size:0.93rem; color:var(--text-muted); }
+    .wells figcaption b { color:var(--text-main); display:block; }
+    .btns { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+    footer { text-align:center; font-size:0.85rem; color:var(--text-muted); padding:30px 18px 40px; border-top:1px solid var(--border); }
+    @media (max-width:600px) { .split, .wells { grid-template-columns:1fr; } .card { padding:22px 18px; } .hero { padding-top:40px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hdr">
+      <a href="./"><img src="logo.png" alt="Onmaum Project logo" /></a>
+      <nav>
+        <a class="pill ghost" href="./" lang="ko">한국어</a>
+        <a class="pill solid" href="./#donate" lang="ko">Support</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <span class="tag">ONMAUM PROJECT · WITH GOODMIND FOUNDATION</span>
+      <h1 class="serif">Like a sip of clean water,<br />like a warm meal.</h1>
+      <p class="lead">“Onmaum” means “with all our heart.” We are a small giving project that brings warm meals and learning to children in Kenya, and clean water to villages in Malawi.</p>
+    </section>
+
+    <section class="card">
+      <h2 class="serif">Who we are</h2>
+      <p>The Onmaum Project was planned by a husband and wife together, and it grows by gathering the goodwill of close friends and acquaintances.</p>
+      <p>Wanting to give a well in his wife's name, he searched long and carefully for a trustworthy partner, and found <a href="https://www.goodmind.or.kr/" target="_blank" rel="noopener">GoodMind Foundation (재단법인 선한뜻)</a>. He met the foundation's chairperson in person before deciding, and has been deeply satisfied with the people and their work.</p>
+    </section>
+
+    <section class="card">
+      <h2 class="serif">Transparency</h2>
+      <p>All donations go directly to GoodMind Foundation's account, never to us personally, and every donor can receive an official donation receipt individually from the foundation.</p>
+      <div class="split">
+        <div class="w"><strong>Malawi wells #1 and #2</strong>Funded 100% by the couple's own personal money. No Onmaum donations were used. We named them under the Onmaum Project because that is who we are, and we hope more people will take an interest.</div>
+        <div class="k"><strong>Onmaum donations</strong>Dedicated to a single, separate project: warm meals and education for children in Kenya.</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="serif">Kenya: a meal and a classroom</h2>
+      <p>Together with GoodMind Foundation, Onmaum supports warm school lunches and learning at five Maasai schools in Kenya, reaching about 1,187 children. A meal protects today; education changes tomorrow. Our monthly newsletter reports how every gift is used.</p>
+      <div class="btns"><a class="pill ghost" href="./#kenya" lang="ko">See the Kenya project (Korean)</a><a class="pill ghost" href="./#newsletter" lang="ko">Monthly newsletter</a></div>
+    </section>
+
+    <section class="card">
+      <h2 class="serif">Malawi: Water is Life</h2>
+      <p>Deep borehole wells bring safe water to villages that once relied on shallow, contaminated pits, giving children back the hours they spent carrying water.</p>
+      <div class="wells">
+        <figure>
+          <img src="우물1호%20캄텡고/KakaoTalk_20261030_170729567_07.jpg" alt="Onmaum Well #1, Kamtengo Village" loading="lazy" />
+          <figcaption><b>Well #1 · Kamtengo Village</b>Completed October 2025. Serves about 115 households (396+ people) across five neighboring villages.</figcaption>
+        </figure>
+        <figure>
+          <img src="우물2호%20음카나와오/KakaoTalk_20260909_103927961_10.jpg" alt="Onmaum Well #2, Mkanawawo Village" loading="lazy" />
+          <figcaption><b>Well #2 · Mkanawawo Village</b>Built March to September 2026 near Kabudula, Lilongwe. Serves 69 households (243 people) and nearby villages.</figcaption>
+        </figure>
+      </div>
+      <div class="btns"><a class="pill ghost" href="./#malawi" lang="ko">Photos and videos</a></div>
+    </section>
+
+    <section class="card">
+      <h2 class="serif">Onmaum Hearts</h2>
+      <p>Each supporter becomes an “Onmaum Heart.” Thank you to everyone whose heart is part of this story.</p>
+      <div class="btns"><a class="pill solid" href="./#hearts">Meet the Onmaum Hearts</a><a class="pill ghost" href="./" lang="ko">Visit the Korean site</a></div>
+    </section>
+  </main>
+  <footer>
+    Onmaum Project | GoodMind Foundation (재단법인 선한뜻) · <a href="https://www.goodmind.or.kr/" target="_blank" rel="noopener">goodmind.or.kr</a><br />
+    Acta Non Verba · Good People, Better Days
+  </footer>
+</body>
+</html>

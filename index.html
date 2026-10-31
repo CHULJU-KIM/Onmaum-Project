@@ -1894,13 +1894,29 @@
     @media (max-width: 980px) { .hearts-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) { .hearts-grid { grid-template-columns: 1fr; gap:14px; } .hearts-section { padding:56px 0; } }
     @media (max-width: 1500px) { .main-nav .nav-long { display:none; } }
+    /* ---- Story ---- */
+    .story-section { padding: 80px 0; background:#fff; }
+    .story-body { max-width:760px; margin:0 auto; font-size:1.04rem; line-height:1.85; color:var(--text-main); }
+    .story-body p { margin:0 0 14px; }
+    .fund-split { display:grid; grid-template-columns:1fr 1fr; gap:18px; max-width:900px; margin:32px auto 0; }
+    .fund-col { border-radius:18px; padding:24px 22px; border:1px solid var(--border-color); }
+    .fund-col.wells { background:var(--brand-blue-light); }
+    .fund-col.kenya { background:var(--brand-orange-light); }
+    .fund-col .fund-label { font-size:0.8rem; font-weight:800; letter-spacing:0.04em; margin-bottom:6px; }
+    .fund-col.wells .fund-label { color:var(--brand-blue); }
+    .fund-col.kenya .fund-label { color:var(--brand-orange); }
+    .fund-col h3 { font-size:1.15rem; font-weight:800; margin:0 0 8px; }
+    .fund-col p { font-size:0.95rem; line-height:1.7; color:var(--text-muted); margin:0; }
+    .wells-fund-note { max-width:760px; margin:-28px auto 40px; text-align:center; font-size:0.92rem; color:var(--brand-blue); background:var(--brand-blue-light); border-radius:12px; padding:10px 16px; font-weight:700; }
+    .lang-link { font-size:0.8rem; font-weight:800; padding:7px 10px; border-radius:999px; border:1px solid rgba(0,0,0,0.12); color:var(--text-main); text-decoration:none; background:#fff; white-space:nowrap; }
+    @media (max-width: 600px) { .fund-split { grid-template-columns:1fr; } .story-section { padding:56px 0; } .lang-link { display:none; } }
     /* ---- Mobile menu ---- */
     .menu-toggle { display:none; width:40px; height:40px; border-radius:10px; border:1px solid rgba(0,0,0,0.12); background:#fff; font-size:1.25rem; line-height:1; cursor:pointer; flex-shrink:0; color:#333; }
     .mobile-menu { display:none; position:absolute; top:100%; left:0; right:0; background:#fff; box-shadow:0 12px 30px rgba(0,0,0,0.12); padding:8px 16px 14px; z-index:1000; }
     .mobile-menu.open { display:block; }
     .mobile-menu a { display:block; padding:13px 6px; border-bottom:1px solid #f0f0f0; color:#222; text-decoration:none; font-weight:700; font-size:0.98rem; }
     .mobile-menu a:last-child { border-bottom:0; }
-    @media (max-width: 1180px) { .main-nav { display:none; } .menu-toggle { display:inline-flex; align-items:center; justify-content:center; } }
+    @media (max-width: 1260px) { .main-nav { display:none; } .menu-toggle { display:inline-flex; align-items:center; justify-content:center; } }
     @media (max-width: 600px) { .menu-toggle { width:36px; height:36px; } }
   </style>
 </head>
@@ -1918,7 +1934,7 @@
       </a>
 
       <nav class="main-nav">
-        <a href="#top" class="nav-link">소개</a>
+        <a href="#story" class="nav-link">온마음 이야기</a>
         <a href="#newsletter" class="nav-link nav-link-badge">
           <span class="badge-dot"></span>월간 소식지
         </a>
@@ -1940,16 +1956,18 @@
           <span id="headerBgmText" class="bgm-label">테마곡 듣기</span>
         </button>
         <button type="button" class="btn-donate-sm" onclick="openDonateModal()">온 마음 더하기</button>
+        <a href="en.html" class="lang-link" lang="en" aria-label="English">EN</a>
         <button type="button" class="menu-toggle" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobileMenu">&#9776;</button>
       </div>
       <nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
-        <a href="#top">소개</a>
+        <a href="#story">온마음 이야기</a>
         <a href="#newsletter">월간 소식지</a>
         <a href="#kenya">케냐 급식·교육</a>
         <a href="#letters">현장 손편지</a>
         <a href="#malawi">말라위 우물(Water is Life)</a>
         <a href="#hearts">Onmaum Heart</a>
         <a href="#donate">후원 안내</a>
+        <a href="en.html" lang="en">English (EN)</a>
       </nav>
     </div>
 
@@ -2050,6 +2068,33 @@
               <div style="font-size:0.9rem; font-weight:800; color:var(--text-main);">생명수 우물 & 학교 급식 프로젝트</div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ONMAUM STORY ==================== -->
+  <section class="story-section" id="story">
+    <div class="container">
+      <div class="section-header" style="margin-bottom:28px;">
+        <span class="section-tag tag-green">OUR STORY</span>
+        <h2 class="section-title serif-title">가까운 마음들이 모여<br />시작된 온마음</h2>
+      </div>
+      <div class="story-body">
+        <p>온마음 프로젝트는 저희 부부가 함께 기획하고, 가까운 지인들의 따뜻한 뜻을 모아 진행하는 나눔 프로젝트입니다.</p>
+        <p>아내의 이름으로 우물을 선물하고 싶어 믿을 수 있는 곳을 오래 찾았고, 그렇게 만난 곳이 <a href="https://www.goodmind.or.kr/" target="_blank" rel="noopener" style="color:var(--brand-blue); font-weight:700;">재단법인 선한뜻</a>입니다. 이사장님을 직접 만나 이야기를 나눈 뒤 함께하기로 결정했고, 지내 보니 역시 훌륭한 분들이었습니다.</p>
+        <p>투명성을 위해 모든 후원금은 재단법인 선한뜻으로 직접 전달되며, 후원해 주신 분은 누구나 개인 명의로 기부금 영수증을 받으실 수 있습니다.</p>
+      </div>
+      <div class="fund-split">
+        <div class="fund-col wells">
+          <div class="fund-label">말라위 우물 1·2호</div>
+          <h3>부부 개인 후원 100%</h3>
+          <p>1호(캄텡고)와 2호(음카나와오) 우물은 전액 저희 부부의 개인 자금으로 후원했습니다. 온마음 후원금은 쓰이지 않았습니다. 우리가 '온마음'이기에 우물에도 온마음 프로젝트의 이름을 붙였고, 더 많은 분들이 관심을 가져 주시길 바라는 마음을 담았습니다.</p>
+        </div>
+        <div class="fund-col kenya">
+          <div class="fund-label">온마음 후원금</div>
+          <h3>케냐 한 끼와 배움 단독 사업</h3>
+          <p>온마음으로 모인 후원금은 케냐 아이들의 따뜻한 한 끼와 배움을 위한 단독 사업에만 사용됩니다.</p>
         </div>
       </div>
     </div>
@@ -2296,6 +2341,7 @@
           온마음 프로젝트는 깊은 지하 대수층을 연결하는 심정(Borehole) 우물을 시추하여 아이들에게 깨끗한 물과 학교 갈 시간을 선물합니다.
         </p>
       </div>
+      <p class="wells-fund-note">말라위 우물 1·2호는 저희 부부의 개인 후원 100%로 세워졌으며, 온마음 후원금은 사용되지 않았습니다.</p>
 
       <!-- Malawi Context Banner -->
       <div class="malawi-context-banner">
@@ -2443,27 +2489,7 @@
         <h2 class="section-title serif-title">Onmaum Heart · 함께하는 마음들</h2>
         <p class="section-desc">케냐의 아이들과 말라위 마을에 따뜻한 한 끼와 맑은 물을 전하는 온마음 후원자분들입니다. 한 분 한 분의 마음이 모여 현장을 바꿉니다.</p>
       </div>
-      <div class="hearts-grid">
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-01.jpg', 'Onmaum Heart 1 · Hyunju Kim')"><img src="후원인명단/heart-01.jpg" alt="Onmaum Heart 1 · Hyunju Kim" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-02.jpg', 'Onmaum Heart 2 · Chulju Kim')"><img src="후원인명단/heart-02.jpg" alt="Onmaum Heart 2 · Chulju Kim" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-03.jpg', 'Onmaum Heart 3 · Jihoon Kim')"><img src="후원인명단/heart-03.jpg" alt="Onmaum Heart 3 · Jihoon Kim" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-04.jpg', 'Onmaum Heart 4 · Seohyun Kim')"><img src="후원인명단/heart-04.jpg" alt="Onmaum Heart 4 · Seohyun Kim" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-05.jpg', 'Onmaum Heart 5 · Sukhui Yang')"><img src="후원인명단/heart-05.jpg" alt="Onmaum Heart 5 · Sukhui Yang" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-06.jpg', 'Onmaum Heart 6 · Seyeong Jeong')"><img src="후원인명단/heart-06.jpg" alt="Onmaum Heart 6 · Seyeong Jeong" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-07.jpg', 'Onmaum Heart 7 · Geumsun Jang')"><img src="후원인명단/heart-07.jpg" alt="Onmaum Heart 7 · Geumsun Jang" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-08.jpg', 'Onmaum Heart 8 · Yongsin Jeong')"><img src="후원인명단/heart-08.jpg" alt="Onmaum Heart 8 · Yongsin Jeong" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-09.jpg', 'Onmaum Heart 9 · Seumi Seo')"><img src="후원인명단/heart-09.jpg" alt="Onmaum Heart 9 · Seumi Seo" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-10.jpg', 'Onmaum Heart 10 · Jumi Lee')"><img src="후원인명단/heart-10.jpg" alt="Onmaum Heart 10 · Jumi Lee" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-11.jpg', 'Onmaum Heart 11 · Kumja Lee')"><img src="후원인명단/heart-11.jpg" alt="Onmaum Heart 11 · Kumja Lee" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-12.jpg', 'Onmaum Heart 12 · Jisang Hyun')"><img src="후원인명단/heart-12.jpg" alt="Onmaum Heart 12 · Jisang Hyun" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-13.jpg', 'Onmaum Heart 13 · Donghee Kim')"><img src="후원인명단/heart-13.jpg" alt="Onmaum Heart 13 · Donghee Kim" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-14.jpg', 'Onmaum Heart 14 · Soyul Lee')"><img src="후원인명단/heart-14.jpg" alt="Onmaum Heart 14 · Soyul Lee" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-15.jpg', 'Onmaum Heart 15 · Minwon Kang')"><img src="후원인명단/heart-15.jpg" alt="Onmaum Heart 15 · Minwon Kang" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-16.jpg', 'Onmaum Heart 16 · Soyoon Ye')"><img src="후원인명단/heart-16.jpg" alt="Onmaum Heart 16 · Soyoon Ye" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-17.jpg', 'Onmaum Heart 17 · Sehun Kang')"><img src="후원인명단/heart-17.jpg" alt="Onmaum Heart 17 · Sehun Kang" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-18.jpg', 'Onmaum Heart 18 · Dongmin Kim')"><img src="후원인명단/heart-18.jpg" alt="Onmaum Heart 18 · Dongmin Kim" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-19.jpg', 'Onmaum Heart 19 · Jungmin Kim')"><img src="후원인명단/heart-19.jpg" alt="Onmaum Heart 19 · Jungmin Kim" loading="lazy" width="1065" height="612" /></button>
-        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-20.jpg', 'Onmaum Heart 20 · Daon Hwang')"><img src="후원인명단/heart-20.jpg" alt="Onmaum Heart 20 · Daon Hwang" loading="lazy" width="1065" height="612" /></button>
+      <div class="hearts-grid" id="heartsGrid">
       </div>
     </div>
   </section>
@@ -2475,11 +2501,11 @@
         <span class="promise-badge">100% TRANSPARENCY PROMISE</span>
         <h2 class="serif-title">후원금 100%가 현장에 전달됩니다</h2>
         <p>
-          온마음 프로젝트를 통해 재단법인 선한뜻에 보내주시는 모든 후원금은 운영비나 수수료 공제 없이 <strong>100% 전액 케냐 학교 급식·교육과 말라위 우물 현장</strong>에 사용됩니다.
+          온마음 프로젝트를 통해 재단법인 선한뜻에 보내주시는 모든 후원금은 운영비나 수수료 공제 없이 <strong>100% 전액 케냐 아이들의 한 끼와 배움</strong>을 위한 단독 사업에 사용됩니다. (말라위 우물 1·2호는 저희 부부의 개인 후원으로 따로 진행했습니다.)
           제반 행정 비용은 재단법인 선한뜻이 전액 부담하며, 매월 20만 원의 추가 매칭 지원금을 더해 나눔의 크기를 키웁니다.
         </p>
         <p style="font-size:0.9rem; opacity:0.85; margin-top:-6px;">
-          온마음은 후원금을 직접 받지 않습니다. 후원금은 <strong>재단법인 선한뜻 명의 계좌로 직접 입금</strong>되며, 기부금 영수증도 재단에서 발급합니다.
+          온마음은 후원금을 직접 받지 않습니다. 후원금은 <strong>재단법인 선한뜻 명의 계좌로 직접 입금</strong>되며, 후원해 주신 분은 누구나 개인 명의로 재단의 기부금 영수증을 받으실 수 있습니다.
         </p>
 
         <div class="account-quick-box">
@@ -2537,7 +2563,7 @@
       <span class="section-tag tag-orange">ONMAUM DONATION</span>
       <h3 class="serif-title" style="font-size:1.6rem; font-weight:800; margin-bottom:8px;">온 마음 더하기</h3>
       <p style="color:var(--text-muted); font-size:0.94rem; margin-bottom:18px;">
-        보내주시는 후원금은 100% 현장 아이들의 급식·교육과 깨끗한 우물을 위해 사용됩니다.<br />
+        보내주시는 후원금은 100% 케냐 아이들의 한 끼와 배움을 위해 사용됩니다.<br />
         송금 시 <strong>‘성함(온마음)’</strong> 형식으로 보내주시면 소식지 결산에 투명하게 반영됩니다.
       </p>
       <img src="account.jpg" loading="lazy" alt="재단법인 선한뜻 후원 계좌 안내" style="width:100%; border-radius:16px; border:1px solid var(--border-color); margin-bottom:18px;" />
@@ -3165,11 +3191,18 @@
 
     function copyAccountNumber() {
       const acc = "244-910009-63304";
-      navigator.clipboard.writeText(acc).then(() => {
-        showToast("하나은행 244-910009-63304 계좌번호가 복사되었습니다!");
-      }).catch(() => {
-        showToast("계좌번호: 244-910009-63304 (재단법인 선한뜻)");
-      });
+      const ok = () => showToast("복사됨 · 244-910009-63304");
+      const fallback = () => {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = acc; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select(); ta.setSelectionRange(0, acc.length);
+          const done = document.execCommand('copy'); document.body.removeChild(ta);
+          done ? ok() : showToast("계좌번호: 244-910009-63304 (재단법인 선한뜻)");
+        } catch (e) { showToast("계좌번호: 244-910009-63304 (재단법인 선한뜻)"); }
+      };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(acc).then(ok).catch(fallback);
+      else fallback();
     }
 
     function showToast(msg) {
@@ -3284,6 +3317,39 @@
   </script>
 <script>if(new URLSearchParams(location.search).get('admin')==='1'){document.body.classList.add('is-admin');}</script>
 <script>
+    // Onmaum Heart 후원인 목록 — 새 후원인: 후원인명단/heart-NN.jpg 추가 후 아래에 한 줄 추가
+    const ONMAUM_HEARTS = [
+      [1, 'Hyunju Kim'],
+      [2, 'Chulju Kim'],
+      [3, 'Jihoon Kim'],
+      [4, 'Seohyun Kim'],
+      [5, 'Sukhui Yang'],
+      [6, 'Seyeong Jeong'],
+      [7, 'Geumsun Jang'],
+      [8, 'Yongsin Jeong'],
+      [9, 'Seumi Seo'],
+      [10, 'Jumi Lee'],
+      [11, 'Kumja Lee'],
+      [12, 'Jisang Hyun'],
+      [13, 'Donghee Kim'],
+      [14, 'Soyul Lee'],
+      [15, 'Minwon Kang'],
+      [16, 'Soyoon Ye'],
+      [17, 'Sehun Kang'],
+      [18, 'Dongmin Kim'],
+      [19, 'Jungmin Kim'],
+      [20, 'Daon Hwang']
+    ];
+    (function(){
+      const g=document.getElementById('heartsGrid'); if(!g) return;
+      g.innerHTML=ONMAUM_HEARTS.slice().sort((a,b)=>a[0]-b[0]).map(([n,name])=>{
+        const src='후원인명단/heart-'+String(n).padStart(2,'0')+'.jpg', label='Onmaum Heart '+n+' · '+name;
+        return '<button type="button" class="heart-card" data-src="'+src+'" data-label="'+label+'"><img src="'+src+'" alt="'+label+'" loading="lazy" width="1065" height="612" /></button>';
+      }).join('');
+      g.addEventListener('click',e=>{const b=e.target.closest('.heart-card'); if(b) openImageLightbox(b.dataset.src,b.dataset.label);});
+    })();
+  </script>
+  <script>
     (function(){
       const btn=document.getElementById('menuToggle'), menu=document.getElementById('mobileMenu');
       if(!btn||!menu) return;
@@ -3292,7 +3358,7 @@
       menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));
       document.addEventListener('click',(e)=>{if(menu.classList.contains('open')&&!menu.contains(e.target)&&e.target!==btn)setOpen(false);});
       document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&menu.classList.contains('open')){setOpen(false);btn.focus();}});
-      window.addEventListener('resize',()=>{if(window.innerWidth>1180)setOpen(false);});
+      window.addEventListener('resize',()=>{if(window.innerWidth>1260)setOpen(false);});
     })();
   </script>
 </body>
