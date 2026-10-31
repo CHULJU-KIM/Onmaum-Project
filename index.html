@@ -6,8 +6,20 @@
   <title>온마음 프로젝트 | 재단법인 선한뜻 — 세상을 더 아름답게, 사람을 더 행복하게</title>
   <meta name="description" content="아이들의 오늘을 지키고 내일의 문을 여는 온마음 프로젝트 with 재단법인 선한뜻. 케냐 마사이 학교 급식·교육 지원과 말라위 생명수 우물 개발(Water is Life) 현장의 이야기를 전합니다." />
   <meta property="og:title" content="온마음 프로젝트 | 재단법인 선한뜻" />
-  <meta property="og:description" content="맑은 물 한 모금처럼, 따뜻한 한 끼처럼. 후원금 100%가 현장에 전달되는 온마음 프로젝트의 월간 소식지와 현장 이야기를 만나보세요." />
-  <meta property="og:image" content="Onmaum.png" />
+  <meta property="og:description" content="맑은 물 한 모금처럼, 따뜻한 한 끼처럼. 재단법인 선한뜻 계좌로 직접 후원하는 온마음 프로젝트의 월간 소식지와 현장 이야기를 만나보세요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="온마음 프로젝트" />
+  <meta property="og:url" content="https://onmaum-project.vercel.app/" />
+  <meta property="og:image" content="https://onmaum-project.vercel.app/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="온마음 프로젝트 | 재단법인 선한뜻" />
+  <meta name="twitter:image" content="https://onmaum-project.vercel.app/og-image.jpg" />
+  <link rel="canonical" href="https://onmaum-project.vercel.app/" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet" />
 
@@ -1847,6 +1859,28 @@
         padding: 40px 22px;
       }
     }
+
+    /* ---- 2026-10 fixes ---- */
+    .admin-only { display: none !important; }
+    body.is-admin .admin-only { display: flex !important; }
+    body.is-admin .btn-text-chip.admin-only { display: inline-flex !important; }
+    html, body { overflow-x: hidden; }
+    .poster-floating-badge { position: static; margin: 18px auto 0; width: fit-content; max-width: 100%; }
+    .hero-poster-wrap { flex-direction: column; }
+    @media (max-width: 600px) {
+      .header-inner { gap: 8px; }
+      .header-actions { gap: 6px; min-width: 0; }
+      .btn-bgm-pill { padding: 7px 10px; font-size: 0.78rem; }
+      .music-lyric-ticker { display: none !important; }
+      .brand-sub { display: none; }
+      .brand-text-group { display: none; }
+      .header-inner { padding-left: 14px; padding-right: 14px; }
+      .poster-caption-bar span:last-child { display: none; }
+      .brand-link img { height: 32px; }
+      .btn-donate-sm { padding: 7px 10px; font-size: 0.78rem; white-space: nowrap; }
+      .btn-bgm-pill { white-space: nowrap; }
+    }
+    @media (max-width: 380px) { .btn-bgm-pill .bgm-label { display:none; } }
   </style>
 </head>
 <body>
@@ -1870,7 +1904,7 @@
         <a href="#kenya" class="nav-link">케냐 급식·교육</a>
         <a href="#letters" class="nav-link">현장 손편지</a>
         <a href="#malawi" class="nav-link">말라위 우물(Water is Life)</a>
-        <a href="#donate" class="nav-link">100% 투명 후원</a>
+        <a href="#donate" class="nav-link">후원 안내</a>
       </nav>
 
       <div class="header-actions">
@@ -1881,7 +1915,7 @@
             <span class="eq-bar"></span>
             <span class="eq-bar"></span>
           </span>
-          <span id="headerBgmText">테마곡 듣기</span>
+          <span id="headerBgmText" class="bgm-label">테마곡 듣기</span>
         </button>
         <button type="button" class="btn-donate-sm" onclick="openDonateModal()">온 마음 더하기</button>
       </div>
@@ -1963,7 +1997,7 @@
             <div class="metric-card">
               <div class="metric-num">100%</div>
               <div class="metric-label">후원금 전액 현장 전달</div>
-              <div class="metric-sub">운영비 0원 · 재단법인 선한뜻 매칭</div>
+              <div class="metric-sub">재단법인 선한뜻 계좌로 직접 후원</div>
             </div>
           </div>
         </div>
@@ -1971,7 +2005,7 @@
         <!-- Right: Watercolor Poster Showcase -->
         <div class="hero-poster-wrap">
           <div class="poster-frame" onclick="openImageLightbox('Onmaum.png', '온마음 프로젝트 공식 포스터 — Water is Life & Good People, Better Days')">
-            <img src="Onmaum.png" alt="온마음 프로젝트 공식 수채화 포스터 (Water is Life)" />
+            <img src="Onmaum.png" alt="온마음 프로젝트 공식 수채화 포스터 (Water is Life)" width="1000" fetchpriority="high" />
             <div class="poster-caption-bar">
               <span>🎨 온마음 프로젝트 공식 포스터 (Water is Life)</span>
               <span>🔍 클릭하여 크게 보기</span>
@@ -2005,7 +2039,7 @@
         <div class="issue-tabs" id="issueTabsContainer">
           <!-- Dynamically populated by JS -->
         </div>
-        <div class="newsletter-admin-actions">
+        <div class="newsletter-admin-actions admin-only">
           <button type="button" class="btn-edition-toggle" id="editionToggleBtn" onclick="toggleNewsletterEdition()">
             🖼️ 디자인 버전 전환 (통합 카드형 보기 중)
           </button>
@@ -2033,7 +2067,7 @@
         <!-- Right: Selected Issue Details & Page Breakdown -->
         <div class="issue-detail-panel">
           <div class="issue-meta-row">
-            <span class="issue-vol-badge" id="detailVolBadge">제3호 · ONMAEUM FIELD LETTER</span>
+            <span class="issue-vol-badge" id="detailVolBadge">제3호 · ONMAUM FIELD LETTER</span>
             <span class="issue-date-text" id="detailDateText">2026년 10월 발행</span>
           </div>
           <h3 class="issue-main-title serif-title" id="detailTitle">따뜻한 한 끼, 더 밝아지는 하루</h3>
@@ -2106,7 +2140,7 @@
             급식 지원과 함께 공책, 연필, 유니폼 등 기초 학용품을 지원하여 가정 형편과 상관없이 모든 아이들이 평등하게 배우고 꿈꿀 수 있는 교실을 만들어 갑니다.
           </p>
           <p style="margin-bottom:0; font-weight:700; color:var(--brand-blue);">
-            ✔ 결석률과 중도 탈락 감소, 학생 수 증가, 그리고 학업 성취도 향상이라는 놀라운 변화가 현장에서 직접 보고되고 있습니다.
+            ✔ 결석률과 중도 탈락 감소, 학생 수 증가, 그리고 학업 성취도 향상이라는 변화가 현장에서 직접 보고되고 있습니다.
           </p>
         </div>
       </div>
@@ -2183,7 +2217,7 @@
             </div>
             <div class="letter-footer">
               <div class="letter-author">
-                ✍️ 학생 대표 조이스 오슈키 (Joyce Oshoki) & 교사 제이콥 레리온카 (Mr. Jacob Lerionka)
+                ✍️ 학생 대표 조이스 O. (Joyce O.) & 교사 제이콥 레리온카 (Mr. Jacob Lerionka)
               </div>
               <a href="eluanata 10.9..pdf" target="_blank" rel="noopener" class="letter-pdf-link">
                 📄 자필 손편지 원본(PDF) 보기
@@ -2207,7 +2241,7 @@
             </div>
             <div class="letter-footer">
               <div class="letter-author">
-                ✍️ 학생 대표 베아트리스 툼페이네 (Beatrice Tumpeine) & 교감 로비 모케녜 (Robi Mokenye)
+                ✍️ 학생 대표 베아트리스 T. (Beatrice T.) & 교감 로비 모케녜 (Robi Mokenye)
               </div>
               <a href="olekimaki 편지.pdf" target="_blank" rel="noopener" class="letter-pdf-link">
                 📄 자필 손편지 원본(PDF) 보기
@@ -2311,7 +2345,7 @@
           <h3 class="serif-title">말라위 음카나와오 마을 (Mkanawawo Village)</h3>
           <div class="well-location">📍 릴롱궤 카부둘라 (T/A Kabudula, Lilongwe · 수도에서 약 30.5km)</div>
           <p style="color:var(--text-muted); font-size:0.95rem;">
-            심정 시추와 수질 검사 통과는 물론, 주민 자치 우물관리위원회(10명) 조직과 전 주민 참여 위생·보건 교육 연극까지 완벽히 수행했습니다.
+            심정 시추와 수질 검사 통과는 물론, 주민 자치 우물관리위원회(10명) 조직과 전 주민 참여 위생·보건 교육 연극까지 충실히 수행했습니다.
           </p>
           <ul class="well-specs-list">
             <li><span>사업 기간</span><span>2026년 3월 ~ 9월 완공</span></li>
@@ -2376,8 +2410,11 @@
         <span class="promise-badge">100% TRANSPARENCY PROMISE</span>
         <h2 class="serif-title">후원금 100%가 현장에 전달됩니다</h2>
         <p>
-          온마음 프로젝트에 보내주시는 모든 후원금은 운영비나 수수료 공제 없이 <strong>100% 전액 케냐 학교 급식·교육과 말라위 우물 현장</strong>에 사용됩니다.
+          온마음 프로젝트를 통해 재단법인 선한뜻에 보내주시는 모든 후원금은 운영비나 수수료 공제 없이 <strong>100% 전액 케냐 학교 급식·교육과 말라위 우물 현장</strong>에 사용됩니다.
           제반 행정 비용은 재단법인 선한뜻이 전액 부담하며, 매월 20만 원의 추가 매칭 지원금을 더해 나눔의 크기를 키웁니다.
+        </p>
+        <p style="font-size:0.9rem; opacity:0.85; margin-top:-6px;">
+          온마음은 후원금을 직접 받지 않습니다. 후원금은 <strong>재단법인 선한뜻 명의 계좌로 직접 입금</strong>되며, 기부금 영수증도 재단에서 발급합니다.
         </p>
 
         <div class="account-quick-box">
@@ -2397,6 +2434,9 @@
           <a href="#newsletter" class="btn-secondary-lg" style="background:rgba(255,255,255,0.1); color:#fff; border-color:rgba(255,255,255,0.25);">
             📊 소식지 내 후원금 결산 내역 보기
           </a>
+          <a href="https://www.goodmind.or.kr/" target="_blank" rel="noopener" class="btn-secondary-lg" style="background:rgba(255,255,255,0.1); color:#fff; border-color:rgba(255,255,255,0.25);">
+            재단법인 선한뜻 공식 홈페이지 ↗
+          </a>
         </div>
       </div>
     </div>
@@ -2415,9 +2455,10 @@
           <p style="font-size:0.8rem; color:var(--text-light); margin-top:4px;">
             후원 계좌: 하나은행 244-910009-63304 (예금주: 재단법인 선한뜻)
           </p>
+          <p style="font-size:0.8rem; margin-top:4px;"><a href="https://www.goodmind.or.kr/" target="_blank" rel="noopener" style="color:var(--brand-blue); font-weight:700;">재단법인 선한뜻 공식 홈페이지 (goodmind.or.kr) ↗</a></p>
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <button type="button" class="btn-text-chip" onclick="openNewsletterAdminModal()">⚙️ 월간 소식지 관리 도우미</button>
+          <button type="button" class="btn-text-chip admin-only" onclick="openNewsletterAdminModal()">⚙️ 월간 소식지 관리 도우미</button>
           <button type="button" class="btn-text-chip" onclick="openDonateModal()">🧡 후원 안내</button>
         </div>
       </div>
@@ -2434,7 +2475,7 @@
         보내주시는 후원금은 100% 현장 아이들의 급식·교육과 깨끗한 우물을 위해 사용됩니다.<br />
         송금 시 <strong>‘성함(온마음)’</strong> 형식으로 보내주시면 소식지 결산에 투명하게 반영됩니다.
       </p>
-      <img src="account.jpg" alt="재단법인 선한뜻 후원 계좌 안내" style="width:100%; border-radius:16px; border:1px solid var(--border-color); margin-bottom:18px;" />
+      <img src="account.jpg" loading="lazy" alt="재단법인 선한뜻 후원 계좌 안내" style="width:100%; border-radius:16px; border:1px solid var(--border-color); margin-bottom:18px;" />
       <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
         <button type="button" class="btn-primary-lg" style="width:100%; justify-content:center;" onclick="copyAccountNumber()">
           📋 계좌번호 복사하기 (244-910009-63304)
@@ -2490,7 +2531,7 @@
       <button type="button" class="modal-close" onclick="closeVideoModal()">✕</button>
       <span class="section-tag tag-blue">ONMAUM THEME VIDEO</span>
       <h3 class="serif-title" style="font-size:1.45rem; font-weight:800; margin-bottom:14px;">🎬 온마음 프로젝트 테마 영상</h3>
-      <video id="modalVideoPlayer" src="Onmaum.mp4" controls style="width:100%; border-radius:16px; background:#000; max-height:70vh;"></video>
+      <video id="modalVideoPlayer" src="Onmaum.mp4" controls preload="none" poster="video-poster.jpg" style="width:100%; border-radius:16px; background:#000; max-height:70vh;"></video>
     </div>
   </div>
 
@@ -2593,7 +2634,7 @@
       {
         id: "vol3",
         vol: "제3호",
-        badge: "제3호 · ONMAEUM FIELD LETTER",
+        badge: "제3호 · ONMAUM FIELD LETTER",
         isNew: true,
         date: "2026년 10월",
         title: "따뜻한 한 끼, 더 밝아지는 하루",
@@ -2618,14 +2659,14 @@
         notes: [
           "표지: 케냐 마사이 학교에서 전해온 10월의 이야기 (따뜻한 한 끼, 더 밝아지는 하루)",
           "01 식탁에서 시작되는 변화: 잘 먹는 하루가 잘 배우는 하루로 이어지는 교실 풍경",
-          "02 현장에서 보내온 진심: 엘루아나타 종합학교 학생 조이스 오슈키 & 교사 제이콥 레리온카 손편지",
+          "02 현장에서 보내온 진심: 엘루아나타 종합학교 학생 조이스 O. & 교사 제이콥 레리온카 손편지",
           "03 마음이 만나 만드는 내일: 우리의 작은 정성이 아이들의 내일을 여는 다리가 됩니다"
         ]
       },
       {
         id: "vol2",
         vol: "제2호",
-        badge: "제2호 · ONMAEUM NEWSLETTER 02",
+        badge: "제2호 · ONMAUM NEWSLETTER 02",
         isNew: false,
         date: "2026년 9월",
         title: "한 끼의 따뜻함이 아이들의 하루를 지킵니다",
@@ -2844,7 +2885,7 @@
       { type: 'image', category: 'water', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_09.jpg', caption: '아기를 품에 안은 어머니와 주민들이 맑고 안전한 지하수를 기쁘게 길어 올리는 순간' },
       { type: 'image', category: 'ceremony', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_10.jpg', caption: '온마음 프로젝트(Sponsored by Hyun Ju Kim) 기념비와 함께한 캄텡고 마을 완공식 단체 기념촬영' },
       { type: 'image', category: 'drilling', src: '우물1호 캄텡고/KakaoTalk_20261030_170752480_04.jpg', caption: '지하 40m 이상 암반 대수층을 연결하기 위해 대형 시추 장비(Drilling Rig)로 굴착하는 공사 현장' },
-      { type: 'image', category: 'drilling', src: '우물1호 캄텡고/KakaoTalk_20261030_170752480_06.jpg', caption: '지표면 오염물 유입을 완벽히 차단하는 케이싱 파이프와 심정 시추 설비 작업' },
+      { type: 'image', category: 'drilling', src: '우물1호 캄텡고/KakaoTalk_20261030_170752480_06.jpg', caption: '지표면 오염물 유입을 차단하는 케이싱 파이프와 심정 시추 설비 작업' },
       { type: 'image', category: 'drilling', src: '우물1호 캄텡고/KakaoTalk_20261030_170752480_02.jpg', caption: '수질 검사 전문가들이 캄텡고 우물물을 채수하여 식수 적합성을 정밀 검사하는 모습' },
       { type: 'image', category: 'water', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_13.jpg', caption: '튼튼하게 완공된 아프라데브(Afridev) 핸드펌프 우물과 마을 주민들을 위해 준비한 구제 식량' },
       { type: 'image', category: 'drilling', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_12.jpg', caption: '우물 완공식과 함께 캄텡고 마을 가구들을 위해 정성껏 마련한 옥수수 식량 포대 나눔' },
@@ -2880,7 +2921,7 @@
           return `
             <div class="gallery-item-card">
               <div class="gallery-media-box">
-                <video src="${encodeURI(item.src)}" controls preload="metadata"></video>
+                <video src="${encodeURI(item.src)}" controls preload="none"></video>
               </div>
               <div class="gallery-caption">${item.caption}</div>
             </div>
@@ -3176,5 +3217,6 @@
       renderMalawiGallery('all');
     });
   </script>
+<script>if(new URLSearchParams(location.search).get('admin')==='1'){document.body.classList.add('is-admin');}</script>
 </body>
 </html>
