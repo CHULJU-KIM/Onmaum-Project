@@ -1884,6 +1884,24 @@
       .btn-bgm-pill { white-space: nowrap; }
     }
     @media (max-width: 380px) { .btn-bgm-pill .bgm-label { display:none; } }
+    /* ---- Onmaum Heart donors ---- */
+    .hearts-section { padding: 80px 0; background: #fff8f6; }
+    .hearts-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:18px; margin-top:32px; }
+    .heart-card { margin:0; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 6px 20px rgba(0,0,0,0.07); cursor:zoom-in; transition:transform .2s, box-shadow .2s; border:0; padding:0; display:block; width:100%; }
+    .heart-card:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(0,0,0,0.12); }
+    .heart-card img { display:block; width:100%; height:auto; aspect-ratio:1065/612; }
+    @media (max-width: 1180px) { .hearts-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 980px) { .hearts-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .hearts-grid { grid-template-columns: 1fr; gap:14px; } .hearts-section { padding:56px 0; } }
+    @media (max-width: 1500px) { .main-nav .nav-long { display:none; } }
+    /* ---- Mobile menu ---- */
+    .menu-toggle { display:none; width:40px; height:40px; border-radius:10px; border:1px solid rgba(0,0,0,0.12); background:#fff; font-size:1.25rem; line-height:1; cursor:pointer; flex-shrink:0; color:#333; }
+    .mobile-menu { display:none; position:absolute; top:100%; left:0; right:0; background:#fff; box-shadow:0 12px 30px rgba(0,0,0,0.12); padding:8px 16px 14px; z-index:1000; }
+    .mobile-menu.open { display:block; }
+    .mobile-menu a { display:block; padding:13px 6px; border-bottom:1px solid #f0f0f0; color:#222; text-decoration:none; font-weight:700; font-size:0.98rem; }
+    .mobile-menu a:last-child { border-bottom:0; }
+    @media (max-width: 1180px) { .main-nav { display:none; } .menu-toggle { display:inline-flex; align-items:center; justify-content:center; } }
+    @media (max-width: 600px) { .menu-toggle { width:36px; height:36px; } }
   </style>
 </head>
 <body>
@@ -1906,7 +1924,8 @@
         </a>
         <a href="#kenya" class="nav-link">케냐 급식·교육</a>
         <a href="#letters" class="nav-link">현장 손편지</a>
-        <a href="#malawi" class="nav-link">말라위 우물(Water is Life)</a>
+        <a href="#malawi" class="nav-link">말라위 우물<span class="nav-long">(Water is Life)</span></a>
+        <a href="#hearts" class="nav-link">Onmaum Heart</a>
         <a href="#donate" class="nav-link">후원 안내</a>
       </nav>
 
@@ -1921,7 +1940,17 @@
           <span id="headerBgmText" class="bgm-label">테마곡 듣기</span>
         </button>
         <button type="button" class="btn-donate-sm" onclick="openDonateModal()">온 마음 더하기</button>
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="mobileMenu">&#9776;</button>
       </div>
+      <nav class="mobile-menu" id="mobileMenu" aria-label="모바일 메뉴">
+        <a href="#top">소개</a>
+        <a href="#newsletter">월간 소식지</a>
+        <a href="#kenya">케냐 급식·교육</a>
+        <a href="#letters">현장 손편지</a>
+        <a href="#malawi">말라위 우물(Water is Life)</a>
+        <a href="#hearts">Onmaum Heart</a>
+        <a href="#donate">후원 안내</a>
+      </nav>
     </div>
 
     <!-- INTEGRATED THEME SONG PLAYER BAR -->
@@ -2307,7 +2336,7 @@
         <div class="well-card">
           <div class="well-badge-row">
             <span class="well-num-tag">온마음 1호 우물 · GOODWATER #1</span>
-            <span class="well-status-tag">완공 및 급수 중</span>
+            <span class="well-status-tag">2025.10 완공 · 급수 중</span>
           </div>
           <div class="well-card-cover" onclick="openImageLightbox('우물1호%20캄텡고/KakaoTalk_20261030_170729567_07.jpg', '온마음 1호 우물(캄텡고 마을) 완공 기념 현판과 환호하는 마을 주민들')">
             <img src="우물1호%20캄텡고/KakaoTalk_20261030_170729567_07.jpg" alt="온마음 1호 우물 캄텡고 마을 완공식" loading="lazy" />
@@ -2322,7 +2351,7 @@
             건기마다 말라버리고 우기에는 빗물과 오염물질이 유입되던 얕은 구덩이 우물에 의존하던 체와(Chewa)족 농촌 공동체 5개 인접 마을 주민들이, 이제 40m 이상 심정 시추로 끌어올린 안전하고 깨끗한 생명수를 마시며 구제식량(옥수수) 나눔과 위생 교육까지 함께 지원받았습니다.
           </p>
           <ul class="well-specs-list">
-            <li><span>사업 기간</span><span>2025년 6월 착공 ~ 완공 및 급수 중</span></li>
+            <li><span>사업 기간</span><span>2025년 6월 착공 ~ 2025년 10월 완공</span></li>
             <li><span>수혜 주민</span><span>캄텡고·냠보·자타 등 5개 마을 115가구 (396명+)</span></li>
             <li><span>설비 및 지원</span><span>40m+ 심정 시추 · 수질 적합 판정 · 구제식량 나눔</span></li>
             <li><span>후원 기념</span><span>Sponsored by Hyun Ju Kim (온마음 프로젝트)</span></li>
@@ -2402,6 +2431,39 @@
         <div class="malawi-gallery-grid" id="malawiGalleryGrid">
           <!-- Populated by JS -->
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ONMAUM HEART DONORS ==================== -->
+  <section class="hearts-section" id="hearts">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag tag-orange">ONMAUM HEART</span>
+        <h2 class="section-title serif-title">Onmaum Heart · 함께하는 마음들</h2>
+        <p class="section-desc">케냐의 아이들과 말라위 마을에 따뜻한 한 끼와 맑은 물을 전하는 온마음 후원자분들입니다. 한 분 한 분의 마음이 모여 현장을 바꿉니다.</p>
+      </div>
+      <div class="hearts-grid">
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-01.jpg', 'Onmaum Heart 1 · Hyunju Kim')"><img src="후원인명단/heart-01.jpg" alt="Onmaum Heart 1 · Hyunju Kim" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-02.jpg', 'Onmaum Heart 2 · Chulju Kim')"><img src="후원인명단/heart-02.jpg" alt="Onmaum Heart 2 · Chulju Kim" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-03.jpg', 'Onmaum Heart 3 · Jihoon Kim')"><img src="후원인명단/heart-03.jpg" alt="Onmaum Heart 3 · Jihoon Kim" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-04.jpg', 'Onmaum Heart 4 · Seohyun Kim')"><img src="후원인명단/heart-04.jpg" alt="Onmaum Heart 4 · Seohyun Kim" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-05.jpg', 'Onmaum Heart 5 · Sukhui Yang')"><img src="후원인명단/heart-05.jpg" alt="Onmaum Heart 5 · Sukhui Yang" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-06.jpg', 'Onmaum Heart 6 · Seyeong Jeong')"><img src="후원인명단/heart-06.jpg" alt="Onmaum Heart 6 · Seyeong Jeong" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-07.jpg', 'Onmaum Heart 7 · Geumsun Jang')"><img src="후원인명단/heart-07.jpg" alt="Onmaum Heart 7 · Geumsun Jang" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-08.jpg', 'Onmaum Heart 8 · Yongsin Jeong')"><img src="후원인명단/heart-08.jpg" alt="Onmaum Heart 8 · Yongsin Jeong" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-09.jpg', 'Onmaum Heart 9 · Seumi Seo')"><img src="후원인명단/heart-09.jpg" alt="Onmaum Heart 9 · Seumi Seo" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-10.jpg', 'Onmaum Heart 10 · Jumi Lee')"><img src="후원인명단/heart-10.jpg" alt="Onmaum Heart 10 · Jumi Lee" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-11.jpg', 'Onmaum Heart 11 · Kumja Lee')"><img src="후원인명단/heart-11.jpg" alt="Onmaum Heart 11 · Kumja Lee" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-12.jpg', 'Onmaum Heart 12 · Jisang Hyun')"><img src="후원인명단/heart-12.jpg" alt="Onmaum Heart 12 · Jisang Hyun" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-13.jpg', 'Onmaum Heart 13 · Donghee Kim')"><img src="후원인명단/heart-13.jpg" alt="Onmaum Heart 13 · Donghee Kim" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-14.jpg', 'Onmaum Heart 14 · Soyul Lee')"><img src="후원인명단/heart-14.jpg" alt="Onmaum Heart 14 · Soyul Lee" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-15.jpg', 'Onmaum Heart 15 · Minwon Kang')"><img src="후원인명단/heart-15.jpg" alt="Onmaum Heart 15 · Minwon Kang" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-16.jpg', 'Onmaum Heart 16 · Soyoon Ye')"><img src="후원인명단/heart-16.jpg" alt="Onmaum Heart 16 · Soyoon Ye" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-17.jpg', 'Onmaum Heart 17 · Sehun Kang')"><img src="후원인명단/heart-17.jpg" alt="Onmaum Heart 17 · Sehun Kang" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-18.jpg', 'Onmaum Heart 18 · Dongmin Kim')"><img src="후원인명단/heart-18.jpg" alt="Onmaum Heart 18 · Dongmin Kim" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-19.jpg', 'Onmaum Heart 19 · Jungmin Kim')"><img src="후원인명단/heart-19.jpg" alt="Onmaum Heart 19 · Jungmin Kim" loading="lazy" width="1065" height="612" /></button>
+        <button type="button" class="heart-card" onclick="openImageLightbox('후원인명단/heart-20.jpg', 'Onmaum Heart 20 · Daon Hwang')"><img src="후원인명단/heart-20.jpg" alt="Onmaum Heart 20 · Daon Hwang" loading="lazy" width="1065" height="612" /></button>
       </div>
     </div>
   </section>
@@ -3221,5 +3283,17 @@
     });
   </script>
 <script>if(new URLSearchParams(location.search).get('admin')==='1'){document.body.classList.add('is-admin');}</script>
+<script>
+    (function(){
+      const btn=document.getElementById('menuToggle'), menu=document.getElementById('mobileMenu');
+      if(!btn||!menu) return;
+      const setOpen=(o)=>{menu.classList.toggle('open',o);btn.setAttribute('aria-expanded',String(o));btn.setAttribute('aria-label',o?'메뉴 닫기':'메뉴 열기');btn.innerHTML=o?'&#10005;':'&#9776;';};
+      btn.addEventListener('click',(e)=>{e.stopPropagation();setOpen(!menu.classList.contains('open'));});
+      menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setOpen(false)));
+      document.addEventListener('click',(e)=>{if(menu.classList.contains('open')&&!menu.contains(e.target)&&e.target!==btn)setOpen(false);});
+      document.addEventListener('keydown',(e)=>{if(e.key==='Escape'&&menu.classList.contains('open')){setOpen(false);btn.focus();}});
+      window.addEventListener('resize',()=>{if(window.innerWidth>1180)setOpen(false);});
+    })();
+  </script>
 </body>
 </html>
