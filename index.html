@@ -141,8 +141,8 @@
     .main-nav {
       display: flex;
       align-items: center;
-      gap: 6px;
-      flex-wrap: wrap;
+      gap: 2px;
+      flex-wrap: nowrap;
     }
 
     .nav-link {
@@ -150,7 +150,8 @@
       color: var(--text-muted);
       font-size: 0.92rem;
       font-weight: 600;
-      padding: 8px 13px;
+      padding: 8px 11px;
+      white-space: nowrap;
       border-radius: 999px;
       transition: all 0.2s ease;
     }
@@ -1861,6 +1862,8 @@
     }
 
     /* ---- 2026-10 fixes ---- */
+    @media (max-width: 1360px) { .main-nav .nav-link { font-size: 0.86rem; padding: 7px 9px; } }
+    @media (max-width: 1180px) { .main-nav .nav-link { font-size: 0.8rem; padding: 6px 6px; } .brand-sub { display:none; } }
     .admin-only { display: none !important; }
     body.is-admin .admin-only { display: flex !important; }
     body.is-admin .btn-text-chip.admin-only { display: inline-flex !important; }
@@ -1954,7 +1957,7 @@
       <div class="hero-grid">
         <div>
           <div class="hero-eyebrow">
-            <span>🌱 세상을 더 아름답게, 사람을 더 행복하게 · Good People, Better Days</span>
+            <span>세상을 더 아름답게, 사람을 더 행복하게 · Good People, Better Days</span>
           </div>
           <h1 class="hero-title serif-title">
             아이들의 오늘을 지키고<br />
@@ -1979,7 +1982,7 @@
               🎵 테마곡 재생하며 둘러보기
             </button>
             <a href="#newsletter" class="btn-secondary-lg">
-              📖 월간 소식지 (1~3호) 보기
+              월간 소식지 (1~3호) 보기
             </a>
           </div>
 
@@ -2007,8 +2010,8 @@
           <div class="poster-frame" onclick="openImageLightbox('Onmaum.png', '온마음 프로젝트 공식 포스터 — Water is Life & Good People, Better Days')">
             <img src="Onmaum.png" alt="온마음 프로젝트 공식 수채화 포스터 (Water is Life)" width="1000" fetchpriority="high" />
             <div class="poster-caption-bar">
-              <span>🎨 온마음 프로젝트 공식 포스터 (Water is Life)</span>
-              <span>🔍 클릭하여 크게 보기</span>
+              <span>온마음 프로젝트 공식 포스터 (Water is Life)</span>
+              <span>클릭하여 크게 보기</span>
             </div>
           </div>
           <div class="poster-floating-badge">
@@ -2080,7 +2083,7 @@
           </div>
 
           <div class="issue-page-notes">
-            <h4>📄 페이지별 주요 내용 (클릭하여 이동)</h4>
+            <h4>페이지별 주요 내용 (클릭하여 이동)</h4>
             <ul class="page-note-list" id="detailPageNotes">
               <!-- Populated by JS -->
             </ul>
@@ -2099,7 +2102,7 @@
 
       <!-- Archive Shelf (All Issues Overview) -->
       <div class="archive-shelf-title">
-        <span>📚 호별 소식지 전체 아카이브</span>
+        <span>호별 소식지 전체 아카이브</span>
         <span style="font-size:0.86rem; color:var(--text-light); font-weight:600;">카드를 클릭하면 해당 호수 리더기로 이동합니다</span>
       </div>
       <div class="archive-cards-grid" id="archiveCardsGrid">
@@ -2129,7 +2132,7 @@
             아이들이 결석하지 않고 학교에 남게 하는 가장 확실한 힘이자, 수업에 집중할 수 있게 하는 원동력입니다.
           </p>
           <p style="margin-bottom:0; font-weight:700; color:var(--brand-orange);">
-            ✔ 2026년 4월 나망가 올레키마키 초등학교(250명) 및 마을 주민(200명) 첫 나눔을 시작으로, 현재 5개 학교 매주 정기 급식으로 확대되었습니다.
+            2026년 4월 나망가 올레키마키 초등학교(250명) 및 마을 주민(200명) 첫 나눔을 시작으로, 현재 5개 학교 매주 정기 급식으로 확대되었습니다.
           </p>
         </div>
 
@@ -2140,7 +2143,7 @@
             급식 지원과 함께 공책, 연필, 유니폼 등 기초 학용품을 지원하여 가정 형편과 상관없이 모든 아이들이 평등하게 배우고 꿈꿀 수 있는 교실을 만들어 갑니다.
           </p>
           <p style="margin-bottom:0; font-weight:700; color:var(--brand-blue);">
-            ✔ 결석률과 중도 탈락 감소, 학생 수 증가, 그리고 학업 성취도 향상이라는 변화가 현장에서 직접 보고되고 있습니다.
+            결석률과 중도 탈락 감소, 학생 수 증가, 그리고 학업 성취도 향상이라는 변화가 현장에서 직접 보고되고 있습니다.
           </p>
         </div>
       </div>
@@ -2149,7 +2152,7 @@
       <div class="schools-breakdown-card">
         <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:12px;">
           <div>
-            <h3 class="serif-title" style="font-size:1.45rem; font-weight:800;">🏫 함께하는 케냐 마사이 5개 파트너 학교 (총 1,187명)</h3>
+            <h3 class="serif-title" style="font-size:1.45rem; font-weight:800;">함께하는 케냐 마사이 5개 파트너 학교 (총 1,187명)</h3>
             <p style="color:var(--text-muted); font-size:0.95rem; margin-top:4px;">
               온마음 소식지 제2호·제3호 기준 매주 따뜻한 점심 급식이 전해지는 학교 현황입니다.
             </p>
@@ -2205,7 +2208,7 @@
           <div class="letter-card">
             <div>
               <div class="letter-header">
-                <span class="letter-school-tag">📍 엘루아나타 종합학교 (Eluanata Comprehensive School)</span>
+                <span class="letter-school-tag">엘루아나타 종합학교 (Eluanata Comprehensive School)</span>
                 <span style="font-size:0.8rem; color:var(--text-light);">2026. 10. 09 · Namanga</span>
               </div>
               <p class="letter-quote-ko">
@@ -2217,10 +2220,10 @@
             </div>
             <div class="letter-footer">
               <div class="letter-author">
-                ✍️ 학생 대표 조이스 O. (Joyce O.) & 교사 제이콥 레리온카 (Mr. Jacob Lerionka)
+                학생 대표 조이스 O. (Joyce O.) & 교사 제이콥 레리온카 (Mr. Jacob Lerionka)
               </div>
               <a href="eluanata 10.9..pdf" target="_blank" rel="noopener" class="letter-pdf-link">
-                📄 자필 손편지 원본(PDF) 보기
+                자필 손편지 원본(PDF) 보기
               </a>
             </div>
           </div>
@@ -2229,7 +2232,7 @@
           <div class="letter-card">
             <div>
               <div class="letter-header">
-                <span class="letter-school-tag">📍 올레키마키 초등학교 (Olekimaki Primary School)</span>
+                <span class="letter-school-tag">올레키마키 초등학교 (Olekimaki Primary School)</span>
                 <span style="font-size:0.8rem; color:var(--text-light);">2026. 10. 08 · Namanga</span>
               </div>
               <p class="letter-quote-ko">
@@ -2241,10 +2244,10 @@
             </div>
             <div class="letter-footer">
               <div class="letter-author">
-                ✍️ 학생 대표 베아트리스 T. (Beatrice T.) & 교감 로비 모케녜 (Robi Mokenye)
+                학생 대표 베아트리스 T. (Beatrice T.) & 교감 로비 모케녜 (Robi Mokenye)
               </div>
               <a href="olekimaki 편지.pdf" target="_blank" rel="noopener" class="letter-pdf-link">
-                📄 자필 손편지 원본(PDF) 보기
+                자필 손편지 원본(PDF) 보기
               </a>
             </div>
           </div>
@@ -2268,14 +2271,14 @@
       <!-- Malawi Context Banner -->
       <div class="malawi-context-banner">
         <div>
-          <h3>💧 왜 말라위 우물 개발(Goodwater Project)인가요?</h3>
+          <h3>왜 말라위 우물 개발(Goodwater Project)인가요?</h3>
           <p>
             전체 인구의 43%가 14세 이하 어린이인 젊은 나라 말라위. 하지만 식수원 부족과 수인성 질병으로 인해 5세 미만 영유아 사망률이 약 4%에 달하며,
             아이들은 매일 물통을 이고 왕복 수 시간을 걷느라 학교 수업에 늦거나 결석하곤 합니다. 마을 한가운데 세워진 우물 하나는 질병을 막고 아이들을 교실로 돌려보내는 생명의 원천입니다.
           </p>
           <div class="malawi-pdf-links">
-            <a href="말라위_1.pdf" target="_blank" rel="noopener" class="btn-white-outline">📘 말라위 우물 사업 소개서 1 (PDF)</a>
-            <a href="말라위_2.pdf" target="_blank" rel="noopener" class="btn-white-outline">📘 말라위 우물 사업 소개서 2 (PDF)</a>
+            <a href="말라위_1.pdf" target="_blank" rel="noopener" class="btn-white-outline">말라위 우물 사업 소개서 1 (PDF)</a>
+            <a href="말라위_2.pdf" target="_blank" rel="noopener" class="btn-white-outline">말라위 우물 사업 소개서 2 (PDF)</a>
           </div>
         </div>
         <div class="malawi-stat-pills">
@@ -2304,17 +2307,17 @@
         <div class="well-card">
           <div class="well-badge-row">
             <span class="well-num-tag">온마음 1호 우물 · GOODWATER #1</span>
-            <span class="well-status-tag">✔ 완공 및 급수 중</span>
+            <span class="well-status-tag">완공 및 급수 중</span>
           </div>
           <div class="well-card-cover" onclick="openImageLightbox('우물1호%20캄텡고/KakaoTalk_20261030_170729567_07.jpg', '온마음 1호 우물(캄텡고 마을) 완공 기념 현판과 환호하는 마을 주민들')">
             <img src="우물1호%20캄텡고/KakaoTalk_20261030_170729567_07.jpg" alt="온마음 1호 우물 캄텡고 마을 완공식" loading="lazy" />
             <div class="well-card-cover-caption">
-              <span>💧 온마음 1호 우물 · 캄텡고 마을 완공 기념비</span>
-              <span>🔍 확대</span>
+              <span>온마음 1호 우물 · 캄텡고 마을 완공 기념비</span>
+              <span>확대</span>
             </div>
           </div>
           <h3 class="serif-title">말라위 캄텡고 마을 (Kamtengo Village)</h3>
-          <div class="well-location">📍 릴롱궤 카부둘라 툼바1 (G.V.H. Thumba 1, T/A Kabudula, Lilongwe · 수도에서 42.4km)</div>
+          <div class="well-location">릴롱궤 카부둘라 툼바1 (G.V.H. Thumba 1, T/A Kabudula, Lilongwe · 수도에서 42.4km)</div>
           <p style="color:var(--text-muted); font-size:0.95rem;">
             건기마다 말라버리고 우기에는 빗물과 오염물질이 유입되던 얕은 구덩이 우물에 의존하던 체와(Chewa)족 농촌 공동체 5개 인접 마을 주민들이, 이제 40m 이상 심정 시추로 끌어올린 안전하고 깨끗한 생명수를 마시며 구제식량(옥수수) 나눔과 위생 교육까지 함께 지원받았습니다.
           </p>
@@ -2325,7 +2328,7 @@
             <li><span>후원 기념</span><span>Sponsored by Hyun Ju Kim (온마음 프로젝트)</span></li>
           </ul>
           <a href="#kamtengoGallerySection" class="well-jump-btn">
-            📸 1호 우물(캄텡고) 사진 13장 · 영상 3편 보기 ↓
+            1호 우물(캄텡고) 사진 13장 · 영상 3편 보기 ↓
           </a>
         </div>
 
@@ -2333,17 +2336,17 @@
         <div class="well-card">
           <div class="well-badge-row">
             <span class="well-num-tag">온마음 2호 우물 · GOODWATER #2</span>
-            <span class="well-status-tag">✔ 2026 완공 및 급수 중</span>
+            <span class="well-status-tag">2026 완공 및 급수 중</span>
           </div>
           <div class="well-card-cover" onclick="openImageLightbox('우물2호%20음카나와오/KakaoTalk_20260909_103927961_10.jpg', '온마음 2호 우물(음카나와오 마을) 완공 기념 현판과 마을 주민들')">
             <img src="우물2호%20음카나와오/KakaoTalk_20260909_103927961_10.jpg" alt="온마음 2호 우물 음카나와오 마을 완공식" loading="lazy" />
             <div class="well-card-cover-caption">
-              <span>💧 온마음 2호 우물 · 음카나와오 마을 완공 기념비</span>
-              <span>🔍 확대</span>
+              <span>온마음 2호 우물 · 음카나와오 마을 완공 기념비</span>
+              <span>확대</span>
             </div>
           </div>
           <h3 class="serif-title">말라위 음카나와오 마을 (Mkanawawo Village)</h3>
-          <div class="well-location">📍 릴롱궤 카부둘라 (T/A Kabudula, Lilongwe · 수도에서 약 30.5km)</div>
+          <div class="well-location">릴롱궤 카부둘라 (T/A Kabudula, Lilongwe · 수도에서 약 30.5km)</div>
           <p style="color:var(--text-muted); font-size:0.95rem;">
             심정 시추와 수질 검사 통과는 물론, 주민 자치 우물관리위원회(10명) 조직과 전 주민 참여 위생·보건 교육 연극까지 충실히 수행했습니다.
           </p>
@@ -2354,7 +2357,7 @@
             <li><span>후원 기념</span><span>Sponsored by Chul Ju Kim (온마음 프로젝트)</span></li>
           </ul>
           <a href="#mkanawawoGallerySection" class="well-jump-btn">
-            📸 2호 우물(음카나와오) 사진 9장 · 영상 3편 보기 ↓
+            2호 우물(음카나와오) 사진 9장 · 영상 3편 보기 ↓
           </a>
         </div>
       </div>
@@ -2364,7 +2367,7 @@
         <div class="gallery-filter-bar">
           <div>
             <span class="section-tag tag-blue" style="margin-bottom:8px;">GOODWATER #1 · KAMTENGO VILLAGE</span>
-            <h3 class="serif-title" style="font-size:1.5rem; font-weight:800;">📸 말라위 1호 우물(캄텡고 마을) 생생 현장 갤러리</h3>
+            <h3 class="serif-title" style="font-size:1.5rem; font-weight:800;">말라위 1호 우물(캄텡고 마을) 생생 현장 갤러리</h3>
             <p style="color:var(--text-muted); font-size:0.92rem;">심정 시추 공사와 정밀 수질 검사, 맑은 첫 물이 쏟아지는 감동, 옥수수 식량 나눔과 추장님·어머니들의 감사 영상까지 확인해 보세요.</p>
           </div>
           <div class="filter-pills" id="kamtengoFilterPills">
@@ -2385,7 +2388,7 @@
         <div class="gallery-filter-bar">
           <div>
             <span class="section-tag tag-blue" style="margin-bottom:8px;">GOODWATER #2 · MKANAWAWO VILLAGE</span>
-            <h3 class="serif-title" style="font-size:1.5rem; font-weight:800;">📸 말라위 2호 우물(음카나와오 마을) 생생 현장 갤러리</h3>
+            <h3 class="serif-title" style="font-size:1.5rem; font-weight:800;">말라위 2호 우물(음카나와오 마을) 생생 현장 갤러리</h3>
             <p style="color:var(--text-muted); font-size:0.92rem;">시추 순간부터 첫 물이 솟구치는 감동, 아이들의 미소와 현장 영상을 확인해 보세요.</p>
           </div>
           <div class="filter-pills" id="mkanawawoFilterPills">
@@ -2432,7 +2435,7 @@
             🧡 후원 계좌 안내 카드 크게 보기
           </button>
           <a href="#newsletter" class="btn-secondary-lg" style="background:rgba(255,255,255,0.1); color:#fff; border-color:rgba(255,255,255,0.25);">
-            📊 소식지 내 후원금 결산 내역 보기
+            소식지 내 후원금 결산 내역 보기
           </a>
           <a href="https://www.goodmind.or.kr/" target="_blank" rel="noopener" class="btn-secondary-lg" style="background:rgba(255,255,255,0.1); color:#fff; border-color:rgba(255,255,255,0.25);">
             재단법인 선한뜻 공식 홈페이지 ↗
@@ -2489,7 +2492,7 @@
     <div class="modal-card">
       <button type="button" class="modal-close" onclick="closeModal('lyricsModal')">✕</button>
       <span class="section-tag tag-orange">ONMAUM THEME SONG</span>
-      <h3 class="serif-title" style="font-size:1.55rem; font-weight:800; margin-bottom:16px;">🎵 온 마음으로 (가사 전문)</h3>
+      <h3 class="serif-title" style="font-size:1.55rem; font-weight:800; margin-bottom:16px;">온 마음으로 (가사 전문)</h3>
       <div style="background:var(--bg-soft); padding:24px; border-radius:16px; line-height:1.95; font-size:0.98rem; color:var(--text-main);">
         <p style="margin-bottom:14px;">
           아주 작은 마음 하나 두 손에 가만히 담아<br />
@@ -2530,7 +2533,7 @@
     <div class="modal-card wide">
       <button type="button" class="modal-close" onclick="closeVideoModal()">✕</button>
       <span class="section-tag tag-blue">ONMAUM THEME VIDEO</span>
-      <h3 class="serif-title" style="font-size:1.45rem; font-weight:800; margin-bottom:14px;">🎬 온마음 프로젝트 테마 영상</h3>
+      <h3 class="serif-title" style="font-size:1.45rem; font-weight:800; margin-bottom:14px;">온마음 프로젝트 테마 영상</h3>
       <video id="modalVideoPlayer" src="Onmaum.mp4" controls preload="none" poster="video-poster.jpg" style="width:100%; border-radius:16px; background:#000; max-height:70vh;"></video>
     </div>
   </div>
@@ -2811,7 +2814,7 @@
                 <p class="archive-card-desc">${item.subtitle}</p>
               </div>
               <div style="margin-top:14px; font-size:0.84rem; font-weight:700; color:var(--brand-blue);">
-                📖 총 ${itemPages.length}페이지 열람하기 →
+                총 ${itemPages.length}페이지 열람하기 →
               </div>
             </div>
           </div>
@@ -2841,8 +2844,8 @@
       useCardEdition = !useCardEdition;
       const btn = document.getElementById('editionToggleBtn');
       btn.textContent = useCardEdition
-        ? "🖼️ 디자인 버전 전환 (통합 카드형 보기 중)"
-        : "🖼️ 디자인 버전 전환 (원본 내지형 보기 중)";
+        ? "디자인 버전 전환 (통합 카드형 보기 중)"
+        : "디자인 버전 전환 (원본 내지형 보기 중)";
       renderNewsletterHub();
       showToast(useCardEdition ? "통합 카드 프레임 에디션으로 전환되었습니다." : "원본 풀페이지 에디션으로 전환되었습니다.");
     }
@@ -2893,9 +2896,9 @@
       { type: 'image', category: 'ceremony', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_03.jpg', caption: '온 마을 주민들이 한자리에 모여 생명의 우물 탄생을 축하하는 완공식 현장' },
       { type: 'image', category: 'ceremony', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_11.jpg', caption: '캄텡고 마을을 직접 찾아 주민들과 기쁨을 나누는 현장 방문단과 마을 리더들' },
       { type: 'image', category: 'ceremony', src: '우물1호 캄텡고/KakaoTalk_20261030_170729567_14.jpg', caption: '마을 자치 우물관리위원회 이양 협약 및 나눔 전달 서명을 진행하는 마을 대표들' },
-      { type: 'video', category: 'video', src: '우물1호 캄텡고/캄텡고1.mp4', caption: '🎬 [현장 영상 1] 캄텡고 마을 1호 우물 완공식과 맑은 물이 쏟아지는 기쁨의 현장' },
-      { type: 'video', category: 'video', src: '우물1호 캄텡고/캄텡고 악낙네.mp4', caption: '🎬 [현장 영상 2] 깨끗한 생명수를 얻은 캄텡고 마을 어머니들의 환한 미소와 기쁨의 노래' },
-      { type: 'video', category: 'video', src: '우물1호 캄텡고/캄텡고 추장.mp4', caption: '🎬 [현장 영상 3] 캄텡고 마을 추장님의 진심 어린 감사 인사 인터뷰' }
+      { type: 'video', category: 'video', src: '우물1호 캄텡고/캄텡고1.mp4', caption: '[현장 영상 1] 캄텡고 마을 1호 우물 완공식과 맑은 물이 쏟아지는 기쁨의 현장' },
+      { type: 'video', category: 'video', src: '우물1호 캄텡고/캄텡고 악낙네.mp4', caption: '[현장 영상 2] 깨끗한 생명수를 얻은 캄텡고 마을 어머니들의 환한 미소와 기쁨의 노래' },
+      { type: 'video', category: 'video', src: '우물1호 캄텡고/캄텡고 추장.mp4', caption: '[현장 영상 3] 캄텡고 마을 추장님의 진심 어린 감사 인사 인터뷰' }
     ];
 
     const MALAWI_GALLERY_ITEMS = [
@@ -2907,9 +2910,9 @@
       { type: 'image', category: 'ceremony', src: '우물2호 음카나와오/KakaoTalk_20260909_103927961_05.jpg', caption: '온 마을이 함께 모여 춤추며 축하하는 우물 완공 축제' },
       { type: 'image', category: 'water', src: '우물2호 음카나와오/KakaoTalk_20260909_103927961_18.jpg', caption: '맑은 물을 양동이에 가득 채우는 마을 여성들과 아이들' },
       { type: 'image', category: 'ceremony', src: '우물2호 음카나와오/KakaoTalk_20260909_103927961_25.jpg', caption: '우물 완공 테이프 커팅식 및 마을 자치 우물관리위원회 이양식' },
-      { type: 'video', category: 'video', src: '우물2호 음카나와오/KakaoTalk_20260909_104022735.mp4', caption: '🎬 [현장 영상 1] 음카나와오 마을 우물 펌프 시연과 주민들의 환호' },
-      { type: 'video', category: 'video', src: '우물2호 음카나와오/KakaoTalk_20260909_104028670.mp4', caption: '🎬 [현장 영상 2] 깨끗한 물이 솟아오르는 기쁨의 축제 현장' },
-      { type: 'video', category: 'video', src: '우물2호 음카나와오/KakaoTalk_20260909_104033563.mp4', caption: '🎬 [현장 영상 3] 마을 어린이들과 주민들의 감사 인사' },
+      { type: 'video', category: 'video', src: '우물2호 음카나와오/KakaoTalk_20260909_104022735.mp4', caption: '[현장 영상 1] 음카나와오 마을 우물 펌프 시연과 주민들의 환호' },
+      { type: 'video', category: 'video', src: '우물2호 음카나와오/KakaoTalk_20260909_104028670.mp4', caption: '[현장 영상 2] 깨끗한 물이 솟아오르는 기쁨의 축제 현장' },
+      { type: 'video', category: 'video', src: '우물2호 음카나와오/KakaoTalk_20260909_104033563.mp4', caption: '[현장 영상 3] 마을 어린이들과 주민들의 감사 인사' },
       { type: 'image', category: 'water', src: '우물2호 음카나와오/KakaoTalk_20260909_103927961_22.jpg', caption: '깨끗한 식수원 앞에서 환하게 웃는 음카나와오 마을 주민' }
     ];
 
@@ -2977,7 +2980,7 @@
     const lyricTicker = document.getElementById('lyricTicker');
 
     const LYRIC_TIMELINE = [
-      { t: 0, text: "🎵 온마음 프로젝트 테마곡 — 〈온 마음으로〉" },
+      { t: 0, text: "온마음 프로젝트 테마곡 — 〈온 마음으로〉" },
       { t: 10, text: "“아주 작은 마음 하나 두 손에 가만히 담아...”" },
       { t: 22, text: "“멀리 있는 누군가의 오늘을 생각해 봅니다”" },
       { t: 36, text: "“목마른 하루 끝에서 건네는 맑은 물 한 잔”" },
