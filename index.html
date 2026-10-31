@@ -16,12 +16,40 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="온마음 프로젝트 | 재단법인 선한뜻" />
   <meta name="twitter:image" content="https://onmaum-project.vercel.app/og-image.jpg" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#FFFDF9" />
+  <meta name="author" content="온마음 프로젝트" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:image:alt" content="온마음 프로젝트 — 케냐 아이들 급식과 말라위 우물 지원" />
+  <meta name="twitter:description" content="케냐 아이들의 따뜻한 한 끼와 배움을 함께 지키는 온마음 프로젝트 with 재단법인 선한뜻." />
+  <meta name="twitter:image:alt" content="온마음 프로젝트 대표 이미지" />
+  <link rel="alternate" hreflang="ko" href="https://onmaum-project.vercel.app/" />
+  <link rel="alternate" hreflang="en" href="https://onmaum-project.vercel.app/en.html" />
+  <link rel="alternate" hreflang="x-default" href="https://onmaum-project.vercel.app/" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <!-- ===== 검색엔진 소유확인 메타태그 자리 (소유자 계정으로 발급 후 content 값만 교체하고 주석 해제) =====
+  <meta name="google-site-verification" content="여기에_구글_서치콘솔_코드" />
+  <meta name="naver-site-verification" content="여기에_네이버_서치어드바이저_코드" />
+  ===== -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"WebSite","@id":"https://onmaum-project.vercel.app/#website","url":"https://onmaum-project.vercel.app/","name":"온마음 프로젝트","alternateName":"Onmaum Project","inLanguage":["ko-KR","en-US"],"publisher":{"@id":"https://onmaum-project.vercel.app/#org"}},
+    {"@type":"Organization","@id":"https://onmaum-project.vercel.app/#org","name":"온마음 프로젝트","alternateName":"Onmaum Project","url":"https://onmaum-project.vercel.app/","logo":"https://onmaum-project.vercel.app/logo.png","description":"가까운 지인들의 작은 마음을 모아 케냐 아이들의 따뜻한 한 끼와 배움을 지원하는 나눔 프로젝트. 후원금은 재단법인 선한뜻으로 직접 전달됩니다."}
+  ]}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
   <link rel="canonical" href="https://onmaum-project.vercel.app/" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" /></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" /></noscript>
 
   <style>
     :root {
@@ -69,7 +97,7 @@
       color: var(--text-main);
       line-height: 1.65;
       word-break: keep-all;
-      overflow-x: hidden;
+      overflow-x: clip;
     }
 
     .serif-title {
@@ -83,6 +111,7 @@
     }
 
     /* ==================== STICKY HEADER & AUDIO BAR ==================== */
+    .site-header.scrolled { box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
     .site-header {
       position: sticky;
       top: 0;
@@ -1867,7 +1896,7 @@
     .admin-only { display: none !important; }
     body.is-admin .admin-only { display: flex !important; }
     body.is-admin .btn-text-chip.admin-only { display: inline-flex !important; }
-    html, body { overflow-x: hidden; }
+    html, body { overflow-x: clip; }
     .poster-floating-badge { position: static; margin: 18px auto 0; width: fit-content; max-width: 100%; }
     .hero-poster-wrap { flex-direction: column; }
     @media (max-width: 600px) {
@@ -1893,7 +1922,8 @@
     @media (max-width: 1180px) { .hearts-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 980px) { .hearts-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) { .hearts-grid { grid-template-columns: 1fr; gap:14px; } .hearts-section { padding:56px 0; } }
-    @media (max-width: 1500px) { .main-nav .nav-long { display:none; } }
+    @media (max-width: 1800px) { .main-nav .nav-long { display:none; } }
+    @media (min-width: 1261px) and (max-width: 1800px) { .main-nav .nav-link { font-size: 0.8rem; padding: 6px 6px; } .brand-sub { display:none; } .header-inner { gap: 10px; } }
     /* ---- Story ---- */
     .story-section { padding: 80px 0; background:#fff; }
     .story-body { max-width:760px; margin:0 auto; font-size:1.04rem; line-height:1.85; color:var(--text-main); }
@@ -1984,7 +2014,7 @@
           <button type="button" class="music-play-btn" id="barPlayBtn" onclick="toggleBgm()" aria-label="음악 재생/일시정지">▶</button>
           <div class="music-progress-wrap">
             <span class="music-time" id="bgmCurrentTime">0:00</span>
-            <input type="range" class="music-seek" id="bgmSeek" min="0" max="100" value="0" step="0.1" />
+            <input type="range" class="music-seek" id="bgmSeek" aria-label="배경음악 재생 위치" min="0" max="100" value="0" step="0.1" />
             <span class="music-time" id="bgmDuration">2:49</span>
           </div>
         </div>
@@ -3361,5 +3391,6 @@
       window.addEventListener('resize',()=>{if(window.innerWidth>1260)setOpen(false);});
     })();
   </script>
+<script>(function(){var h=document.querySelector(".site-header");function f(){h&&h.classList.toggle("scrolled",scrollY>8)}function g(){if(h)document.documentElement.style.scrollPaddingTop=(h.offsetHeight+8)+"px"}addEventListener("scroll",f,{passive:true});addEventListener("resize",g);f();g();if(location.hash){setTimeout(function(){var t=document.getElementById(location.hash.slice(1));t&&t.scrollIntoView()},300)}})();</script>
 </body>
 </html>
