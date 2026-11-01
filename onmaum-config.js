@@ -1,3 +1,1 @@
-// 이 파일은 배포 때 scripts/bake.mjs 가 Vercel 환경변수로 채웁니다. 저장소에는 빈 값으로 둡니다.
-// (anon key 는 공개용 키라 브라우저에 있어도 되지만, 그래도 저장소엔 넣지 않습니다.)
-window.ONMAUM_CONFIG = { supabaseUrl: "", supabaseAnonKey: "" };
+window.ONMAUM_CONFIG = {"supabaseUrl":"https://lhfsbrinlucorwmeztpl.supabase.co","supabaseAnonKey":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxoZnNicmlubHVjb3J3bWV6dHBsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM1MjUxMzMsImV4cCI6MjEwOTEwMTEzM30.AiyXHyay6cIwqEUQkiwkC_g8zDae7tCPyRkvos7I974"};
