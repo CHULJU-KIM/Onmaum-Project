@@ -781,13 +781,6 @@
       border-radius: 999px;
     }
 
-    .newsletter-admin-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
     .btn-edition-toggle {
       background: var(--bg-soft);
       color: var(--brand-orange-dark);
@@ -1892,9 +1885,6 @@
     /* ---- 2026-10 fixes ---- */
     @media (max-width: 1360px) { .main-nav .nav-link { font-size: 0.86rem; padding: 7px 9px; } }
     @media (max-width: 1180px) { .main-nav .nav-link { font-size: 0.8rem; padding: 6px 6px; } .brand-sub { display:none; } }
-    .admin-only { display: none !important; }
-    body.is-admin .admin-only { display: flex !important; }
-    body.is-admin .btn-text-chip.admin-only { display: inline-flex !important; }
     html, body { overflow-x: clip; }
     .poster-floating-badge { position: static; margin: 18px auto 0; width: fit-content; max-width: 100%; }
     .hero-poster-wrap { flex-direction: column; }
@@ -1917,6 +1907,20 @@
     .hearts-grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:18px; margin-top:32px; }
     .heart-card { margin:0; border-radius:14px; overflow:hidden; background:#fff; box-shadow:0 6px 20px rgba(0,0,0,0.07); cursor:zoom-in; transition:transform .2s, box-shadow .2s; border:0; padding:0; display:block; width:100%; }
     .heart-card:hover { transform:translateY(-3px); box-shadow:0 10px 28px rgba(0,0,0,0.12); }
+    .stories-section, .messages-section { padding: 72px 0; }
+    .stories-section[hidden], .messages-section[hidden] { display: none; }
+    .stories-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .story-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.07); display: flex; flex-direction: column; }
+    .story-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    .story-card .sc-body { padding: 18px 20px 22px; }
+    .story-card .story-kind { font-size: 0.75rem; font-weight: 800; color: #B8401F; letter-spacing: .04em; }
+    .story-card h3 { font-size: 1.12rem; margin: 6px 0 8px; line-height: 1.4; word-break: keep-all; }
+    .story-card .sc-body p { font-size: 0.92rem; line-height: 1.7; color: #4a4a4f; white-space: pre-line; word-break: keep-all; }
+    .story-card time { display: block; margin-top: 10px; font-size: 0.78rem; color: #707075; }
+    .messages-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+    .message-card { background: #fff; border-radius: 14px; padding: 16px 18px; box-shadow: 0 4px 14px rgba(0,0,0,0.06); font-size: 0.92rem; line-height: 1.65; word-break: keep-all; }
+    .message-card b { display: block; margin-top: 8px; font-size: 0.8rem; color: #1B7E50; }
+    .heart-msg { margin:8px 4px 0; font-size:0.86rem; line-height:1.5; color:#707075; word-break:keep-all; }
     .heart-card img { display:block; width:100%; height:auto; aspect-ratio:1065/612; }
     @media (max-width: 1180px) { .hearts-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 980px) { .hearts-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -2148,14 +2152,6 @@
       <div class="newsletter-toolbar">
         <div class="issue-tabs" id="issueTabsContainer">
           <!-- Dynamically populated by JS -->
-        </div>
-        <div class="newsletter-admin-actions admin-only">
-          <button type="button" class="btn-edition-toggle" id="editionToggleBtn" onclick="toggleNewsletterEdition()">
-            🖼️ 디자인 버전 전환 (통합 카드형 보기 중)
-          </button>
-          <button type="button" class="btn-add-issue" onclick="openNewsletterAdminModal()">
-            ➕ 매월 새 소식지 추가·관리
-          </button>
         </div>
       </div>
 
@@ -2514,6 +2510,17 @@
     </div>
   </section>
 
+  <!-- ==================== 온마음 이야기 (공지·현장 이야기 — 관리자 페이지에서 발행하면 표시) ==================== -->
+  <section class="stories-section" id="stories" hidden>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag tag-orange">ONMAUM STORIES</span>
+        <h2 class="section-title serif-title">온마음 소식 · 현장 이야기</h2>
+      </div>
+      <div class="stories-grid" id="storiesGrid"><!--STORIES_START--><!--STORIES_END--></div>
+    </div>
+  </section>
+
   <!-- ==================== ONMAUM HEART DONORS ==================== -->
   <section class="hearts-section" id="hearts">
     <div class="container">
@@ -2524,6 +2531,17 @@
       </div>
       <div class="hearts-grid" id="heartsGrid">
       </div>
+    </div>
+  </section>
+
+  <!-- ==================== 응원 메시지 (승인된 것만 표시) ==================== -->
+  <section class="messages-section" id="messages" hidden>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag tag-orange">MESSAGES</span>
+        <h2 class="section-title serif-title">마음을 전하는 한마디</h2>
+      </div>
+      <div class="messages-list" id="messagesList"><!--MESSAGES_START--><!--MESSAGES_END--></div>
     </div>
   </section>
 
@@ -2582,7 +2600,6 @@
           <p style="font-size:0.8rem; margin-top:4px;"><a href="https://www.goodmind.or.kr/" target="_blank" rel="noopener" style="color:var(--brand-blue); font-weight:700;">재단법인 선한뜻 공식 홈페이지 (goodmind.or.kr) ↗</a></p>
         </div>
         <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <button type="button" class="btn-text-chip admin-only" onclick="openNewsletterAdminModal()">⚙️ 월간 소식지 관리 도우미</button>
           <button type="button" class="btn-text-chip" onclick="openDonateModal()">🧡 후원 안내</button>
         </div>
       </div>
@@ -2674,74 +2691,6 @@
       <button type="button" class="modal-close" onclick="closeModal('allPagesModal')">✕</button>
       <h3 class="serif-title" id="allPagesModalTitle" style="font-size:1.45rem; font-weight:800; margin-bottom:18px;">소식지 4페이지 전체 보기</h3>
       <div id="allPagesGridContainer" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:14px;"></div>
-    </div>
-  </div>
-
-  <!-- ==================== MODAL 6: MONTHLY NEWSLETTER UPDATE STUDIO ==================== -->
-  <div class="modal-backdrop" id="newsletterAdminModal" onclick="closeModalOnBg(event, 'newsletterAdminModal')">
-    <div class="modal-card wide">
-      <button type="button" class="modal-close" onclick="closeModal('newsletterAdminModal')">✕</button>
-      <span class="section-tag tag-orange">MONTHLY UPDATE STUDIO</span>
-      <h3 class="serif-title" style="font-size:1.5rem; font-weight:800; margin-bottom:6px;">매월 새 소식지 추가 · 업데이트 도우미</h3>
-      <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px;">
-        새로운 달의 소식지 이미지를 <code>소식지/4호/</code> 폴더에 넣은 뒤 아래 정보를 입력하면,
-        <strong>즉시 화면에 반영하여 미리보기</strong>하거나 <strong>업데이트된 <code>index.html</code> 파일을 원클릭 다운로드</strong>할 수 있습니다.
-      </p>
-
-      <form id="addNewsletterForm" onsubmit="handleAddNewsletter(event)">
-        <div class="form-row-2">
-          <div class="form-group">
-            <label>호수 (예: 제4호)</label>
-            <input type="text" class="form-control" id="adminVol" placeholder="제4호" required />
-          </div>
-          <div class="form-group">
-            <label>발행 연월 (예: 2026년 11월)</label>
-            <input type="text" class="form-control" id="adminDate" placeholder="2026년 11월" required />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>소식지 제목</label>
-          <input type="text" class="form-control" id="adminTitle" placeholder="예: 아이들의 미소가 자라나는 11월의 교실" required />
-        </div>
-
-        <div class="form-group">
-          <label>한 줄 요약 설명</label>
-          <input type="text" class="form-control" id="adminSubtitle" placeholder="예: 케냐 5개 학교 정기 급식 소식과 말라위 우물 사후관리 이야기" required />
-        </div>
-
-        <div class="form-row-2">
-          <div class="form-group">
-            <label>핵심 지표 1 (값 | 설명)</label>
-            <input type="text" class="form-control" id="adminKpi1" value="5개 학교 | 정기 급식 지원" />
-          </div>
-          <div class="form-group">
-            <label>핵심 지표 2 (값 | 설명)</label>
-            <input type="text" class="form-control" id="adminKpi2" value="1,187명 | 매주 따뜻한 한 끼" />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>페이지별 이미지 경로 (줄바꿈으로 1~4페이지 입력 또는 로컬 이미지 파일 선택)</label>
-          <textarea class="form-control" id="adminPages" rows="4" placeholder="소식지/4호/page1.jpg&#10;소식지/4호/page2.jpg&#10;소식지/4호/page3.jpg&#10;소식지/4호/page4.jpg" required></textarea>
-          <div style="margin-top:8px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
-            <label style="margin:0; font-size:0.82rem; color:var(--brand-blue); cursor:pointer; font-weight:700;">
-              📂 폴더/이미지 파일 선택하여 경로 자동 채우기
-              <input type="file" id="adminFilePicker" multiple accept="image/*" style="display:none;" onchange="handleAdminFilesSelected(event)" />
-            </label>
-            <span style="font-size:0.78rem; color:var(--text-light);">* 선택한 파일명으로 `소식지/N호/파일명` 경로를 자동 생성합니다.</span>
-          </div>
-        </div>
-
-        <div style="display:flex; gap:10px; justify-content:flex-end; flex-wrap:wrap; margin-top:20px;">
-          <button type="submit" class="btn-primary-lg" style="padding:12px 24px; font-size:0.94rem;">
-            ✨ 현재 페이지에 즉시 반영 (미리보기)
-          </button>
-          <button type="button" class="btn-secondary-lg" style="padding:12px 20px; font-size:0.94rem;" onclick="downloadUpdatedHtml()">
-            💾 업데이트된 index.html 다운로드
-          </button>
-        </div>
-      </form>
     </div>
   </div>
 
@@ -2964,7 +2913,7 @@
     function toggleNewsletterEdition() {
       useCardEdition = !useCardEdition;
       const btn = document.getElementById('editionToggleBtn');
-      btn.textContent = useCardEdition
+      if (btn) btn.textContent = useCardEdition
         ? "디자인 버전 전환 (통합 카드형 보기 중)"
         : "디자인 버전 전환 (원본 내지형 보기 중)";
       renderNewsletterHub();
@@ -3245,102 +3194,6 @@
       setTimeout(() => t.classList.remove('show'), 2800);
     }
 
-    // =========================================================================
-    // 5. MONTHLY NEWSLETTER ADMIN STUDIO (새 호 추가 및 HTML 다운로드)
-    // =========================================================================
-    function openNewsletterAdminModal() {
-      const nextNum = NEWSLETTERS_DATA.length + 1;
-      document.getElementById('adminVol').value = `제${nextNum}호`;
-      openModal('newsletterAdminModal');
-    }
-
-    function handleAdminFilesSelected(e) {
-      const files = Array.from(e.target.files || []);
-      if (!files.length) return;
-      const volRaw = document.getElementById('adminVol').value.replace(/[^0-9]/g, '') || (NEWSLETTERS_DATA.length + 1);
-      const paths = files.map(f => `소식지/${volRaw}호/${f.name}`);
-      document.getElementById('adminPages').value = paths.join('\n');
-    }
-
-    function buildIssueFromForm() {
-      const vol = document.getElementById('adminVol').value.trim();
-      const date = document.getElementById('adminDate').value.trim();
-      const title = document.getElementById('adminTitle').value.trim();
-      const subtitle = document.getElementById('adminSubtitle').value.trim();
-      const kpi1 = document.getElementById('adminKpi1').value.split('|').map(s => s.trim());
-      const kpi2 = document.getElementById('adminKpi2').value.split('|').map(s => s.trim());
-      const pages = document.getElementById('adminPages').value
-        .split('\n')
-        .map(s => s.trim())
-        .filter(Boolean);
-
-      return {
-        id: "vol" + Date.now(),
-        vol,
-        badge: `${vol} · ONMAUM NEWSLETTER`,
-        isNew: true,
-        date,
-        title,
-        subtitle,
-        kpis: [
-          { val: kpi1[0] || "온마음 나눔", label: kpi1[1] || "현장 정기 소식" },
-          { val: kpi2[0] || "100% 전달", label: kpi2[1] || "투명한 후원 결산" },
-          { val: `${pages.length}페이지`, label: "월간 카드뉴스 소식지" }
-        ],
-        pagesCard: pages,
-        pagesOriginal: pages,
-        notes: pages.map((_, idx) => `${idx + 1}페이지: ${vol} (${date}) 현장 소식`)
-      };
-    }
-
-    function handleAddNewsletter(e) {
-      e.preventDefault();
-      const newIssue = buildIssueFromForm();
-      NEWSLETTERS_DATA.forEach(item => item.isNew = false);
-      NEWSLETTERS_DATA.unshift(newIssue);
-      currentIssueIdx = 0;
-      currentPageIdx = 0;
-      renderNewsletterHub();
-      closeModal('newsletterAdminModal');
-      showToast(`${newIssue.vol} 소식지가 페이지에 추가되었습니다!`);
-    }
-
-    function downloadUpdatedHtml() {
-      const form = document.getElementById('addNewsletterForm');
-      if (form.checkValidity()) {
-        const exists = NEWSLETTERS_DATA.some(i => i.vol === document.getElementById('adminVol').value.trim());
-        if (!exists) {
-          const newIssue = buildIssueFromForm();
-          NEWSLETTERS_DATA.forEach(item => item.isNew = false);
-          NEWSLETTERS_DATA.unshift(newIssue);
-          currentIssueIdx = 0;
-          currentPageIdx = 0;
-          renderNewsletterHub();
-        }
-      }
-
-      fetch(window.location.href)
-        .then(r => r.text())
-        .then(rawHtml => {
-          const replacement = `/*NEWSLETTERS_DATA_START*/\n    const NEWSLETTERS_DATA = ${JSON.stringify(NEWSLETTERS_DATA, null, 6)};\n    /*NEWSLETTERS_DATA_END*/`;
-          const updatedHtml = rawHtml.replace(
-            /\/\*NEWSLETTERS_DATA_START\*\/[\s\S]*?\/\*NEWSLETTERS_DATA_END\*\//,
-            replacement
-          );
-          const blob = new Blob([updatedHtml], { type: 'text/html;charset=utf-8' });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'index.html';
-          a.click();
-          URL.revokeObjectURL(url);
-          showToast("새 소식지가 반영된 index.html 파일이 다운로드되었습니다!");
-        })
-        .catch(() => {
-          showToast("다운로드 중 오류가 발생했습니다.");
-        });
-    }
-
     // Initialize on load
     window.addEventListener('DOMContentLoaded', () => {
       renderNewsletterHub();
@@ -3348,9 +3201,9 @@
       renderMalawiGallery('all');
     });
   </script>
-<script>if(new URLSearchParams(location.search).get('admin')==='1'){document.body.classList.add('is-admin');}</script>
 <script>
     // Onmaum Heart 후원인 목록 — 새 후원인: 후원인명단/heart-NN.jpg 추가 후 아래에 한 줄 추가
+    /*HEARTS_DATA_START*/
     const ONMAUM_HEARTS = [
       [1, 'Hyunju Kim'],
       [2, 'Chulju Kim'],
@@ -3373,14 +3226,18 @@
       [19, 'Jungmin Kim'],
       [20, 'Daon Hwang']
     ];
-    (function(){
+    /*HEARTS_DATA_END*/
+    function renderHearts(){
       const g=document.getElementById('heartsGrid'); if(!g) return;
-      g.innerHTML=ONMAUM_HEARTS.slice().sort((a,b)=>a[0]-b[0]).map(([n,name])=>{
-        const src='후원인명단/heart-'+String(n).padStart(2,'0')+'.jpg', label='Onmaum Heart '+n+' · '+name;
-        return '<button type="button" class="heart-card" data-src="'+src+'" data-label="'+label+'"><img src="'+src+'" alt="'+label+'" loading="lazy" width="1065" height="612" /></button>';
+      const esc=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+      g.innerHTML=ONMAUM_HEARTS.slice().sort((a,b)=>a[0]-b[0]).map(([n,name,src0,msg])=>{
+        const src=src0||('후원인명단/heart-'+String(n).padStart(2,'0')+'.jpg'), label=esc('Onmaum Heart '+n+' · '+name);
+        const btn='<button type="button" class="heart-card" data-src="'+esc(src)+'" data-label="'+label+'"><img src="'+esc(src)+'" alt="'+label+'" loading="lazy" width="1065" height="612" /></button>';
+        return msg?'<div class="heart-item">'+btn+'<p class="heart-msg">“'+esc(msg)+'”</p></div>':btn;
       }).join('');
-      g.addEventListener('click',e=>{const b=e.target.closest('.heart-card'); if(b) openImageLightbox(b.dataset.src,b.dataset.label);});
-    })();
+      if(!g.dataset.bound){g.dataset.bound='1';g.addEventListener('click',e=>{const b=e.target.closest('.heart-card'); if(b) openImageLightbox(b.dataset.src,b.dataset.label);});}
+    }
+    renderHearts();
   </script>
   <script>
     (function(){
@@ -3395,5 +3252,7 @@
     })();
   </script>
 <script>(function(){var h=document.querySelector(".site-header");function f(){h&&h.classList.toggle("scrolled",scrollY>8)}function g(){if(h)document.documentElement.style.scrollPaddingTop=(h.offsetHeight+8)+"px"}addEventListener("scroll",f,{passive:true});addEventListener("resize",g);f();g();if(location.hash){setTimeout(function(){var t=document.getElementById(location.hash.slice(1));t&&t.scrollIntoView()},300)}})();</script>
+  <script src="onmaum-config.js"></script>
+  <script src="onmaum-live.js" defer></script>
 </body>
 </html>

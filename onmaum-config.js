@@ -1,0 +1,1 @@
+window.ONMAUM_CONFIG = {"supabaseUrl":"https://lhfsbrinlucorwmeztpl.supabase.co","supabaseAnonKey":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxoZnNicmlubHVjb3J3bWV6dHBsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM1MjUxMzMsImV4cCI6MjEwOTEwMTEzM30.AiyXHyay6cIwqEUQkiwkC_g8zDae7tCPyRkvos7I974"};

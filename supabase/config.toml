@@ -1,0 +1,17 @@
+project_id = "onmaum"
+
+[api]
+schemas = ["public", "storage"]
+
+[auth]
+site_url = "https://onmaum-project.vercel.app"
+additional_redirect_urls = ["https://onmaum-project.vercel.app/admin/", "http://localhost:8765/admin/"]
+# 관리자 외 가입 막기 (매직링크는 기존 사용자만)
+enable_signup = false
+
+[auth.email]
+enable_signup = false
+enable_confirmations = false
+
+[functions.publish-hook]
+verify_jwt = true

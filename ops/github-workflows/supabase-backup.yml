@@ -1,0 +1,33 @@
+# 매주 DB 백업 (Supabase 무료 플랜은 자동 백업이 없음).
+# 저장소가 공개(PUBLIC)라서 백업 파일은 반드시 암호화해서 보관합니다.
+# 꺼진 상태로 시작: Variables ONMAUM_SUPABASE_ENABLED = true, Secrets SUPABASE_DB_URL, BACKUP_PASSPHRASE 필요.
+# 복구: gpg -d onmaum-backup.sql.gz.gpg | gunzip > backup.sql
+name: Supabase weekly backup
+on:
+  schedule:
+    - cron: '30 18 * * 0'   # 매주 월요일 03:30 (한국 시간)
+  workflow_dispatch:
+jobs:
+  backup:
+    if: ${{ vars.ONMAUM_SUPABASE_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - name: Dump & encrypt
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+          BACKUP_PASSPHRASE: ${{ secrets.BACKUP_PASSPHRASE }}
+        run: |
+          test -n "$SUPABASE_DB_URL" && test -n "$BACKUP_PASSPHRASE"
+          supabase db dump --db-url "$SUPABASE_DB_URL" -f schema.sql
+          supabase db dump --db-url "$SUPABASE_DB_URL" --data-only -f data.sql
+          cat schema.sql data.sql | gzip > onmaum-backup.sql.gz
+          gpg --batch --yes --pinentry-mode loopback --passphrase "$BACKUP_PASSPHRASE" -c onmaum-backup.sql.gz
+          rm -f schema.sql data.sql onmaum-backup.sql.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: onmaum-backup-${{ github.run_number }}
+          path: onmaum-backup.sql.gz.gpg
+          retention-days: 90
