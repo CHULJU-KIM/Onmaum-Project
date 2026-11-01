@@ -1,13 +1,22 @@
 // 배포 직전 실행 (Vercel Build Command: node scripts/bake.mjs)
 // Supabase 의 "발행된" 데이터를 index.html 에 직접 구워 넣어 → 검색엔진·느린 폰·Supabase 휴면 때도 내용이 보이게 합니다.
-// 환경변수 SUPABASE_URL / SUPABASE_ANON_KEY 가 없으면 아무것도 바꾸지 않고 끝납니다(지금 상태 그대로 배포).
+// 환경변수 → 없으면 onmaum-config.js 값 사용. 둘 다 없거나 읽기 실패 시 아무것도 바꾸지 않고 끝납니다. --dry: 파일 안 씀.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const L = require('../onmaum-live.js');
 const root = new URL('../', import.meta.url);
-const url = (process.env.SUPABASE_URL || '').replace(/\/$/, '');
-const key = process.env.SUPABASE_ANON_KEY || '';
+// 환경변수가 없으면 onmaum-config.js 의 공개 값(URL + anon 키)을 사용합니다.
+let cfg = {};
+try {
+  const src = readFileSync(new URL('onmaum-config.js', root), 'utf8');
+  const m = src.match(/ONMAUM_CONFIG\s*=\s*(\{[\s\S]*?\})\s*;/);
+  if (m) cfg = Function('return (' + m[1] + ')')() || {};
+} catch {}
+const fromEnv = !!(process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY);
+const url = (process.env.SUPABASE_URL || cfg.supabaseUrl || '').replace(/\/$/, '');
+const key = process.env.SUPABASE_ANON_KEY || cfg.supabaseAnonKey || '';
+const noWrite = process.argv.includes('--dry'); // 미리 확인만, 파일은 안 씀
 const dry = process.argv.includes('--from') ? JSON.parse(readFileSync(process.argv[process.argv.indexOf('--from') + 1], 'utf8')) : null;
 
 if (!dry && (!url || !key)) { console.log('[bake] SUPABASE 설정 없음 → 정적 파일 그대로 배포'); process.exit(0); }
@@ -47,9 +56,10 @@ if (stories) html = html.replace('<section class="stories-section" id="stories" 
 const msgs = L.messagesHtml(data.messages || [], data.hearts || []);
 swap(/<!--MESSAGES_START-->[\s\S]*?<!--MESSAGES_END-->/, `<!--MESSAGES_START-->${msgs}<!--MESSAGES_END-->`);
 if (msgs) html = html.replace('<section class="messages-section" id="messages" hidden>', '<section class="messages-section" id="messages">');
+if (noWrite) { console.log(`[bake] --dry: 파일 안 씀 (소식지 ${data.issues?.length || 0} · 하트 ${data.hearts?.length || 0} · 이야기 ${data.posts?.length || 0} · 메시지 ${data.messages?.length || 0})`); process.exit(0); }
 writeFileSync(file, html);
 
-if (url && key) {
+if (fromEnv) {
   writeFileSync(new URL('onmaum-config.js', root),
     `window.ONMAUM_CONFIG = ${JSON.stringify({ supabaseUrl: url, supabaseAnonKey: key })};\n`);
 }

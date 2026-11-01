@@ -85,8 +85,13 @@ def bake():
     h = open(d + '/index.html', encoding='utf-8').read()
     check('엘루아나타 학교에 새 냄비가 도착했어요' in h and '<section class="stories-section" id="stories">' in h, '[bake] 이야기가 정적 HTML에 구워짐(SEO)')
     check('"Test Person"' in h and '작은 마음 보탭니다' in h, '[bake] 하트·한마디 구워짐')
-    r = subprocess.run(['node', 'scripts/bake.mjs'], capture_output=True, text=True, env={k: v for k, v in os.environ.items() if not k.startswith('SUPABASE')})
+    noenv = {k: v for k, v in os.environ.items() if not k.startswith('SUPABASE')}
+    open(d + '/onmaum-config.js', 'w').write('window.ONMAUM_CONFIG = { supabaseUrl: "", supabaseAnonKey: "" };\n')
+    r = subprocess.run(['node', d + '/scripts/bake.mjs'], capture_output=True, text=True, env=noenv)
     check(r.returncode == 0 and '정적' in r.stdout, '[bake] 키 없으면 아무것도 안 바꾸고 통과')
+    before = {f: open(f, 'rb').read() for f in ('index.html', 'sitemap.xml', 'onmaum-config.js')}
+    r = subprocess.run(['node', 'scripts/bake.mjs', '--dry'], capture_output=True, text=True, env=noenv)
+    check(r.returncode == 0 and all(open(f, 'rb').read() == b for f, b in before.items()), '[bake] --dry 는 파일을 안 씀 (config 값 사용)')
 
 async def main():
     async with async_playwright() as p:
