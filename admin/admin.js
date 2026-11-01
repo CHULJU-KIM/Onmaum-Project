@@ -414,17 +414,34 @@
   }
   window.__onmaumLoginErrorText = loginErrorText;
   $('logoutBtn').onclick = function () { db.logout(); };
+  // 한 번만 화면을 그림. (예전: SIGNED_IN 이벤트마다 새로고침 → supabase-js 가 저장된 세션 복구 때도
+  // SIGNED_IN 을 보내서 새로고침이 끝없이 반복됨)
+  var started = false, booting = false;
+  function showLogin(msg) {
+    $('appView').hidden = true; $('logoutBtn').hidden = true; $('loginView').hidden = false;
+    if (msg != null) $('loginMsg').textContent = msg;
+  }
   function start() {
+    if (started || booting) return;
+    booting = true;
     $('setupBanner').hidden = !DEMO;
     db.session().then(function (user) {
-      if (!user) { $('loginView').hidden = false; return; }
+      if (!user) { showLogin(); return; }
       return db.isAdmin().then(function (ok) {
-        if (!ok) { $('loginView').hidden = false; $('loginMsg').textContent = '관리자로 등록되지 않은 계정이에요.'; return; }
+        if (!ok) { showLogin('관리자로 등록되지 않은 계정이에요. 등록된 이메일로 다시 로그인해 주세요.'); return; }
+        started = true;
+        $('loginView').hidden = true;
         $('who').textContent = user.email; $('logoutBtn').hidden = false; $('appView').hidden = false;
         showTab('issue'); return refresh();
       });
-    });
+    }).catch(function (err) {
+      console.warn('[admin] start failed', err);
+      if (!started) showLogin('관리자 확인 중 문제가 생겼어요. 잠시 뒤 새로고침해 주세요.');
+    }).then(function () { booting = false; });
   }
-  if (!DEMO) sb.auth.onAuthStateChange(function (ev) { if (ev === 'SIGNED_IN' && $('appView').hidden) location.reload(); });
+  if (!DEMO) sb.auth.onAuthStateChange(function (ev, session) {
+    if (ev === 'SIGNED_IN' && session && !started) setTimeout(start, 0);
+    if (ev === 'SIGNED_OUT' && started) { started = false; showLogin(''); }
+  });
   start();
 })();
