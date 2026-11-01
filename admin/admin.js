@@ -37,7 +37,15 @@
       afterPublish: function () { return Promise.resolve({ deploy: 'demo' }); }
     };
   } else {
-    var sb = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey);
+    var sb = window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey, {
+      auth: { detectSessionInUrl: true, persistSession: true, autoRefreshToken: true, flowType: 'implicit' }
+    });
+    // 초대/로그인 링크로 들어오면 세션을 잡은 뒤 주소창의 토큰을 지움
+    sb.auth.onAuthStateChange(function (ev, session) {
+      if (session && /access_token|[?&]code=|type=(invite|magiclink|recovery|signup)/.test(location.hash + location.search)) {
+        history.replaceState(null, '', location.pathname);
+      }
+    });
     var chk = function (r) { if (r.error) throw r.error; return r.data; };
     db = {
       session: function () { return sb.auth.getSession().then(function (r) { return r.data.session && r.data.session.user; }); },
@@ -396,8 +404,15 @@
   $('loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
     db.login($('loginEmail').value.trim().toLowerCase()).then(function () { $('loginMsg').textContent = '메일을 보냈어요. 메일함에서 링크를 눌러주세요.'; })
-      .catch(function () { $('loginMsg').textContent = '등록된 관리자 이메일이 아니거나 잠시 문제가 있어요.'; });
+      .catch(function (err) { $('loginMsg').textContent = loginErrorText(err); });
   });
+  function loginErrorText(err) {
+    var e = err || {}, msg = String(e.message || e.msg || e.error_description || '').toLowerCase(), code = String(e.code || e.error_code || '').toLowerCase();
+    if (e.status === 429 || /rate limit|over_email_send_rate_limit|over_request_rate_limit/.test(msg + ' ' + code)) return '메일 발송 한도에 걸렸어요. 1시간쯤 뒤에 다시 눌러 주세요.';
+    if (/signup|not allowed|otp_disabled|user_not_found|not found/.test(msg + ' ' + code)) return '등록된 관리자 이메일이 아니에요.';
+    return '로그인 메일을 보내지 못했어요. 잠시 뒤에 다시 시도해 주세요.';
+  }
+  window.__onmaumLoginErrorText = loginErrorText;
   $('logoutBtn').onclick = function () { db.logout(); };
   function start() {
     $('setupBanner').hidden = !DEMO;
