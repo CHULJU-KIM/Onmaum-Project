@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>온마음 관리</title>
+<link rel="icon" href="../favicon-32.png" />
+<style>
+  :root { --brand:#D2401E; --brand-text:#B8401F; --hover:#B23A1A; --green:#1B7E50; --amber:#A3601D; --gray:#707075; --bg:#fff8f6; --line:#eadfda; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif; background:var(--bg); color:#1d1d1f; font-size:16px; line-height:1.5; }
+  header { position:sticky; top:0; z-index:5; background:#fff; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:10px; padding:10px 14px; }
+  header img { height:30px; }
+  header h1 { font-size:1rem; margin:0; flex:1; }
+  header .who { font-size:.78rem; color:var(--gray); }
+  main { max-width:880px; margin:0 auto; padding:14px 14px 120px; }
+  .banner { background:#fff3cd; color:#6b4d00; border-radius:12px; padding:10px 14px; font-size:.86rem; margin-bottom:12px; }
+  .card { background:#fff; border-radius:16px; padding:18px 16px; box-shadow:0 4px 16px rgba(0,0,0,.06); margin-bottom:14px; }
+  h2 { font-size:1.15rem; margin:0 0 12px; }
+  label { display:block; font-weight:700; font-size:.88rem; margin:12px 0 6px; }
+  .hint { font-weight:400; color:var(--gray); font-size:.78rem; }
+  input[type=text], input[type=email], input[type=number], textarea, select { width:100%; font:inherit; padding:12px; border:1px solid #d9cfcb; border-radius:10px; background:#fff; }
+  textarea { min-height:120px; resize:vertical; }
+  .row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .row3 { display:grid; grid-template-columns:1fr; gap:8px; }
+  button { font:inherit; cursor:pointer; border-radius:999px; border:0; padding:12px 18px; font-weight:700; }
+  .primary { background:var(--brand); color:#fff; } .primary:hover { background:var(--hover); }
+  .ghost { background:#fff; color:var(--brand-text); border:1px solid rgba(210,64,30,.3); }
+  .small { padding:7px 12px; font-size:.82rem; }
+  .tabs { display:flex; gap:6px; overflow-x:auto; padding-bottom:4px; margin-bottom:12px; -webkit-overflow-scrolling:touch; }
+  .tabs button { background:#fff; color:#444; border:1px solid var(--line); white-space:nowrap; padding:9px 14px; font-size:.9rem; }
+  .tabs button[aria-selected=true] { background:var(--brand); color:#fff; border-color:var(--brand); }
+  .thumbs { display:grid; grid-template-columns:repeat(auto-fill,minmax(96px,1fr)); gap:8px; margin-top:8px; }
+  .thumb { position:relative; border-radius:10px; overflow:hidden; background:#eee; aspect-ratio:3/4; }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .thumb .n { position:absolute; left:6px; top:6px; background:rgba(0,0,0,.6); color:#fff; font-size:.72rem; border-radius:999px; padding:1px 7px; }
+  .thumb .ctl { position:absolute; right:4px; bottom:4px; display:flex; gap:3px; }
+  .thumb .ctl button { padding:2px 7px; font-size:.75rem; background:#fff; color:#333; }
+  .actions { position:sticky; bottom:0; background:linear-gradient(transparent,var(--bg) 30%); padding:16px 0 10px; display:flex; gap:8px; flex-wrap:wrap; }
+  .actions button { flex:1 1 auto; }
+  details { margin-top:12px; border-top:1px dashed var(--line); padding-top:8px; }
+  summary { cursor:pointer; font-weight:700; font-size:.88rem; color:var(--green); }
+  .seg { display:inline-flex; border:1px solid var(--line); border-radius:999px; overflow:hidden; }
+  .seg button { border-radius:0; background:#fff; color:#444; padding:8px 14px; }
+  .seg button[aria-pressed=true] { background:var(--green); color:#fff; }
+  .list .item { display:flex; gap:10px; align-items:center; padding:10px 0; border-bottom:1px solid #f1e9e6; }
+  .list .item .t { flex:1; min-width:0; } .list .item .t b { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .pill { font-size:.72rem; border-radius:999px; padding:2px 8px; font-weight:800; }
+  .pill.published, .pill.approved { background:#e3f4ea; color:var(--green); } .pill.draft, .pill.pending { background:#fbefe0; color:var(--amber); } .pill.rejected { background:#eee; color:var(--gray); }
+  #heartCanvas { width:100%; height:auto; border-radius:12px; box-shadow:0 4px 14px rgba(0,0,0,.08); background:#f4f4f4; }
+  .preview-wrap { position:fixed; inset:0; background:rgba(20,20,20,.75); z-index:20; display:none; flex-direction:column; align-items:center; padding:10px; }
+  .preview-wrap.open { display:flex; }
+  .preview-bar { display:flex; gap:8px; align-items:center; margin-bottom:8px; }
+  .preview-stage { flex:1; width:100%; overflow:auto; display:flex; justify-content:center; }
+  .preview-frame-box { background:#fff; border-radius:18px; overflow:hidden; transform-origin:top center; }
+  .preview-frame-box iframe { border:0; display:block; }
+  .toast { position:fixed; left:50%; bottom:22px; transform:translateX(-50%); background:#222; color:#fff; padding:10px 16px; border-radius:999px; font-size:.88rem; opacity:0; transition:opacity .2s; z-index:30; pointer-events:none; }
+  .toast.show { opacity:1; }
+  .login { max-width:420px; margin:40px auto; text-align:center; }
+  .login p { color:var(--gray); font-size:.9rem; }
+  [hidden] { display:none !important; }
+  @media (min-width:700px) { .row3 { grid-template-columns:1fr 1fr 1fr; } main { padding-top:22px; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="../logo.png" alt="온마음" />
+  <h1>온마음 관리</h1>
+  <span class="who" id="who"></span>
+  <button class="ghost small" id="logoutBtn" hidden>로그아웃</button>
+</header>
+<main>
+  <div class="banner" id="setupBanner" hidden>아직 Supabase 연결 전이에요. 지금은 <b>연습 모드</b>라 저장해도 이 화면에만 남고 홈페이지엔 올라가지 않아요.</div>
+
+  <!-- 로그인 -->
+  <section class="card login" id="loginView" hidden>
+    <h2>관리자 로그인</h2>
+    <p>등록된 이메일을 넣으면 로그인 링크를 보내드려요.<br/>메일함에서 링크를 누르면 바로 들어와집니다.</p>
+    <form id="loginForm">
+      <input type="email" id="loginEmail" placeholder="이메일 주소" autocomplete="email" required />
+      <div style="margin-top:12px"><button class="primary" type="submit" style="width:100%">로그인 링크 받기</button></div>
+    </form>
+    <p id="loginMsg"></p>
+  </section>
+
+  <section id="appView" hidden>
+    <nav class="tabs" role="tablist" id="tabs">
+      <button role="tab" data-tab="issue" aria-selected="true">📰 소식지</button>
+      <button role="tab" data-tab="notice">📢 공지</button>
+      <button role="tab" data-tab="story">📷 현장 이야기</button>
+      <button role="tab" data-tab="heart">🧡 새 하트</button>
+      <button role="tab" data-tab="messages">💬 메시지 검토</button>
+      <button role="tab" data-tab="list">📋 올린 글</button>
+    </nav>
+
+    <!-- 소식지 -->
+    <section class="card" data-panel="issue">
+      <h2>새 소식지 <span class="hint" id="issueEditing"></span></h2>
+      <div class="row">
+        <div><label>호수</label><input type="number" id="iNo" min="1" /></div>
+        <div><label>발행 연월</label><input type="text" id="iDate" placeholder="2026년 11월" /></div>
+      </div>
+      <label>제목</label><input type="text" id="iTitle" placeholder="예: 아이들의 미소가 자라나는 11월의 교실" />
+      <label>한 줄 요약</label><textarea id="iSubtitle" style="min-height:70px" placeholder="예: 케냐 5개 학교 정기 급식 소식"></textarea>
+      <label>핵심 숫자 3개 <span class="hint">값 | 설명 (비워도 돼요)</span></label>
+      <div class="row3">
+        <input type="text" id="iK1" placeholder="5개 학교 | 정기 급식 지원" />
+        <input type="text" id="iK2" placeholder="1,187명 | 매주 따뜻한 한 끼" />
+        <input type="text" id="iK3" placeholder="100% 공개 | 투명 결산" />
+      </div>
+      <label>카드 이미지 <span class="hint">순서대로 고르세요 (보통 4장). 자동으로 줄여서 올라가요.</span></label>
+      <input type="file" id="iFiles" accept="image/*" multiple />
+      <div class="thumbs" id="iThumbs"></div>
+      <details><summary>English (선택 — 비워두면 루미가 채워드려요)</summary>
+        <label>Title</label><input type="text" id="iTitleEn" />
+        <label>Summary</label><textarea id="iSubtitleEn" style="min-height:70px"></textarea>
+      </details>
+      <div class="actions">
+        <button class="ghost" data-act="preview" data-kind="issue">👀 미리보기</button>
+        <button class="ghost" data-act="draft" data-kind="issue">임시저장</button>
+        <button class="primary" data-act="publish" data-kind="issue">발행하기</button>
+      </div>
+    </section>
+
+    <!-- 공지 / 현장 이야기 (같은 폼) -->
+    <section class="card" data-panel="post" hidden>
+      <h2 id="postHeading">공지</h2>
+      <label>제목</label><input type="text" id="pTitle" />
+      <label>내용</label><textarea id="pBody" placeholder="줄바꿈 그대로 보여요"></textarea>
+      <label id="pFilesLabel">사진 <span class="hint" id="pFilesHint">(선택, 1장)</span></label>
+      <input type="file" id="pFiles" accept="image/*" />
+      <div class="thumbs" id="pThumbs"></div>
+      <details><summary>English (선택)</summary>
+        <label>Title</label><input type="text" id="pTitleEn" />
+        <label>Text</label><textarea id="pBodyEn"></textarea>
+      </details>
+      <div class="actions">
+        <button class="ghost" data-act="preview" data-kind="post">👀 미리보기</button>
+        <button class="ghost" data-act="draft" data-kind="post">임시저장</button>
+        <button class="primary" data-act="publish" data-kind="post">발행하기</button>
+      </div>
+    </section>
+
+    <!-- 새 하트 -->
+    <section class="card" data-panel="heart" hidden>
+      <h2>새 Onmaum Heart</h2>
+      <div class="row">
+        <div><label>번호</label><input type="number" id="hNo" min="1" /></div>
+        <div><label>이름 <span class="hint">남긴 그대로</span></label><input type="text" id="hName" placeholder="Gildong Hong" /></div>
+      </div>
+      <label>후원인 한마디 <span class="hint">(선택 — 카드 아래와 메시지 공간에 함께 보여요)</span></label>
+      <textarea id="hMsg" style="min-height:70px"></textarea>
+      <details><summary>English (선택)</summary><label>Message</label><textarea id="hMsgEn" style="min-height:70px"></textarea></details>
+      <label>카드</label>
+      <div class="seg" role="group"><button type="button" id="hModeGen" aria-pressed="true">자동 만들기</button><button type="button" id="hModeUp" aria-pressed="false">직접 올리기</button></div>
+      <input type="file" id="hFile" accept="image/*" hidden style="margin-top:8px" />
+      <div style="margin-top:10px"><canvas id="heartCanvas" width="1065" height="612"></canvas></div>
+      <div class="actions">
+        <button class="ghost" data-act="preview" data-kind="heart">👀 미리보기</button>
+        <button class="ghost" data-act="draft" data-kind="heart">임시저장</button>
+        <button class="primary" data-act="publish" data-kind="heart">발행하기</button>
+      </div>
+    </section>
+
+    <section class="card" data-panel="messages" hidden>
+      <h2>메시지 검토 <span class="hint">승인한 것만 홈페이지에 보여요</span></h2>
+      <div class="list" id="msgList"></div>
+    </section>
+
+    <section class="card" data-panel="list" hidden>
+      <h2>올린 글</h2>
+      <div class="list" id="allList"></div>
+    </section>
+  </section>
+</main>
+
+<div class="preview-wrap" id="previewWrap" aria-modal="true" role="dialog">
+  <div class="preview-bar">
+    <div class="seg"><button type="button" id="pvPhone" aria-pressed="true">📱 폰</button><button type="button" id="pvPc" aria-pressed="false">💻 PC</button></div>
+    <button class="primary small" id="pvClose">닫기</button>
+  </div>
+  <div class="preview-stage"><div class="preview-frame-box" id="pvBox"><iframe id="pvFrame" title="미리보기"></iframe></div></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="../onmaum-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" crossorigin="anonymous"></script>
+<script src="admin.js"></script>
+</body>
+</html>
