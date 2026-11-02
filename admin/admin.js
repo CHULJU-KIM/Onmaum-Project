@@ -6,6 +6,16 @@
   var DEMO = !cfg.supabaseUrl || !cfg.supabaseAnonKey || /[?&]demo=1/.test(location.search);
   var toastT;
   function toast(m) { var t = $('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove('show'); }, 2600); }
+  function friendlyError(err) {
+    var e = err || {}, t = (String(e.message || '') + ' ' + String(e.code || '') + ' ' + String(e.details || '')).toLowerCase();
+    if (/onmaum_dup|duplicate|23505/.test(t)) return '같은 내용이 이미 있어요.';
+    if (/row-level security|42501|permission denied|pgrst116|0 rows/.test(t)) return '권한이 없거나 이미 바뀐 항목이에요. 새로고침 후 다시 해 주세요.';
+    if (/jwt|session|not authenticated/.test(t)) return '로그인이 만료됐어요. 다시 로그인해 주세요.';
+    if (/onmaum_/.test(t)) return '저장할 수 없는 내용이에요. 내용을 확인해 주세요.';
+    if (/failed to fetch|network/.test(t)) return '인터넷 연결을 확인해 주세요.';
+    return '처리하지 못했어요. 잠시 뒤 다시 시도해 주세요.';
+  }
+  window.__onmaumFriendlyError = friendlyError;
   function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
   // ------------------------------------------------------------------ 데이터 계층
@@ -34,6 +44,7 @@
         mem.pages = mem.pages.filter(function (p) { return p.issue_id !== issueId; }).concat(pages.map(function (p) { return Object.assign({ issue_id: issueId }, p); }));
         return Promise.resolve();
       },
+      moderate: function (id, status) { var m = mem.messages.find(function (r) { return r.id === id; }); if (m) { m.status = status; m.moderated_at = new Date().toISOString(); } return Promise.resolve(m); },
       remove: function (t, id) { mem[t] = mem[t].filter(function (r) { return r.id !== id; }); return Promise.resolve(); },
       upload: function (path, blob) { return Promise.resolve(URL.createObjectURL(blob)); },
       afterPublish: function () { return Promise.resolve({ deploy: 'demo' }); }
@@ -59,12 +70,16 @@
       logout: function () { return sb.auth.signOut().then(function () { location.reload(); }); },
       isAdmin: function () { return sb.rpc('is_admin').then(chk); },
       list: function (t) {
-        var sel = t === 'issues' ? '*,pages(*)' : '*';
+        var sel = t === 'issues' ? '*,pages(*)' : t === 'messages' ? 'id,author_name,body,status,heart_no,self_deletable,moderated_by,moderated_at,created_at' : '*';
         return sb.from(t).select(sel).order('created_at', { ascending: false }).then(chk);
       },
       save: function (t, row) {
-        var r = Object.assign({}, row); if (!r.id) delete r.id;
-        return sb.from(t).upsert(r).select().single().then(chk);
+        // 기존 행은 UPDATE(PATCH), 새 행만 INSERT — upsert는 INSERT 트리거·정책을 타서 수정이 막혀요
+        var r = Object.assign({}, row), id = r.id; delete r.id;
+        return (id ? sb.from(t).update(r).eq('id', id) : sb.from(t).insert(r)).select().single().then(chk);
+      },
+      moderate: function (id, status, by) {
+        return sb.from('messages').update({ status: status, moderated_by: by || null, moderated_at: new Date().toISOString() }).eq('id', id).select('id,status').single().then(chk);
       },
       replacePages: function (issueId, pages) {
         return sb.from('pages').delete().eq('issue_id', issueId).then(chk).then(function () {
@@ -157,7 +172,7 @@
     Promise.all(files.map(function (f) { return resize(f, 2000, 0.86); })).then(function (blobs) {
       blobs.forEach(function (b) { state.issueImgs.push({ blob: b, url: URL.createObjectURL(b) }); });
       thumbs('iThumbs', state.issueImgs);
-    }).catch(function (err) { toast(err.message); });
+    }).catch(function (err) { toast(friendlyError(err)); });
   });
   function kpi(id) { var v = $(id).value.split('|').map(function (s) { return s.trim(); }); return v[0] ? { val: v[0], label: v[1] || '' } : null; }
   function issueRow(status) {
@@ -181,7 +196,7 @@
       if (max === 1) state.postImgs = [];
       blobs.forEach(function (b) { if (state.postImgs.length < max) state.postImgs.push({ blob: b, url: URL.createObjectURL(b) }); });
       thumbs('pThumbs', state.postImgs);
-    }).catch(function (err) { toast(err.message); });
+    }).catch(function (err) { toast(friendlyError(err)); });
   });
   function postRow(status) {
     return { id: state.postId || undefined, kind: state.postKind, title: $('pTitle').value.trim(), body: $('pBody').value.trim(),
@@ -358,7 +373,8 @@
       return '<div class="item"><div class="t"><b>' + esc(m.body) + '</b><span class="hint">' + esc(m.author_name) + (m.heart_no ? ' · 💛 ' + esc(heartName(m.heart_no)) + ' 카드에서' : '') + '</span></div><span class="pill ' + m.status + '">' +
         ({ pending: '대기', approved: '공개', rejected: '숨김' })[m.status] + '</span>' +
         (m.status !== 'approved' ? '<button class="primary small" data-mod="approved" data-id="' + m.id + '">공개</button>' : '') +
-        (m.status !== 'rejected' ? '<button class="ghost small" data-mod="rejected" data-id="' + m.id + '">숨김</button>' : '') + '</div>';
+        (m.status !== 'rejected' ? '<button class="ghost small" data-mod="rejected" data-id="' + m.id + '">숨김</button>' : '') +
+        '<button class="danger small" data-del="' + m.id + '">삭제</button></div>';
     }).join('') : '<p class="hint">아직 메시지가 없어요</p>';
     var msgTab = document.querySelector('[data-tab=messages]'); msgTab.textContent = '💬 메시지 검토' + (pending.length ? ' (' + pending.length + ')' : '');
     var rows = [].concat(
@@ -373,13 +389,21 @@
     }).join('') : '<p class="hint">아직 올린 글이 없어요 (기존 1~3호와 하트 1~20은 연결 후 자동으로 보여요)</p>';
   }
   document.addEventListener('click', function (e) {
-    var b = e.target.closest('button[data-mod],button[data-toggle],button[data-edit]'); if (!b) return;
+    var b = e.target.closest('button[data-mod],button[data-toggle],button[data-edit],button[data-del]'); if (!b) return;
     var id = b.dataset.id;
+    if (b.dataset.del) {
+      if (!confirm('이 메시지를 완전히 삭제할까요? 되돌릴 수 없어요.')) return;
+      b.disabled = true;
+      db.remove('messages', b.dataset.del).then(function () { toast('삭제했어요'); return refresh(); })
+        .catch(function (err) { b.disabled = false; toast(friendlyError(err)); });
+      return;
+    }
     if (b.dataset.mod) {
       var m = state.cache.messages.find(function (x) { return x.id === id; });
-      db.save('messages', { id: id, author_name: m.author_name, body: m.body, status: b.dataset.mod, moderated_at: new Date().toISOString() })
-        .then(function () { if (b.dataset.mod === 'approved') db.afterPublish({ kind: '메시지', title: m.body.slice(0, 30) }); toast('처리했어요'); return refresh(); })
-        .catch(function (err) { toast(err.message); });
+      b.disabled = true;
+      db.moderate(id, b.dataset.mod, $('who').textContent)
+        .then(function () { if (b.dataset.mod === 'approved') db.afterPublish({ kind: '메시지', title: m.body.slice(0, 30) }); toast(b.dataset.mod === 'approved' ? '공개했어요' : '숨겼어요'); return refresh(); })
+        .catch(function (err) { b.disabled = false; toast(friendlyError(err)); });
       return;
     }
     var t = b.dataset.toggle || b.dataset.edit, r = state.cache[t].find(function (x) { return x.id === id; });
@@ -387,7 +411,7 @@
       var next = r.status === 'published' ? 'draft' : 'published';
       if (!confirm(next === 'published' ? '홈페이지에 올릴까요?' : '홈페이지에서 내릴까요? (지워지진 않아요)')) return;
       var row = Object.assign({}, r); delete row.pages; row.status = next;
-      db.save(t, row).then(function () { return db.afterPublish({ kind: '변경', title: r.title || r.name }); }).then(function () { toast('반영했어요'); return refresh(); }).catch(function (err) { toast(err.message); });
+      db.save(t, row).then(function () { return db.afterPublish({ kind: '변경', title: r.title || r.name }); }).then(function () { toast('반영했어요'); return refresh(); }).catch(function (err) { toast(friendlyError(err)); });
       return;
     }
     // 수정: 폼으로 불러오기

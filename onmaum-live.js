@@ -46,8 +46,11 @@
   function messagesHtml(msgs, hearts) {
     var items = (hearts || []).filter(function (h) { return h.message; })
       .map(function (h) { return { body: (en && h.message_en) || h.message, who: 'Onmaum Heart ' + h.no + ' · ' + h.name }; })
-      .concat((msgs || []).map(function (m) { return { body: m.body, who: m.author_name }; }));
-    return items.map(function (m) { return '<div class="message-card">“' + esc(m.body) + '”<b>' + esc(m.who) + '</b></div>'; }).join('');
+      .concat((msgs || []).map(function (m) { return { body: m.body, who: m.author_name, id: m.self_deletable ? m.id : null }; }));
+    return items.map(function (m) {
+      return '<div class="message-card"' + (m.id ? ' data-msg-id="' + esc(m.id) + '"' : '') + '>“' + esc(m.body) + '”<b>' + esc(m.who) + '</b>' +
+        (m.id ? '<button type="button" class="msg-selfdel" data-selfdel="' + esc(m.id) + '">' + (en ? 'Delete' : '삭제') + '</button>' : '') + '</div>';
+    }).join('');
   }
   var api = { toIssues: toIssues, toHearts: toHearts, storiesHtml: storiesHtml, messagesHtml: messagesHtml, esc: esc };
 
@@ -103,7 +106,7 @@
     get('issues?select=*,pages(*)&status=eq.published&order=vol_no.desc').catch(function () { return null; }),
     get('hearts?select=no,name,card_path,message,message_en&status=eq.published&order=no').catch(function () { return null; }),
     get('posts?select=*&status=eq.published&order=published_at.desc&limit=12').catch(function () { return null; }),
-    get('messages?select=author_name,body,created_at&status=eq.approved&order=created_at.desc&limit=30').catch(function () { return null; })
+    get('messages?select=id,author_name,body,self_deletable,created_at&status=eq.approved&order=created_at.desc&limit=30').catch(function () { return null; })
   ]).then(function (r) {
     var go = function () { apply({ issues: r[0], hearts: r[1], posts: r[2], messages: r[3] }); };
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', go); else go();

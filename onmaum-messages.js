@@ -13,6 +13,9 @@
     nameL: 'Your name or nickname', nameP: 'e.g. A friend from Seoul', bodyL: 'Your message', bodyP: 'Write what you would like to share.',
     note: 'Messages appear on the site after we read them. Please don\u2019t include contact details or other personal information.',
     send: 'Send message', close: 'Close',
+    pwL: 'Password for deleting (4+ characters)', pwNote: 'You will use this to delete your message later.', pwBad: 'Please set a delete password of 4–20 characters.',
+    delTitle: 'Delete this message', delSub: 'Enter the password you set when writing it.', delBtn: 'Delete', delOk: 'Your message has been removed. Thank you for the kind words.',
+    delWrong: 'The password doesn\u2019t match.', delTries: 'Too many tries. Please try again in an hour.', delFail: 'Could not delete it. Please try again in a moment.',
     titleFor: function (n) { return '♡ A few words from ' + n; }, titleAll: '🧡 Leave a few kind words',
     subFor: 'Your name is filled in from the card. Feel free to change it.', subAll: 'For the children, the villages, or everyone walking with us.'
   } : {
@@ -27,13 +30,33 @@
     nameL: '이름 또는 별명', nameP: '예: 서울의 한 마음', bodyL: '전하고 싶은 한마디', bodyP: '아이들에게, 마을에, 함께하는 분들께 전하고 싶은 마음을 적어 주세요.',
     note: '남겨 주신 글은 운영자가 읽어 본 뒤 사이트에 공개돼요. 연락처나 개인정보는 적지 말아 주세요.',
     send: '마음 남기기', close: '닫기',
+    pwL: '삭제용 비밀번호 (숫자 4자리 이상)', pwNote: '내 글을 지울 때 사용해요', pwBad: '삭제용 비밀번호를 4~20자로 정해 주세요.',
+    delTitle: '내 글 삭제', delSub: '글을 남길 때 정한 삭제용 비밀번호를 넣어 주세요.', delBtn: '삭제하기', delOk: '글을 지웠어요. 따뜻한 마음 고마웠어요.',
+    delWrong: '비밀번호가 맞지 않아요', delTries: '시도가 너무 많았어요. 한 시간 뒤에 다시 해 주세요.', delFail: '지우지 못했어요. 잠시 뒤 다시 시도해 주세요.',
     titleFor: function (n) { return '♡ ' + n + '님의 마음 한마디'; }, titleAll: '🧡 마음을 전하는 한마디',
     subFor: '카드의 이름을 미리 넣어 두었어요. 편하게 바꾸셔도 돼요.', subAll: '아이들에게, 마을에, 함께하는 분들께 전하고 싶은 말을 남겨 주세요.'
   };
   var MIN_MS = 3000, COOLDOWN_MS = 60000, KEY = 'onmaum_msg_last';
   function last() { try { return +localStorage.getItem(KEY) || 0; } catch (e) { return 0; } }
 
+  var css = document.createElement('style');
+  css.textContent = '.msg-pw-note{display:block;font-size:.8rem;color:var(--text-muted,#6e6e73);margin-top:6px}' +
+    '.msg-field input[type=password]{max-width:260px}' +
+    '.message-card{position:relative}.msg-selfdel{position:absolute;right:10px;bottom:8px;background:none;border:0;padding:4px 6px;font:inherit;font-size:.72rem;color:#a1a1a6;cursor:pointer;text-decoration:underline;opacity:.75}' +
+    '.msg-selfdel:hover,.msg-selfdel:focus-visible{opacity:1;color:#b3261e}' +
+    '.msg-del-card{max-width:360px}.msg-del-card input{width:100%;box-sizing:border-box;font:inherit;padding:12px 14px;border:1px solid rgba(29,29,31,.14);border-radius:10px;margin:12px 0}' +
+    '.msg-del-card .msg-status.err{color:#b3261e}.msg-gentle{text-align:center;color:#1B7E50;font-size:.9rem;margin:12px 0 0}';
+  document.head.appendChild(css);
+  var pwSeq = 0;
+  function addPw(form) {
+    if (form.querySelector('[name=delete_pw]')) return;
+    var id = 'msgPw' + (++pwSeq), d = document.createElement('div');
+    d.className = 'msg-field';
+    d.innerHTML = '<label for="' + id + '">' + T.pwL + '</label><input id="' + id + '" name="delete_pw" type="password" inputmode="numeric" minlength="4" maxlength="20" autocomplete="new-password" required /><span class="msg-pw-note">' + T.pwNote + '</span>';
+    form.insertBefore(d, form.querySelector('.msg-hp'));
+  }
   function bindForm(form, extra) {
+    addPw(form);
     var q = function (s) { return form.querySelector(s); };
     var name = q('[name=author_name]'), body = q('[name=body]'), hp = q('[name=website]'), btn = q('[type=submit]'), st = q('.msg-status');
     form.started = Date.now();
@@ -48,20 +71,21 @@
       if (!n || !b) { say(T.empty, 'err'); (n ? body : name).focus(); return; }
       // 봇: 숨은 칸을 채웠거나 너무 빨리 제출 → 성공처럼 보이고 저장 안 함
       if (hp.value || Date.now() - form.started < MIN_MS) { say(T.ok, 'ok'); body.value = ''; form.recount(); return; }
+      var pwEl = q('[name=delete_pw]'), pw = pwEl.value;
+      if (pw.length < 4 || pw.length > 20) { say(T.pwBad, 'err'); pwEl.focus(); return; }
       if (Date.now() - last() < COOLDOWN_MS) { say(T.wait, 'err'); return; }
       var cfg = window.ONMAUM_CONFIG || {};
       if (!cfg.supabaseUrl || !cfg.supabaseAnonKey) { say(T.fail, 'err'); return; }
-      var row = { author_name: n.slice(0, 40), body: b.slice(0, 500) };
-      var hn = extra && extra(); if (hn) row.heart_no = hn;
+      var row = { p_name: n.slice(0, 40), p_body: b.slice(0, 500), p_pw: pw, p_heart_no: (extra && extra()) || null };
       btn.disabled = true; say(T.sending);
-      fetch(cfg.supabaseUrl.replace(/\/$/, '') + '/rest/v1/messages', {
+      fetch(cfg.supabaseUrl.replace(/\/$/, '') + '/rest/v1/rpc/submit_message', {
         method: 'POST',
         headers: { apikey: cfg.supabaseAnonKey, Authorization: 'Bearer ' + cfg.supabaseAnonKey, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
         body: JSON.stringify(row)
       }).then(function (r) {
         if (r.ok) {
           try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
-          body.value = ''; form.recount(); form.started = Date.now(); say(T.ok, 'ok'); return;
+          body.value = ''; pwEl.value = ''; form.recount(); form.started = Date.now(); say(T.ok, 'ok'); return;
         }
         return r.text().then(function (t) {
           say(/ONMAUM_DUP/.test(t) ? T.dup : /ONMAUM_LINKS/.test(t) ? T.links : /ONMAUM_BUSY/.test(t) ? T.busy : T.fail, 'err');
@@ -73,6 +97,54 @@
 
   var main = document.getElementById('msgForm');
   if (main) bindForm(main);
+
+  // ---- 내 글 삭제 (방명록식 비밀번호)
+  var del = document.createElement('div');
+  del.className = 'modal-backdrop msg-modal'; del.id = 'msgDelModal';
+  del.innerHTML = '<div class="modal-card msg-del-card" role="dialog" aria-modal="true" aria-labelledby="msgDelTitle">' +
+    '<button type="button" class="modal-close" data-close aria-label="' + T.close + '">✕</button>' +
+    '<h3 class="serif-title" id="msgDelTitle">' + T.delTitle + '</h3><p class="msg-modal-sub">' + T.delSub + '</p>' +
+    '<form novalidate><input type="password" name="pw" maxlength="20" autocomplete="off" aria-label="' + T.pwL + '" />' +
+    '<div class="msg-actions"><button type="submit" class="btn-primary-lg">' + T.delBtn + '</button><p class="msg-status" role="status" aria-live="polite"></p></div></form></div>';
+  document.body.appendChild(del);
+  var delId = null, delOpener = null, dform = del.querySelector('form'), dst = del.querySelector('.msg-status');
+  function dsay(m, k) { dst.textContent = m; dst.className = 'msg-status' + (k ? ' ' + k : ''); }
+  function delClose() { del.classList.remove('active'); document.body.style.overflow = ''; if (delOpener && delOpener.focus && document.contains(delOpener)) delOpener.focus(); }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-selfdel]');
+    if (!b) return;
+    e.preventDefault(); delId = b.getAttribute('data-selfdel'); delOpener = b;
+    dform.pw.value = ''; dsay(''); del.classList.add('active'); document.body.style.overflow = 'hidden';
+    setTimeout(function () { dform.pw.focus(); }, 30);
+  });
+  del.addEventListener('click', function (e) { if (e.target === del || e.target.closest('[data-close]')) delClose(); });
+  document.addEventListener('keydown', function (e) {
+    if (del.classList.contains('active') && e.key === 'Escape') { e.preventDefault(); e.stopImmediatePropagation(); delClose(); }
+  }, true);
+  dform.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var pw = dform.pw.value, cfg = window.ONMAUM_CONFIG || {}, btn = dform.querySelector('[type=submit]');
+    if (!pw) { dsay(T.delWrong, 'err'); return; }
+    btn.disabled = true;
+    fetch(cfg.supabaseUrl.replace(/\/$/, '') + '/rest/v1/rpc/delete_own_message', {
+      method: 'POST',
+      headers: { apikey: cfg.supabaseAnonKey, Authorization: 'Bearer ' + cfg.supabaseAnonKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_id: delId, p_pw: pw })
+    }).then(function (r) {
+      return r.text().then(function (t) {
+        if (r.ok && t.trim() === 'true') {
+          var card = document.querySelector('[data-msg-id="' + delId + '"]');
+          if (card) {
+            var g = document.createElement('p'); g.className = 'msg-gentle'; g.textContent = T.delOk;
+            var list = card.parentNode; card.remove(); list.parentNode.insertBefore(g, list.nextSibling);
+            setTimeout(function () { g.remove(); }, 6000);
+          }
+          delClose(); return;
+        }
+        dsay(/ONMAUM_TRIES/.test(t) ? T.delTries : r.ok ? T.delWrong : T.delFail, 'err');
+      });
+    }).catch(function () { dsay(T.delFail, 'err'); }).then(function () { btn.disabled = false; });
+  });
 
   // ---- 하트 카드 → 한마디 모달
   if (!document.querySelector('[data-heart-say]') && !document.getElementById('heartsGrid')) return;

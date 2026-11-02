@@ -32,7 +32,7 @@ try {
     issues: await get('issues?select=*,pages(*)&status=eq.published&order=vol_no.desc'),
     hearts: await get('hearts?select=no,name,card_path,message,message_en&status=eq.published&order=no'),
     posts: await get('posts?select=*&status=eq.published&order=published_at.desc&limit=12'),
-    messages: await get('messages?select=author_name,body,created_at&status=eq.approved&order=created_at.desc&limit=30'),
+    messages: await get('messages?select=id,author_name,body,self_deletable,created_at&status=eq.approved&order=created_at.desc&limit=30'),
   };
 } catch (e) {
   console.warn('[bake] Supabase 읽기 실패 → 정적 파일 그대로 배포:', e.message);
