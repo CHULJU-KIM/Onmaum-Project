@@ -58,3 +58,8 @@
     `select vault.update_secret((select id from vault.secrets where name='onmaum_telegram_chat_ids'), '8643023510,형수님chat_id');`
   - 토큰 교체: `select vault.update_secret((select id from vault.secrets where name='onmaum_telegram_token'), '새토큰');`
 - 하트 카드 한마디(2026-11-02): 카드 아래 "♡ 한마디 남기기" 또는 "🧡 나도 한마디 남기기" → 작은 창에서 작성. 카드에서 쓴 글은 `messages.heart_no`(카드 번호)가 저장되고, 검토 탭에 "💛 이름 카드에서", 텔레그램에도 카드가 표시돼요 (`20261102000200_messages_heart.sql`).
+
+## 관리자 비밀번호 로그인
+- 처음 한 번은 로그인 화면의 "비밀번호를 잊었거나 처음이신가요? 이메일 링크로 로그인"으로 들어온 뒤, **🔑 비밀번호** 탭에서 8자 이상 비밀번호를 정하세요.
+- 그다음부터는 이메일 + 비밀번호로 바로 들어옵니다. 로그인은 브라우저에 유지돼요.
+- 비밀번호를 잊으면 같은 이메일 링크로 들어와 🔑 탭에서 새로 정하면 됩니다.

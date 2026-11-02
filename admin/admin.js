@@ -18,6 +18,8 @@
     db = {
       session: function () { return Promise.resolve({ email: 'demo@onmaum' }); },
       login: function () { return Promise.resolve(); }, logout: function () { location.reload(); },
+      loginPw: function () { return Promise.reject({ code: 'invalid_credentials', message: 'Invalid login credentials' }); },
+      setPassword: function (pw) { return pw.length >= 8 ? Promise.resolve() : Promise.reject({ code: 'weak_password' }); },
       isAdmin: function () { return Promise.resolve(true); },
       list: function (t) { return Promise.resolve(mem[t].slice()); },
       save: function (t, row) {
@@ -52,6 +54,8 @@
       login: function (email) {
         return sb.auth.signInWithOtp({ email: email, options: { shouldCreateUser: false, emailRedirectTo: location.origin + location.pathname } }).then(chk);
       },
+      loginPw: function (email, pw) { return sb.auth.signInWithPassword({ email: email, password: pw }).then(chk); },
+      setPassword: function (pw) { return sb.auth.updateUser({ password: pw }).then(chk); },
       logout: function () { return sb.auth.signOut().then(function () { location.reload(); }); },
       isAdmin: function () { return sb.rpc('is_admin').then(chk); },
       list: function (t) {
@@ -417,6 +421,48 @@
     return '로그인 메일을 보내지 못했어요. 잠시 뒤에 다시 시도해 주세요.';
   }
   window.__onmaumLoginErrorText = loginErrorText;
+  function pwErrorText(err) {
+    var e = err || {}, t = (String(e.message || '') + ' ' + String(e.code || '')).toLowerCase();
+    if (/invalid_credentials|invalid login/.test(t)) return '이메일 또는 비밀번호가 맞지 않아요. 비밀번호를 아직 안 정하셨다면 아래 이메일 링크로 들어와 🔑 탭에서 정해 주세요.';
+    if (/email_not_confirmed|not confirmed/.test(t)) return '아직 확인되지 않은 계정이에요. 아래 이메일 링크로 한 번 로그인해 주세요.';
+    if (e.status === 429 || /rate limit/.test(t)) return '시도가 너무 많았어요. 잠시 뒤에 다시 해 주세요.';
+    return '로그인하지 못했어요. 잠시 뒤에 다시 시도해 주세요.';
+  }
+  window.__onmaumPwErrorText = pwErrorText;
+  function setMsg(id, text, kind) { $(id).textContent = text; $(id).className = kind ? 'msg-' + kind : ''; }
+  $('showLinkLogin').onclick = function () {
+    var f = $('loginForm'); f.hidden = !f.hidden; this.setAttribute('aria-expanded', String(!f.hidden));
+    if (!f.hidden) { if (!$('loginEmail').value) $('loginEmail').value = $('pwEmail').value.trim(); $('loginEmail').focus(); }
+  };
+  $('pwLoginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = $('pwEmail').value.trim().toLowerCase(), pw = $('pwPassword').value;
+    if (!email || !pw) { setMsg('loginMsg', '이메일과 비밀번호를 넣어 주세요.', 'err'); return; }
+    $('pwLoginBtn').disabled = true; setMsg('loginMsg', '확인하는 중이에요…');
+    db.loginPw(email, pw).then(function () {
+      $('pwPassword').value = '';
+      setMsg('loginMsg', ''); start();
+    }).catch(function (err) { setMsg('loginMsg', pwErrorText(err), 'err'); })
+      .then(function () { $('pwLoginBtn').disabled = false; });
+  });
+  $('pwForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var a = $('pwNew').value, b = $('pwConfirm').value;
+    if (a.length < 8) { setMsg('pwMsg', '비밀번호는 8자 이상이어야 해요.', 'err'); return; }
+    if (a !== b) { setMsg('pwMsg', '두 칸의 비밀번호가 서로 달라요. 다시 확인해 주세요.', 'err'); return; }
+    $('pwSave').disabled = true; setMsg('pwMsg', '저장하는 중이에요…');
+    db.setPassword(a).then(function () {
+      $('pwNew').value = ''; $('pwConfirm').value = '';
+      setMsg('pwMsg', '비밀번호를 저장했어요. 다음부터는 이메일과 이 비밀번호로 로그인하시면 돼요.', 'ok');
+    }).catch(function (err) {
+      var t = (String((err || {}).message || '') + ' ' + String((err || {}).code || '')).toLowerCase();
+      setMsg('pwMsg', /same_password|different from the old/.test(t) ? '지금 쓰는 비밀번호와 같아요. 다른 비밀번호로 정해 주세요.'
+        : /weak_password|at least|characters/.test(t) ? '비밀번호가 너무 쉬워요. 더 길게 또는 섞어서 정해 주세요.'
+        : /reauthentication|reauth/.test(t) ? '보안 확인이 필요해요. 로그아웃 후 이메일 링크로 다시 들어와서 저장해 주세요.'
+        : /session|jwt|not authenticated/.test(t) ? '로그인이 만료됐어요. 다시 로그인한 뒤 저장해 주세요.'
+        : '비밀번호를 저장하지 못했어요. 잠시 뒤에 다시 시도해 주세요.', 'err');
+    }).then(function () { $('pwSave').disabled = false; });
+  });
   $('logoutBtn').onclick = function () { db.logout(); };
   // 한 번만 화면을 그림. (예전: SIGNED_IN 이벤트마다 새로고침 → supabase-js 가 저장된 세션 복구 때도
   // SIGNED_IN 을 보내서 새로고침이 끝없이 반복됨)
@@ -435,7 +481,7 @@
         if (!ok) { showLogin('관리자로 등록되지 않은 계정이에요. 등록된 이메일로 다시 로그인해 주세요.'); return; }
         started = true;
         $('loginView').hidden = true;
-        $('who').textContent = user.email; $('logoutBtn').hidden = false; $('appView').hidden = false;
+        $('who').textContent = user.email; $('pwUser').value = user.email || ''; $('logoutBtn').hidden = false; $('appView').hidden = false;
         showTab('issue'); return refresh();
       });
     }).catch(function (err) {

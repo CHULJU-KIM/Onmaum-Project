@@ -20,7 +20,7 @@
   h2 { font-size:1.15rem; margin:0 0 12px; }
   label { display:block; font-weight:700; font-size:.88rem; margin:12px 0 6px; }
   .hint { font-weight:400; color:var(--gray); font-size:.78rem; }
-  input[type=text], input[type=email], input[type=number], textarea, select { width:100%; font:inherit; padding:12px; border:1px solid #d9cfcb; border-radius:10px; background:#fff; }
+  input[type=text], input[type=email], input[type=password], input[type=number], textarea, select { width:100%; font:inherit; padding:12px; border:1px solid #d9cfcb; border-radius:10px; background:#fff; }
   textarea { min-height:120px; resize:vertical; }
   .row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
   .row3 { display:grid; grid-template-columns:1fr; gap:8px; }
@@ -61,6 +61,10 @@
   .toast.show { opacity:1; }
   .login { max-width:420px; margin:40px auto; text-align:center; }
   .login p { color:var(--gray); font-size:.9rem; }
+  .login form input + input { margin-top:10px; }
+  .linkbtn { background:none; border:0; padding:4px; color:var(--gray); text-decoration:underline; font:inherit; font-size:.86rem; cursor:pointer; }
+  .msg-ok, .login p.msg-ok { color:var(--green); font-weight:700; } .msg-err, .login p.msg-err { color:#b8401f; font-weight:700; }
+  .pw-grid { display:grid; gap:12px; max-width:420px; } .pw-grid label { font-weight:700; font-size:.9rem; }
   [hidden] { display:none !important; }
   @media (min-width:700px) { .row3 { grid-template-columns:1fr 1fr 1fr; } main { padding-top:22px; } }
 </style>
@@ -78,10 +82,16 @@
   <!-- 로그인 -->
   <section class="card login" id="loginView" hidden>
     <h2>관리자 로그인</h2>
-    <p>등록된 이메일을 넣으면 로그인 링크를 보내드려요.<br/>메일함에서 링크를 누르면 바로 들어와집니다.</p>
-    <form id="loginForm">
+    <form id="pwLoginForm">
+      <input type="email" id="pwEmail" placeholder="이메일 주소" autocomplete="username" required />
+      <input type="password" id="pwPassword" placeholder="비밀번호" autocomplete="current-password" required />
+      <div style="margin-top:12px"><button class="primary" type="submit" id="pwLoginBtn" style="width:100%">로그인</button></div>
+    </form>
+    <p style="margin-top:14px"><button type="button" class="linkbtn" id="showLinkLogin" aria-expanded="false" aria-controls="loginForm">비밀번호를 잊었거나 처음이신가요? 이메일 링크로 로그인</button></p>
+    <form id="loginForm" hidden>
+      <p>등록된 이메일을 넣으면 로그인 링크를 보내드려요.<br/>메일함에서 링크를 누르면 바로 들어와집니다. 들어온 뒤 🔑 탭에서 비밀번호를 정할 수 있어요.</p>
       <input type="email" id="loginEmail" placeholder="이메일 주소" autocomplete="email" required />
-      <div style="margin-top:12px"><button class="primary" type="submit" style="width:100%">로그인 링크 받기</button></div>
+      <div style="margin-top:12px"><button class="ghost" type="submit" style="width:100%">로그인 링크 받기</button></div>
     </form>
     <p id="loginMsg"></p>
   </section>
@@ -94,6 +104,7 @@
       <button role="tab" data-tab="heart">🧡 새 하트</button>
       <button role="tab" data-tab="messages">💬 메시지 검토</button>
       <button role="tab" data-tab="list">📋 올린 글</button>
+      <button role="tab" data-tab="password">🔑 비밀번호</button>
     </nav>
 
     <!-- 소식지 -->
@@ -173,6 +184,20 @@
     <section class="card" data-panel="list" hidden>
       <h2>올린 글</h2>
       <div class="list" id="allList"></div>
+    </section>
+
+    <section class="card" data-panel="password" hidden>
+      <h2>🔑 비밀번호 설정/변경</h2>
+      <p class="hint">다음부터는 이메일과 이 비밀번호로 바로 들어올 수 있어요. 8자 이상으로 정해 주세요.</p>
+      <form id="pwForm" class="pw-grid" novalidate>
+        <input type="text" autocomplete="username" id="pwUser" hidden />
+        <label for="pwNew">새 비밀번호</label>
+        <input type="password" id="pwNew" autocomplete="new-password" minlength="8" required />
+        <label for="pwConfirm">새 비밀번호 확인</label>
+        <input type="password" id="pwConfirm" autocomplete="new-password" minlength="8" required />
+        <div><button class="primary" type="submit" id="pwSave">비밀번호 저장</button></div>
+        <p id="pwMsg" role="status" aria-live="polite"></p>
+      </form>
     </section>
   </section>
 </main>
