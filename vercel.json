@@ -1,4 +1,12 @@
 {
   "buildCommand": "node scripts/bake.mjs",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "onmaum-project.vercel.app" }],
+      "destination": "https://withonmaum.org/:path*",
+      "permanent": true
+    }
+  ]
 }

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://onmaum-project.vercel.app/sitemap.xml
+Sitemap: https://withonmaum.org/sitemap.xml

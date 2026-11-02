@@ -29,11 +29,11 @@
    insert into public.admin_users (email, display_name) values ('남편@이메일', '김철주');
    insert into public.admin_users (email, display_name) values ('아내@이메일', '배우자');
    ```
-3. `Authentication > URL Configuration` → Site URL `https://onmaum-project.vercel.app`, Redirect URL `https://onmaum-project.vercel.app/admin/`
+3. `Authentication > URL Configuration` → Site URL `https://withonmaum.org`, Redirect URL `https://withonmaum.org/admin/`
 
 ## 쓰는 법
 
-- 휴대폰으로 **https://onmaum-project.vercel.app/admin/** → 이메일 입력 → 메일의 링크 누르면 로그인
+- 휴대폰으로 **https://withonmaum.org/admin/** → 이메일 입력 → 메일의 링크 누르면 로그인
 - 소식지 / 공지 / 현장 이야기 / 새 하트 중 고르고 → 👀 미리보기(폰·PC) → **발행하기**
 - 1~2분 뒤 홈페이지에 반영. 영어 칸은 비워두셔도 돼요(루미가 채움).
 

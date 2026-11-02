@@ -28,7 +28,7 @@ Deno.serve(async (req) => {
 
   const tg = Deno.env.get('TELEGRAM_BOT_TOKEN'), chat = Deno.env.get('TELEGRAM_CHAT_ID');
   if (tg && chat) {
-    const text = `🧡 온마음 홈페이지에 새 글이 발행됐어요\n${body.kind ?? ''} · ${body.title ?? ''}\n1~2분 뒤 반영: https://onmaum-project.vercel.app/`;
+    const text = `🧡 온마음 홈페이지에 새 글이 발행됐어요\n${body.kind ?? ''} · ${body.title ?? ''}\n1~2분 뒤 반영: https://withonmaum.org/`;
     const r = await fetch(`https://api.telegram.org/bot${tg}/sendMessage`, {
       method: 'POST', headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ chat_id: chat, text, disable_web_page_preview: true }),
