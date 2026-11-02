@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://withonmaum.org/sitemap.xml
+
+#DaumWebMasterTool:d51146725ae886a9d318bbb3e5afb96c00d39026b1bec6aa65397d7ab052ed23:y9pY72z5HH+w9gPPOcRKdg==
