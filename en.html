@@ -84,6 +84,19 @@
     .btns { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
     footer { text-align:center; font-size:0.85rem; color:var(--text-muted); padding:30px 18px 40px; border-top:1px solid var(--border); }
     @media (max-width:600px) { .split, .wells { grid-template-columns:1fr; } .card { padding:22px 18px; } .hero { padding-top:40px; } }
+    .msg-field { position:relative; margin-bottom:16px; }
+    .msg-field label { display:block; font-size:0.9rem; font-weight:700; margin-bottom:6px; }
+    .msg-field input, .msg-field textarea { width:100%; font:inherit; font-size:1rem; color:var(--text-main); background:#FFFDF9; border:1px solid rgba(29,29,31,0.14); border-radius:12px; padding:12px 14px; resize:vertical; }
+    .msg-field input:focus, .msg-field textarea:focus { outline:none; border-color:var(--orange); box-shadow:0 0 0 3px rgba(210,64,30,0.14); }
+    .msg-count { display:block; text-align:right; font-size:0.78rem; color:#707075; margin-top:4px; }
+    .msg-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+    .card p.msg-note { font-size:0.86rem; margin-bottom:16px; }
+    .msg-actions { display:flex; flex-wrap:wrap; align-items:center; gap:12px; }
+    button.pill { border:0; cursor:pointer; font:inherit; font-size:0.95rem; font-weight:800; padding:12px 24px; }
+    button.pill:disabled { opacity:.6; cursor:default; }
+    .card p.msg-status { margin:0; font-size:0.92rem; flex:1 1 200px; }
+    .card p.msg-status.ok { color:var(--green); font-weight:700; } .card p.msg-status.err { color:var(--orange-text); font-weight:700; }
+    @media (max-width:600px) { .msg-actions button.pill { width:100%; } }
   </style>
 </head>
 <body>
@@ -141,11 +154,35 @@
       <p>Each supporter becomes an “Onmaum Heart.” Thank you to everyone whose heart is part of this story.</p>
       <div class="btns"><a class="pill solid" href="./#hearts">Meet the Onmaum Hearts</a><a class="pill ghost" href="./" lang="ko">Visit the Korean site</a></div>
     </section>
+    <section class="card" id="messages">
+      <h2 class="serif">Leave a few kind words</h2>
+      <p>A message for the children in Kenya, the villages in Malawi, or everyone walking with us. Korean or English are both welcome.</p>
+      <form class="msg-form" id="msgForm" novalidate>
+        <div class="msg-field">
+          <label for="msgName">Your name or nickname</label>
+          <input id="msgName" name="author_name" type="text" maxlength="40" autocomplete="nickname" placeholder="e.g. A friend from Seoul" required />
+          <span class="msg-count" data-for="msgName">0 / 40</span>
+        </div>
+        <div class="msg-field">
+          <label for="msgBody">Your message</label>
+          <textarea id="msgBody" name="body" rows="4" maxlength="500" placeholder="Write what you would like to share." required></textarea>
+          <span class="msg-count" data-for="msgBody">0 / 500</span>
+        </div>
+        <div class="msg-hp" aria-hidden="true"><label for="msgWebsite">Website</label><input id="msgWebsite" name="website" type="text" tabindex="-1" autocomplete="off" /></div>
+        <p class="msg-note">Messages appear on the site after we read them. A nickname is fine. Please don't include contact details or other personal information.</p>
+        <div class="msg-actions">
+          <button type="submit" class="pill solid" id="msgSubmit">Send message</button>
+          <p class="msg-status" id="msgStatus" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
   </main>
   <footer>
     Onmaum Project | GoodMind Foundation (재단법인 선한뜻) · <a href="https://www.goodmind.or.kr/" target="_blank" rel="noopener">goodmind.or.kr</a><br />
     Acta Non Verba · Good People, Better Days
   </footer>
 <script>(function(){var h=document.querySelector("header");function f(){h.classList.toggle("scrolled",scrollY>8)}addEventListener("scroll",f,{passive:true});f();})();</script>
+<script src="onmaum-config.js"></script>
+<script src="onmaum-messages.js" defer></script>
 </body>
 </html>

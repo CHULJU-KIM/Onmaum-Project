@@ -46,6 +46,9 @@ async def broken(b):
     await pg.route('https://mock.supabase.co/**', lambda r: r.fulfill(status=503, body='paused'))
     await pg.goto(BASE + '/index.html'); await pg.wait_for_timeout(1500)
     check(await pg.locator('#heartsGrid .heart-card').count() == 20 and await pg.locator('#stories').is_hidden(), '[휴면/오류] Supabase 실패 시 정적 데이터 그대로')
+    check(await pg.locator('#messages').is_visible() and await pg.locator('#messagesEmpty').is_visible() and await pg.locator('#msgForm').is_visible(), '[메시지] 승인 글 없어도 섹션·빈 안내·작성 폼 표시')
+    await pg.fill('#msgName', '봇'); await pg.fill('#msgBody', '스팸'); await pg.evaluate("document.getElementById('msgWebsite').value='x'"); await pg.click('#msgSubmit'); await pg.wait_for_timeout(300)
+    check('고맙습니다' in await pg.locator('#msgStatus').inner_text(), '[메시지] 숨은 칸 채운 봇은 저장 없이 조용히 처리')
     await pg.close()
 
 async def admin(b, w):

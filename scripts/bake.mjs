@@ -55,7 +55,7 @@ swap(/<!--STORIES_START-->[\s\S]*?<!--STORIES_END-->/, `<!--STORIES_START-->${st
 if (stories) html = html.replace('<section class="stories-section" id="stories" hidden>', '<section class="stories-section" id="stories">');
 const msgs = L.messagesHtml(data.messages || [], data.hearts || []);
 swap(/<!--MESSAGES_START-->[\s\S]*?<!--MESSAGES_END-->/, `<!--MESSAGES_START-->${msgs}<!--MESSAGES_END-->`);
-if (msgs) html = html.replace('<section class="messages-section" id="messages" hidden>', '<section class="messages-section" id="messages">');
+if (msgs) html = html.replace('<p class="messages-empty" id="messagesEmpty">', '<p class="messages-empty" id="messagesEmpty" hidden>');
 if (noWrite) { console.log(`[bake] --dry: 파일 안 씀 (소식지 ${data.issues?.length || 0} · 하트 ${data.hearts?.length || 0} · 이야기 ${data.posts?.length || 0} · 메시지 ${data.messages?.length || 0})`); process.exit(0); }
 writeFileSync(file, html);
 

@@ -74,7 +74,11 @@
   function setSection(secId, boxId, html) {
     var sec = document.getElementById(secId), box = document.getElementById(boxId);
     if (!sec || !box) return;
-    box.innerHTML = html; sec.hidden = !html;
+    box.innerHTML = html;
+    if (secId === 'messages') { // 작성 폼이 있으니 비어도 섹션은 보임
+      sec.hidden = false; box.hidden = !html;
+      var empty = document.getElementById('messagesEmpty'); if (empty) empty.hidden = !!html;
+    } else sec.hidden = !html;
   }
   root.OnmaumLive.apply = apply;
 
