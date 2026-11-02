@@ -1938,13 +1938,26 @@
     .msg-status { margin: 0; font-size: 0.92rem; line-height: 1.5; word-break: keep-all; flex: 1 1 200px; }
     .msg-status.ok { color: var(--brand-green); font-weight: 700; } .msg-status.err { color: var(--brand-orange-text); font-weight: 700; }
     @media (max-width: 600px) { .msg-form { padding: 22px 18px 20px; margin-top: 28px; } .msg-actions .btn-primary-lg { width: 100%; justify-content: center; } .messages-section { padding: 56px 0; } }
+    .heart-item { display:flex; flex-direction:column; align-items:stretch; }
+    .heart-say { align-self:flex-start; margin:8px 2px 0; display:inline-flex; align-items:center; gap:5px; font:inherit; font-size:0.82rem; font-weight:700; color:var(--brand-orange-text); background:#fff; border:1px solid rgba(210,64,30,0.22); border-radius:999px; padding:5px 12px; cursor:pointer; transition:background .2s, color .2s, border-color .2s; }
+    .heart-say span { font-size:0.95rem; line-height:1; }
+    .heart-say:hover, .heart-say:focus-visible { background:var(--brand-orange); color:#fff; border-color:var(--brand-orange); outline:none; }
+    .hearts-cta { text-align:center; margin-top:36px; }
+    .hearts-cta p { color:var(--text-muted); font-size:0.95rem; margin:0 0 14px; word-break:keep-all; }
+    .msg-modal .modal-card { max-width:560px; }
+    .msg-modal h3 { font-size:1.4rem; font-weight:800; margin:0 34px 6px 0; line-height:1.4; word-break:keep-all; }
+    .msg-modal .msg-modal-sub { color:var(--text-muted); font-size:0.92rem; margin:0 0 18px; word-break:keep-all; }
+    .msg-modal .msg-form { margin:0; padding:0; border:0; box-shadow:none; max-width:none; background:transparent; }
+    @media (max-width: 600px) { .msg-modal .modal-card { padding:24px 18px; } .msg-modal h3 { font-size:1.2rem; } }
     .heart-msg { margin:8px 4px 0; font-size:0.86rem; line-height:1.5; color:#707075; word-break:keep-all; }
     .heart-card img { display:block; width:100%; height:auto; aspect-ratio:1065/612; }
     @media (max-width: 1180px) { .hearts-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 980px) { .hearts-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) { .hearts-grid { grid-template-columns: 1fr; gap:14px; } .hearts-section { padding:56px 0; } }
-    @media (max-width: 1800px) { .main-nav .nav-long { display:none; } }
-    @media (min-width: 1261px) and (max-width: 1800px) { .main-nav .nav-link { font-size: 0.8rem; padding: 6px 6px; } .brand-sub { display:none; } .header-inner { gap: 10px; } }
+    .main-nav .nav-long { display:none; }
+    @media (min-width: 1261px) and (max-width: 1800px) { .main-nav .nav-link { font-size: 0.8rem; padding: 6px 6px; } }
+    @media (min-width: 1801px) { .main-nav .nav-link { font-size: 0.9rem; padding: 7px 9px; } }
+    @media (min-width: 1261px) { .brand-sub { display:none; } .header-inner { gap: 10px; } }
     /* ---- Story ---- */
     .story-section { padding: 80px 0; background:#fff; }
     .story-body { max-width:760px; margin:0 auto; font-size:1.04rem; line-height:1.85; color:var(--text-main); }
@@ -1997,6 +2010,7 @@
         <a href="#letters" class="nav-link">현장 손편지</a>
         <a href="#malawi" class="nav-link">말라위 우물<span class="nav-long">(Water is Life)</span></a>
         <a href="#hearts" class="nav-link">Onmaum Heart</a>
+        <a href="#messages" class="nav-link">한마디</a>
         <a href="#donate" class="nav-link">후원 안내</a>
       </nav>
 
@@ -2021,6 +2035,7 @@
         <a href="#letters">현장 손편지</a>
         <a href="#malawi">말라위 우물(Water is Life)</a>
         <a href="#hearts">Onmaum Heart</a>
+        <a href="#messages">한마디 남기기</a>
         <a href="#donate">후원 안내</a>
         <a href="en.html" lang="en">English (EN)</a>
       </nav>
@@ -2548,6 +2563,10 @@
         <p class="section-desc">케냐의 아이들과 말라위 마을에 따뜻한 한 끼와 맑은 물을 전하는 온마음 후원자분들입니다. 한 분 한 분의 마음이 모여 현장을 바꿉니다.</p>
       </div>
       <div class="hearts-grid" id="heartsGrid">
+      </div>
+      <div class="hearts-cta">
+        <p>카드 아래 ♡를 눌러 그분께, 또는 아이들에게 한마디를 남길 수 있어요.</p>
+        <button type="button" class="btn-primary-lg heart-say-all" data-heart-say="">🧡 나도 한마디 남기기</button>
       </div>
     </div>
   </section>
@@ -3271,7 +3290,8 @@
       g.innerHTML=ONMAUM_HEARTS.slice().sort((a,b)=>a[0]-b[0]).map(([n,name,src0,msg])=>{
         const src=src0||('후원인명단/heart-'+String(n).padStart(2,'0')+'.jpg'), label=esc('Onmaum Heart '+n+' · '+name);
         const btn='<button type="button" class="heart-card" data-src="'+esc(src)+'" data-label="'+label+'"><img src="'+esc(src)+'" alt="'+label+'" loading="lazy" width="1065" height="612" /></button>';
-        return msg?'<div class="heart-item">'+btn+'<p class="heart-msg">“'+esc(msg)+'”</p></div>':btn;
+        const say='<button type="button" class="heart-say" data-heart-say="'+n+'" data-heart-name="'+esc(name)+'" aria-label="'+esc(name)+'님 카드에 한마디 남기기"><span aria-hidden="true">♡</span> 한마디 남기기</button>';
+        return '<div class="heart-item">'+btn+(msg?'<p class="heart-msg">“'+esc(msg)+'”</p>':'')+say+'</div>';
       }).join('');
       if(!g.dataset.bound){g.dataset.bound='1';g.addEventListener('click',e=>{const b=e.target.closest('.heart-card'); if(b) openImageLightbox(b.dataset.src,b.dataset.label);});}
     }

@@ -57,3 +57,4 @@
   - 받는 사람 추가(예: 형수님): 형수님이 봇에게 먼저 아무 말이나 보낸 뒤 chat_id 확인 → SQL Editor 에서
     `select vault.update_secret((select id from vault.secrets where name='onmaum_telegram_chat_ids'), '8643023510,형수님chat_id');`
   - 토큰 교체: `select vault.update_secret((select id from vault.secrets where name='onmaum_telegram_token'), '새토큰');`
+- 하트 카드 한마디(2026-11-02): 카드 아래 "♡ 한마디 남기기" 또는 "🧡 나도 한마디 남기기" → 작은 창에서 작성. 카드에서 쓴 글은 `messages.heart_no`(카드 번호)가 저장되고, 검토 탭에 "💛 이름 카드에서", 텔레그램에도 카드가 표시돼요 (`20261102000200_messages_heart.sql`).

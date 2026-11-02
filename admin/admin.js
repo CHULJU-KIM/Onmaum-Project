@@ -13,7 +13,7 @@
   if (DEMO) {
     // 연습 모드: 브라우저 메모리에만 저장 (테스트·연결 전 체험용)
     var mem = { issues: [], pages: [], posts: [], hearts: [], messages: [
-      { id: 'm1', author_name: '익명', body: '아이들에게 따뜻한 마음 전합니다.', status: 'pending', created_at: new Date().toISOString() }] };
+      { id: 'm1', author_name: '익명', body: '아이들에게 따뜻한 마음 전합니다.', status: 'pending', heart_no: 1, created_at: new Date().toISOString() }] };
     var uid = function () { return 'id' + Math.random().toString(36).slice(2); };
     db = {
       session: function () { return Promise.resolve({ email: 'demo@onmaum' }); },
@@ -343,11 +343,15 @@
   window.addEventListener('resize', function () { if ($('previewWrap').classList.contains('open')) sizePreview(); });
 
   // ------------------------------------------------------------------ 목록 · 메시지 검토
+  function heartName(no) {
+    var h = (state.cache.hearts || []).find(function (x) { return x.no === no; });
+    return h ? h.name : 'Heart ' + no;
+  }
   function renderLists() {
     var c = state.cache;
     var pending = c.messages.filter(function (m) { return m.status === 'pending'; });
     $('msgList').innerHTML = c.messages.length ? c.messages.map(function (m) {
-      return '<div class="item"><div class="t"><b>' + esc(m.body) + '</b><span class="hint">' + esc(m.author_name) + '</span></div><span class="pill ' + m.status + '">' +
+      return '<div class="item"><div class="t"><b>' + esc(m.body) + '</b><span class="hint">' + esc(m.author_name) + (m.heart_no ? ' · 💛 ' + esc(heartName(m.heart_no)) + ' 카드에서' : '') + '</span></div><span class="pill ' + m.status + '">' +
         ({ pending: '대기', approved: '공개', rejected: '숨김' })[m.status] + '</span>' +
         (m.status !== 'approved' ? '<button class="primary small" data-mod="approved" data-id="' + m.id + '">공개</button>' : '') +
         (m.status !== 'rejected' ? '<button class="ghost small" data-mod="rejected" data-id="' + m.id + '">숨김</button>' : '') + '</div>';

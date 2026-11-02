@@ -97,6 +97,7 @@
     .card p.msg-status { margin:0; font-size:0.92rem; flex:1 1 200px; }
     .card p.msg-status.ok { color:var(--green); font-weight:700; } .card p.msg-status.err { color:var(--orange-text); font-weight:700; }
     @media (max-width:600px) { .msg-actions button.pill { width:100%; } }
+    @media (max-width:430px) { .hdr nav .pill { padding:7px 10px; font-size:0.78rem; } .hdr img { height:28px; } }
   </style>
 </head>
 <body>
@@ -104,6 +105,7 @@
     <div class="hdr">
       <a href="./"><img src="logo.png" alt="Onmaum Project logo" /></a>
       <nav>
+        <a class="pill ghost" href="#messages">Leave a Message</a>
         <a class="pill ghost" href="./" lang="ko">한국어</a>
         <a class="pill solid" href="./#donate" lang="ko">Support</a>
       </nav>
