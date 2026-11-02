@@ -53,4 +53,7 @@
 ## 응원 메시지 작성 폼 (2026-11-02)
 - 홈 "마음을 전하는 한마디"와 /en.html 아래에 작성 폼이 있어요. 글은 '대기'로만 저장되고, 관리자 페이지 "💬 메시지 검토"에서 공개해야 사이트에 보여요(탭 이름 옆 숫자 = 대기 글 수).
 - 스팸 방지: 숨은 칸·3초 최소 작성시간·1분 재전송 제한(브라우저) + DB 트리거(`20261102000000_messages_guard.sql`): 링크 2개 이상 거절, 10분 안 같은 본문 거절, 10분에 대기 글 20개 초과 거절.
-- 텔레그램 새 글 알림은 아직 없음(2단계).
+- 텔레그램 알림: 새 대기 글이 오면 봇(@qt_hybrid_swing_bot)이 알려 줌 (`20261102000100_messages_telegram.sql`, pg_net). 토큰·chat_id 는 저장소에 없고 Supabase Vault 에만 있음.
+  - 받는 사람 추가(예: 형수님): 형수님이 봇에게 먼저 아무 말이나 보낸 뒤 chat_id 확인 → SQL Editor 에서
+    `select vault.update_secret((select id from vault.secrets where name='onmaum_telegram_chat_ids'), '8643023510,형수님chat_id');`
+  - 토큰 교체: `select vault.update_secret((select id from vault.secrets where name='onmaum_telegram_token'), '새토큰');`
