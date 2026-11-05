@@ -3,8 +3,35 @@
   "outputDirectory": ".",
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "onmaum-project.vercel.app"
+        }
+      ],
+      "destination": "https://withonmaum.org/",
+      "permanent": true
+    },
+    {
+      "source": "/admin/",
+      "has": [
+        {
+          "type": "host",
+          "value": "onmaum-project.vercel.app"
+        }
+      ],
+      "destination": "https://withonmaum.org/admin/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "onmaum-project.vercel.app" }],
+      "has": [
+        {
+          "type": "host",
+          "value": "onmaum-project.vercel.app"
+        }
+      ],
       "destination": "https://withonmaum.org/:path*",
       "permanent": true
     }
